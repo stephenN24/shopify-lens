@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(99, 199, 239, 0.912);
+
+  background-image: -webkit-gradient(
+    linear,
+    0 0,
+    0 100%,
+    color-stop(0.5, rgba(255, 255, 255, 0.2)),
+    color-stop(0.5, transparent),
+    to(transparent)
+  );
+}
+
+body {
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 350px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: calc(100% - 40px);
+  margin: 20px;
+}
+
+header {
+  width: 100%;
+}
+
+.app-header {
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  justify-content: center;
+  border-bottom: 1px solid #ddd;
+  border-radius: 8px;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 1px 0px;
+  width: 100%;
+  margin: 20px auto;
+  margin-top: 0;
+  display: flex;
+  padding: 20px 20px;
+  gap: 10px;
+}
+
+.app-logo {
+  width: 40px;
+  height: 40px;
+}
