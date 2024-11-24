@@ -9,7 +9,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       chrome.runtime.sendMessage(
         { action: "getCurrentPopupData" },
         (response) => {
-          displayPopupData(response?.popupData);
+          renderPopupData(response?.popupData);
         }
       );
     }, 100);
@@ -17,7 +17,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 });
 
 // Function to display popup data
-function displayPopupData(data) {
+function renderPopupData(data) {
   const popupBody = document.getElementById("popup-content");
   if (data) {
     const bodyHTML = getPopupBodyTemplate(data);
@@ -42,7 +42,11 @@ function getPopupBodyTemplate(data) {
     html += buildInfoItem("Preview Link", buildPreviewLink(data));
   }
   if (jiraKey) {
-    html += buildItemRedirectLink("Jira Link", buildJiraLink(data.jiraKey));
+    html += buildItemRedirectLink(
+      "Jira Link",
+      buildJiraLink(data.jiraKey),
+      "BC-" + data.jiraKey
+    );
   }
 
   return html;
@@ -56,10 +60,10 @@ function buildInfoItem(title, value = "No data") {
         </li>
   `;
 }
-function buildItemRedirectLink(title, value = "#") {
+function buildItemRedirectLink(title, url = "#", urlName = "URL") {
   return `<li class="popup-info-item">
           <span class="title">${title}</span>
-          <a class="redirectLink" target="_blank" href="${value}">URL</a>
+          <a class="redirectLink" target="_blank" href="${url}">${urlName}</a>
         </li>
   `;
 }
