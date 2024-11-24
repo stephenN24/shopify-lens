@@ -2,6 +2,7 @@
   const popupData = {
     storeData: window.Shopify || null,
     jiraKey: null,
+    windowLocation: window.location || null,
   };
 
   // Find Jira key
