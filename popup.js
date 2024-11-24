@@ -32,22 +32,34 @@ function displayPopupData(data) {
 
 function getPopupBodyTemplate(data) {
   const storeData = data.storeData;
+  const jiraKey = data.jiraKey;
 
   let html = "";
-  html += buildInfoItemHTML("Shop", storeData.shop);
-  html += buildInfoItemHTML("Theme ID", storeData.theme.id);
-  html += buildInfoItemHTML("Theme Name", storeData.theme.name);
-  html += buildInfoItemHTML("Preview Link", buildPreviewLink(data));
-  html += buildInfoItemHTML("shop", storeData.shop);
-  html += buildInfoItemHTML("shop", storeData.shop);
+  if (storeData) {
+    html += buildInfoItem("Shop", storeData.shop);
+    html += buildInfoItem("Theme ID", storeData.theme.id);
+    html += buildInfoItem("Theme Name", storeData.theme.name);
+    html += buildInfoItem("Preview Link", buildPreviewLink(data));
+  }
+  if (jiraKey) {
+    html += buildItemRedirectLink("Jira Link", buildJiraLink(data.jiraKey));
+  }
+
   return html;
 }
 
-function buildInfoItemHTML(title, value = "No data") {
+function buildInfoItem(title, value = "No data") {
   return `<li class="popup-info-item">
           <span class="title">${title}</span>
           <input type="text" value="${value}" readonly>
           <button class="copy">${svgLibrary.copyIcon}</button>
+        </li>
+  `;
+}
+function buildItemRedirectLink(title, value = "#") {
+  return `<li class="popup-info-item">
+          <span class="title">${title}</span>
+          <a class="redirectLink" target="_blank" href="${value}">URL</a>
         </li>
   `;
 }
@@ -60,9 +72,14 @@ function buildPreviewLink(data) {
   return `${windowLocation.href}${separator}preview_theme_id=${themeId}`;
 }
 
+function buildJiraLink(jiraKey) {
+  if (!jiraKey) return "";
+
+  return `https://oneapphub.atlassian.net/browse/BC-${jiraKey}`;
+}
+
 function bindEvents() {
   const copyBtns = document.querySelectorAll("button.copy");
-  console.log(copyBtns);
   copyBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       btn.closest("li").querySelector("input").select();

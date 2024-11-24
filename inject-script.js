@@ -10,8 +10,6 @@
   let match = pageContent.match(/jira_issue_key to BC-\d+/);
   if (match) {
     popupData.jiraKey = match[0].split("BC-")[1];
-  } else {
-    popupData.jiraKey = document.readyState;
   }
 
   // Send the data back to the content script
