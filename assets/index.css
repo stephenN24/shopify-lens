@@ -34,7 +34,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-width: 350px;
+  min-width: 500px;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -67,4 +67,59 @@ header {
 .app-logo {
   width: 40px;
   height: 40px;
+}
+
+#popup-content {
+  width: 100%;
+}
+
+.popup-info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.popup-info-item .title {
+  font-weight: bold;
+  margin-right: 10px;
+  width: 150px;
+  color: #555;
+}
+
+.popup-info-item input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.popup-info-item input[type="text"]:focus {
+  border-color: #008060;
+  outline: none;
+}
+
+.popup-info-item input[type="text"] {
+  border: solid 0.5px #379dde0a !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 1px 0px;
+}
+
+.popup-info-item button.copy {
+  min-width: 75px;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  margin-left: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 1px 0px;
+}
+
+.popup-info-item button.copy:hover {
+  box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.24),
+    0 23px 64px 0 rgba(0, 0, 0, -0.81);
 }

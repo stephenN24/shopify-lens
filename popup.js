@@ -28,13 +28,16 @@ function displayPopupData(data) {
   } else {
     popupBody.textContent = "No Shopify object found.";
   }
+
+  // Bind Events
+  bindEvents();
 }
 
 function getPopupTemplate(data) {
   let templateHTML = "";
   templateHTML += buildInfoItemHTML("Shop", data.shop);
   templateHTML += buildInfoItemHTML("Theme ID", data.theme.id);
-  templateHTML += buildInfoItemHTML("shop", data.shop);
+  templateHTML += buildInfoItemHTML("Theme Name", data.theme.name);
   templateHTML += buildInfoItemHTML("shop", data.shop);
   templateHTML += buildInfoItemHTML("shop", data.shop);
   templateHTML += buildInfoItemHTML("shop", data.shop);
@@ -42,10 +45,25 @@ function getPopupTemplate(data) {
 }
 
 function buildInfoItemHTML(title = "N/A", value = "N/A") {
-  return `<li>
+  return `<li class="popup-info-item">
           <span class="title">${title}</span>
           <input type="text" value="${value}" readonly>
           <button class="copy">${svgLibrary.copyIcon}</button>
         </li>
   `;
+}
+
+function bindEvents() {
+  const copyBtns = document.querySelectorAll("button.copy");
+  console.log(copyBtns);
+  copyBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      btn.closest("li").querySelector("input").select();
+      document.execCommand("copy");
+      btn.textContent = "Copied!";
+      btn.style.backgroundImage =
+        "linear-gradient(160deg, #0093e9 0%, #80d0c7 100%)";
+      btn.style.color = "white";
+    });
+  });
 }
