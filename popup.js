@@ -58,6 +58,10 @@ function getPopupBodyTemplate(data) {
       `https://dashboard.bc-solutions.net/sync-hook-details/${storeData.shop}`
     );
     html += buildItemRedirectLink(
+      "Shopify Partners",
+      `https://partners.shopify.com/524425/stores?search_value=${storeData.shop}`
+    );
+    html += buildItemRedirectLink(
       "Shopify Integration",
       `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration`
     );
