@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopify Lens</title>
     <link rel="stylesheet" crossorigin href="/assets/index.css" />
+    <link rel="stylesheet" crossorigin href="/assets/loader.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,7 +21,17 @@
       </div>
     </header>
     <hr style="margin-bottom: 20px; border-color: #7fffd436; width: 100%" />
-    <main id="popup-content">Loading...</main>
+    <main id="popup-content">
+      <div class="loader">
+        <div class="container">
+          <div class="📦"></div>
+          <div class="📦"></div>
+          <div class="📦"></div>
+          <div class="📦"></div>
+          <div class="📦"></div>
+        </div>
+      </div>
+    </main>
     <script type="module" src="assets/svgs/svgLibrary.js"></script>
     <script type="module" src="popup.js"></script>
   </body>

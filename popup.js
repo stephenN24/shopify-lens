@@ -9,7 +9,9 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       chrome.runtime.sendMessage(
         { action: "getCurrentPopupData" },
         (response) => {
-          renderPopupData(response?.popupData);
+          setTimeout(function () {
+            renderPopupData(response?.popupData);
+          }, 700);
         }
       );
     }, 100);
