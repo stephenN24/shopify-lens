@@ -33,13 +33,32 @@ function renderPopupData(data) {
 function getPopupBodyTemplate(data) {
   const storeData = data.storeData;
   const jiraKey = data.jiraKey;
+  const shopURLWithoutDomain = storeData.shop.replace(".myshopify.com", "");
 
   let html = "";
+
   if (storeData) {
     html += buildInfoItem("Shop", storeData.shop);
     html += buildInfoItem("Theme ID", storeData.theme.id);
     html += buildInfoItem("Theme Name", storeData.theme.name);
     html += buildInfoItem("Preview Link", buildPreviewLink(data));
+    html += buildInfoItem("Boost Version", data.boostVersions.join(","));
+    html += buildItemRedirectLink(
+      "Collection All",
+      buildLinkCollectionAll(data)
+    );
+    html += buildItemRedirectLink(
+      "Theme Code Editor",
+      `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/${storeData.theme.id}}`
+    );
+    html += buildItemRedirectLink(
+      "Dashboard",
+      `https://dashboard.bc-solutions.net/sync-hook-details/${storeData.shop}`
+    );
+    html += buildItemRedirectLink(
+      "Shopify Integration",
+      `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration`
+    );
   }
   if (jiraKey) {
     html += buildItemRedirectLink(
@@ -60,10 +79,15 @@ function buildInfoItem(title, value = "No data") {
         </li>
   `;
 }
-function buildItemRedirectLink(title, url = "#", urlName = "URL") {
+function buildItemRedirectLink(title, url = "#", urlName = "Open Link") {
   return `<li class="popup-info-item">
           <span class="title">${title}</span>
-          <a class="redirectLink" target="_blank" href="${url}">${urlName}</a>
+          <a class="redirect-link" target="_blank" href="${url}">
+            <div class="redirect-link-content">
+              <div class="redirect-link-text">${urlName}</div>
+              <div class="redirect-link-icon">${svgLibrary.hyperlinkIcon}</div>
+            </div>
+          </a>
         </li>
   `;
 }
@@ -74,6 +98,11 @@ function buildPreviewLink(data) {
 
   const separator = windowLocation.search.length > 0 ? "&" : "?";
   return `${windowLocation.href}${separator}preview_theme_id=${themeId}`;
+}
+
+function buildLinkCollectionAll(data) {
+  const { windowLocation } = data;
+  return `${windowLocation.origin}/collections/all`;
 }
 
 function buildJiraLink(jiraKey) {
