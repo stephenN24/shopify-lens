@@ -49,7 +49,7 @@ function getPopupBodyTemplate(data) {
     );
     html += buildItemRedirectLink(
       "Theme Code Editor",
-      `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/${storeData.theme.id}}`
+      `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/${storeData.theme.id}`
     );
     html += buildItemRedirectLink(
       "Dashboard",
