@@ -33,7 +33,7 @@ function renderPopupData(data) {
 function getPopupBodyTemplate(data) {
   const storeData = data.storeData;
   const jiraKey = data.jiraKey;
-  const shopURLWithoutDomain = storeData.shop.replace(".myshopify.com", "");
+  const shopURLWithoutDomain = storeData?.shop.replace(".myshopify.com", "");
 
   let html = "";
 
