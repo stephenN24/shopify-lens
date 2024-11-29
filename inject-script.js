@@ -33,10 +33,10 @@
     ) {
       popupData.boostVersions.push("Turbo");
     }
+  }
 
-    if (popupData.boostVersions.length == 0) {
-      popupData.boostVersions.push("No Data");
-    }
+  if (popupData.boostVersions.length == 0) {
+    popupData.boostVersions.push("No Data");
   }
   // Send the data back to the content script
   window.postMessage(
