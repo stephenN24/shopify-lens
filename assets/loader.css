@@ -1,6 +1,6 @@
 @charset "UTF-8";
 :root {
-  --duration: 1.5s;
+  --duration: 0.8s;
   --container-size: 190px;
   --box-size: 20px;
   --box-border-radius: 15%;
