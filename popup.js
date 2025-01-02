@@ -22,7 +22,12 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 function renderPopupData(data) {
   const popupBody = document.getElementById("popup-content");
   if (data) {
-    const bodyHTML = getPopupBodyTemplate(data);
+    let bodyHTML = getPopupBodyTemplate(data);
+    if (bodyHTML == "") {
+      bodyHTML =
+        '<div class="popup-empty"><img class="no-result-message" src="/assets/images/no-data-found.webp"/></div>';
+    }
+
     popupBody.innerHTML = bodyHTML;
   } else {
     popupBody.textContent = "No Shopify object found.";

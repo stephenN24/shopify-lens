@@ -154,3 +154,14 @@ a.redirect-link:hover {
   right: 10px;
   top: 5px;
 }
+
+.popup-empty {
+  text-align: center;
+  font-size: 12px;
+  margin: 5px 0 15px 0;
+  font-weight: bold;
+}
+
+img.no-result-message {
+  width: 150px;
+}
