@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Shopify Lens",
+  "name": "Shopify Lens DEMO",
   "version": "1.0",
   "description": "Access and display the Shopify object data from a website.",
   "permissions": ["scripting", "activeTab", "storage", "tabs"],
