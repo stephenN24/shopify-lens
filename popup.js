@@ -48,6 +48,10 @@ function getPopupBodyTemplate(data) {
     html += buildInfoItem("Shop", storeData.shop);
     html += buildInfoItem("Theme ID", storeData.theme.id);
     html += buildInfoItem("Theme Name", storeData.theme.name);
+    html += buildInfoItem(
+      "Theme Schema",
+      storeData.theme.schema_name + "_v" + storeData.theme.schema_version
+    );
     html += buildInfoItem("Preview Link", buildPreviewLink(data));
     html += buildInfoItem("Boost Version", data.boostVersions.join(", "));
     html += buildItemRedirectLink(
