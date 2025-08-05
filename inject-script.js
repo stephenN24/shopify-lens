@@ -10,7 +10,7 @@
   let pageContent = document.body.innerText || document.body.textContent;
   let match = pageContent.match(/jira_issue_key to BOOST-\d+/);
   if (match) {
-    popupData.jiraKey = match[0].split("BC-")[1];
+    popupData.jiraKey = match[0].split("BOOST-")[1];
   }
   // Get boost version
   for (let key in window) {
