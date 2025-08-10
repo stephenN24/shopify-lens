@@ -14,7 +14,14 @@ try {
           { action: "getCurrentPopupData" },
           (response) => {
             setTimeout(function () {
-              renderPopupData(response?.popupData);
+              if (response?.popupData?.storeData) {
+                renderPopupData(response.popupData);
+              } else {
+                // If not shopify store, load from localStorage
+                chrome.storage.local.get("popupData", (result) => {
+                  renderPopupData(result.popupData);
+                });
+              }
             }, 700);
           }
         );

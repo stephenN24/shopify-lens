@@ -4,7 +4,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const script = document.createElement("script");
     script.src = chrome.runtime.getURL("inject-script.js");
     script.onload = function () {
-      this.remove(); // Clean up after injecting
+      this.remove();
     };
     (document.head || document.documentElement).appendChild(script);
   }
