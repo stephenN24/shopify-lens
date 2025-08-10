@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopify Lens</title>
-    <link rel="stylesheet" crossorigin href="/assets/index.css" />
-    <link rel="stylesheet" crossorigin href="/assets/loader.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/index.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/loader.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,7 +13,6 @@
       rel="stylesheet"
     />
   </head>
-  <body>
     <header>
       <div class="app-header">
         <img class="app-logo" src="/assets/images/logo.png" />
@@ -21,7 +20,14 @@
       </div>
     </header>
     <hr style="margin-bottom: 20px; border-color: #7fffd436; width: 100%" />
-    <main id="popup-content">
+    <main class="dashboard">
+    <div class="sidebar">
+      <button id="btnTab1" class="active">Tab 1</button>
+      <button id="btnTab2">Tab 2</button>
+    </div>
+
+    <div class="content">
+      <div id="tab1" class="tab active popup-content">
       <div class="loader">
         <div class="container">
           <div class="📦"></div>
@@ -31,6 +37,13 @@
           <div class="📦"></div>
         </div>
       </div>
+      </div>
+      <div id="tab2" class="tab">
+        <div class="jira-content">
+          Tab 2 content goes here.
+        </div>
+      </div>
+    </div>
     </main>
     <script type="module" src="assets/svgs/svgLibrary.js"></script>
     <script type="module" src="popup.js"></script>

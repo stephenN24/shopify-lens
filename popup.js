@@ -14,12 +14,18 @@ try {
           { action: "getCurrentPopupData" },
           (response) => {
             setTimeout(function () {
-              if (response?.popupData?.storeData) {
+              if (response?.popupData?.isShopifyStore) {
+                // If it's a Shopify store, render the new popup data
                 renderPopupData(response.popupData);
               } else {
                 // If not shopify store, load from localStorage
                 chrome.storage.local.get("popupData", (result) => {
-                  renderPopupData(result.popupData);
+                  const cachedData = result.popupData;
+                  //Update the cached data fields
+                  cachedData.isCached = true;
+                  cachedData.isShopifyStore = false;
+                  cachedData.jiraKey = response?.popupData?.jiraKey || null;
+                  renderPopupData(cachedData);
                 });
               }
             }, 700);
@@ -34,26 +40,28 @@ try {
 
 // Function to display popup data
 function renderPopupData(data) {
-  const popupBody = document.getElementById("popup-content");
+  const shopifyDataTab = document.querySelector(".popup-content");
   if (data) {
-    let bodyHTML = getPopupBodyTemplate(data);
+    let bodyHTML = getShopifyDataTemplate(data);
     if (bodyHTML == "") {
       bodyHTML =
         '<div class="popup-empty"><img class="no-result-message" src="/assets/images/no-data-found.webp"/></div>';
     }
 
-    popupBody.innerHTML = bodyHTML;
+    shopifyDataTab.innerHTML = bodyHTML;
   } else {
-    popupBody.textContent = "No Shopify object found.";
+    shopifyDataTab.textContent = "No Shopify object found.";
   }
+  const jiraDataTab = document.querySelector(".jira-content");
+  const jiraDataTabHTM = getJiraDataTemplate(data);
+  jiraDataTab.innerHTML = jiraDataTabHTM;
 
   // Bind Events
   bindEvents();
 }
 
-function getPopupBodyTemplate(data) {
+function getShopifyDataTemplate(data) {
   const storeData = data.storeData;
-  const jiraKey = data.jiraKey;
   const shopURLWithoutDomain = storeData?.shop.replace(".myshopify.com", "");
 
   let html = "";
@@ -89,15 +97,17 @@ function getPopupBodyTemplate(data) {
       `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration`
     );
   }
-  if (jiraKey) {
-    html += buildItemRedirectLink(
-      "Jira Link",
-      buildJiraLink(data.jiraKey),
-      "BC-" + data.jiraKey
-    );
-  }
-
   return html;
+}
+function getJiraDataTemplate(data) {
+  const jiraKey = data.jiraKey;
+  return jiraKey
+    ? buildItemRedirectLink(
+        "Jira Link",
+        buildJiraLink(data.jiraKey),
+        "BC-" + data.jiraKey
+      )
+    : "No Jira key found";
 }
 
 function buildInfoItem(title, value = "No data") {
@@ -153,3 +163,21 @@ function bindEvents() {
     });
   });
 }
+
+//
+const buttons = document.querySelectorAll(".sidebar button");
+const tabs = document.querySelectorAll(".tab");
+
+buttons.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    // Remove active class from all buttons
+    buttons.forEach((btn) => btn.classList.remove("active"));
+    // Add active class to clicked button
+    button.classList.add("active");
+
+    // Hide all tabs
+    tabs.forEach((tab) => tab.classList.remove("active"));
+    // Show the tab corresponding to the button index
+    tabs[index].classList.add("active");
+  });
+});

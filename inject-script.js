@@ -1,5 +1,6 @@
 (function () {
   const popupData = {
+    isShopifyStore: Boolean(window.Shopify),
     storeData: window.Shopify || null,
     jiraKey: null,
     windowLocation: window.location || null,
@@ -38,6 +39,7 @@
   if (popupData.boostVersions.length == 0) {
     popupData.boostVersions.push("No Data");
   }
+
   // Send the data back to the content script
   window.postMessage(
     { type: "POPUP_DATA", popupData: JSON.parse(JSON.stringify(popupData)) },
