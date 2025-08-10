@@ -2,17 +2,19 @@
   const popupData = {
     isShopifyStore: Boolean(window.Shopify),
     storeData: window.Shopify || null,
-    jiraKey: null,
+    jiraKey: findJiraKey(),
     windowLocation: window.location || null,
     boostVersions: [],
   };
 
   // Find Jira key
-  let pageContent = document.body.innerText || document.body.textContent;
-  let match = pageContent.match(/jira_issue_key to BOOST-\d+/);
-  if (match) {
-    popupData.jiraKey = match[0].split("BOOST-")[1];
+  function findJiraKey() {
+    const pageContent =
+      document.body.innerText || document.body.textContent || "";
+    const match = pageContent.match(/jira_issue_key to (BOOST|BC)-\d+/);
+    return match ? match[0].replace("jira_issue_key to ", "") : null;
   }
+
   // Get boost version
   for (let key in window) {
     if (key.includes("bcsf") && !popupData.boostVersions.includes("V1")) {

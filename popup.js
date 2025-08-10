@@ -104,13 +104,11 @@ function getShopifyDataTemplate(data) {
 }
 function getJiraDataTemplate(data) {
   const jiraKey = data.jiraKey;
-  return jiraKey
-    ? buildItemRedirectLink(
-        "Jira Link",
-        buildJiraLink(data.jiraKey),
-        "BC-" + data.jiraKey
-      )
-    : "";
+  if (!jiraKey) {
+    return "";
+  }
+
+  return buildItemRedirectLink("Jira Link", buildJiraLink(jiraKey), jiraKey);
 }
 
 function buildInfoItem(title, value = "No data") {
@@ -148,9 +146,7 @@ function buildLinkCollectionAll(data) {
 }
 
 function buildJiraLink(jiraKey) {
-  if (!jiraKey) return "";
-
-  return `https://oneapphub.atlassian.net/browse/BC-${jiraKey}`;
+  return `https://oneapphub.atlassian.net/browse/${jiraKey}`;
 }
 
 function bindEvents() {
