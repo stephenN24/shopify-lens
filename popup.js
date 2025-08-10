@@ -1,22 +1,29 @@
 import svgLibrary from "./assets/svgs/svgLibrary.js";
 
-// Request the current popup data
-chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-  const currentTab = tabs[0]; // The current active tab
-  const tabId = currentTab.id; // The ID of the current tab
-  chrome.tabs.sendMessage(tabId, { action: "injectScript" }, function () {
-    setTimeout(function () {
-      chrome.runtime.sendMessage(
-        { action: "getCurrentPopupData" },
-        (response) => {
-          setTimeout(function () {
-            renderPopupData(response?.popupData);
-          }, 700);
-        }
-      );
-    }, 100);
+try {
+  // Request the current popup data
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    const currentTab = tabs[0]; // The current active tab
+    const tabId = currentTab.id; // The ID of the current tab
+    chrome.tabs.sendMessage(tabId, { action: "injectScript" }, function () {
+      if (chrome.runtime.lastError) {
+        console.log("Message failed:", chrome.runtime.lastError.message);
+      }
+      setTimeout(function () {
+        chrome.runtime.sendMessage(
+          { action: "getCurrentPopupData" },
+          (response) => {
+            setTimeout(function () {
+              renderPopupData(response?.popupData);
+            }, 700);
+          }
+        );
+      }, 100);
+    });
   });
-});
+} catch (error) {
+  console.warn(error);
+}
 
 // Function to display popup data
 function renderPopupData(data) {

@@ -12,11 +12,23 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // Listen for tab switches and updates
 chrome.tabs.onActivated.addListener((activeInfo) => {
-  chrome.tabs.sendMessage(activeInfo.tabId, { action: "injectScript" });
+  chrome.tabs.sendMessage(
+    activeInfo.tabId,
+    { action: "injectScript" },
+    (response) => {
+      if (chrome.runtime.lastError) {
+        console.log("Message failed:", chrome.runtime.lastError.message);
+      }
+    }
+  );
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === "complete") {
-    chrome.tabs.sendMessage(tabId, { action: "injectScript" });
+    chrome.tabs.sendMessage(tabId, { action: "injectScript" }, (response) => {
+      if (chrome.runtime.lastError) {
+        console.log("Message failed:", chrome.runtime.lastError.message);
+      }
+    });
   }
 });
