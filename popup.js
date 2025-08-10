@@ -54,7 +54,10 @@ function renderPopupData(data) {
   }
   const jiraDataTab = document.querySelector(".jira-content");
   const jiraDataTabHTM = getJiraDataTemplate(data);
-  jiraDataTab.innerHTML = jiraDataTabHTM;
+  if (jiraDataTabHTM !== "") {
+    jiraDataTab.innerHTML = jiraDataTabHTM;
+    switchTab("tab2");
+  }
 
   // Bind Events
   bindEvents();
@@ -107,7 +110,7 @@ function getJiraDataTemplate(data) {
         buildJiraLink(data.jiraKey),
         "BC-" + data.jiraKey
       )
-    : "No Jira key found";
+    : "";
 }
 
 function buildInfoItem(title, value = "No data") {
@@ -164,20 +167,33 @@ function bindEvents() {
   });
 }
 
-//
+// Handle tab switching
 const buttons = document.querySelectorAll(".sidebar button");
 const tabs = document.querySelectorAll(".tab");
 
-buttons.forEach((button, index) => {
-  button.addEventListener("click", () => {
-    // Remove active class from all buttons
-    buttons.forEach((btn) => btn.classList.remove("active"));
-    // Add active class to clicked button
-    button.classList.add("active");
+function switchTab(tabId) {
+  // Remove active classes
+  buttons.forEach((btn) => btn.classList.remove("active"));
+  tabs.forEach((tab) => tab.classList.remove("active"));
 
-    // Hide all tabs
-    tabs.forEach((tab) => tab.classList.remove("active"));
-    // Show the tab corresponding to the button index
-    tabs[index].classList.add("active");
+  // Activate the correct button
+  const activeButton = document.querySelector(
+    `.sidebar button[data-tab="${tabId}"]`
+  );
+  if (activeButton) {
+    activeButton.classList.add("active");
+  }
+
+  // Activate the correct tab
+  const activeTab = document.getElementById(tabId);
+  if (activeTab) {
+    activeTab.classList.add("active");
+  }
+}
+
+// Event listener for button clicks
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    switchTab(button.dataset.tab);
   });
 });
