@@ -5,6 +5,9 @@
     jiraKey: findJiraKey(),
     windowLocation: window.location || null,
     boostVersions: [],
+    appData: {
+      templateId: boostWidgetIntegration?.generalSettings?.templateId || "",
+    },
   };
 
   // Find Jira key
