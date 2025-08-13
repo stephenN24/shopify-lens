@@ -13,26 +13,24 @@ try {
         chrome.runtime.sendMessage(
           { action: "getCurrentPopupData" },
           (response) => {
-            setTimeout(function () {
-              if (response?.popupData?.isShopifyStore) {
-                // If it's a Shopify store, render the new popup data
-                renderPopupData(response.popupData);
-              } else {
-                // If not shopify store, load from localStorage
-                chrome.storage.local.get("popupData", (result) => {
-                  const cachedData = result.popupData;
-                  if (!cachedData) {
-                    renderPopupData(response.popupData);
-                    return;
-                  }
-                  //Update the cached data fields
-                  cachedData.isCached = true;
-                  cachedData.isShopifyStore = false;
-                  cachedData.jiraKey = response?.popupData?.jiraKey || null;
-                  renderPopupData(cachedData);
-                });
-              }
-            }, 700);
+            if (response?.popupData?.isShopifyStore) {
+              // If it's a Shopify store, render the new popup data
+              renderPopupData(response.popupData);
+            } else {
+              // If not shopify store, load from localStorage
+              chrome.storage.local.get("popupData", (result) => {
+                const cachedData = result.popupData;
+                if (!cachedData) {
+                  renderPopupData(response.popupData);
+                  return;
+                }
+                //Update the cached data fields
+                cachedData.isCached = true;
+                cachedData.isShopifyStore = false;
+                cachedData.jiraKey = response?.popupData?.jiraKey || null;
+                renderPopupData(cachedData);
+              });
+            }
           }
         );
       }, 100);
