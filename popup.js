@@ -173,13 +173,14 @@ function renderCopyableField(title, value, classModifier = "") {
 
 // Event delegation for copy buttons
 document.addEventListener("click", function (e) {
-  const btn = e.target.closest(".copy-btn");
-  if (btn) {
-    const value = btn.getAttribute("data-value");
+  const dataField = e.target.closest(".data-field");
+  if (dataField) {
+    const value =
+      dataField.getAttribute("data-value") ||
+      dataField.querySelector(".title")?.getAttribute("data-value");
     if (value) {
       navigator.clipboard.writeText(value);
-      // Add zoom effect to SVG
-      const svg = btn.querySelector("svg");
+      const svg = dataField.querySelector(".copy-btn svg");
       if (svg) {
         svg.classList.add("clicked");
         setTimeout(() => svg.classList.remove("clicked"), 300);

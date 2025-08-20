@@ -282,6 +282,7 @@ img.no-result-message {
 
 a.button-link {
   color: #fff;
+  display: block;
 }
 
 .data-field .copy-btn {
@@ -361,4 +362,8 @@ a.button-link {
   font-size: 8px;
   border-radius: 15px;
   font-weight: 500;
+}
+
+.data-field {
+  cursor: pointer;
 }
