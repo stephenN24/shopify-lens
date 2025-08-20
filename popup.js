@@ -182,23 +182,34 @@ function renderPopupData(data) {
 
 function renderStoreInfo(data) {
   const tenantId = data.storeData.shop;
-  const tenantIdHTML = renderCopyableField(tenantId);
+  const tenantIdHTML = renderCopyableField(tenantId, undefined, "tenant-id");
   const shopURLWithoutDomain = tenantId.replace(".myshopify.com", "");
   const dashboardLink = renderButtonLink(
     "",
     "Dashboard",
-    `https://dashboard.bc-solutions.net/sync-hook-details/${shopURLWithoutDomain}`
+    `https://dashboard.bc-solutions.net/sync-hook-details/${shopURLWithoutDomain}`,
+    "system-dashboard"
   );
 
   const shopifyPartnersLink = renderButtonLink(
     "",
     "Shopify Partners",
-    `https://partners.shopify.com/524425/stores?search_value=${tenantId}`
+    `https://partners.shopify.com/524425/stores?search_value=${tenantId}`,
+    "shopify-partners"
   );
+
+  const themesPageLink = renderButtonLink(
+    "",
+    "Themes Page",
+    `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes`,
+    "themes-page"
+  );
+
   return `<div class="section-content store-info">
   ${tenantIdHTML}
   ${dashboardLink}
   ${shopifyPartnersLink}
+  ${themesPageLink}
   </div>`;
 }
 
@@ -209,14 +220,19 @@ function renderThemeInfo({ storeData, windowLocation }) {
   const themeName = storeData.theme.name;
   const themeSchema = `${storeData.theme.schema_name}_v${storeData.theme.schema_version}`;
   const previewLink = buildPreviewLink(windowLocation, themeId);
-  const themeEditorLink = `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/${themeId}`;
+  const themeCodeEditorLink = `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/${themeId}`;
 
   return `<div class="section-content theme-info">
-  ${renderCopyableField(themeId)}
-  ${renderCopyableField(themeName)}
-  ${renderCopyableField(themeSchema)}
-  ${renderCopyableField("Preview Link", previewLink)}
-  ${renderButtonLink("", "Theme Code Editor", themeEditorLink)}
+  ${renderCopyableField(themeId, undefined, "theme-id")}
+  ${renderCopyableField(themeName, undefined, "theme-name")}
+  ${renderCopyableField(themeSchema, undefined, "theme-schema")}
+  ${renderCopyableField("Preview Link", previewLink, "preview-link")}
+  ${renderButtonLink(
+    "",
+    "Theme Code Editor",
+    themeCodeEditorLink,
+    "theme-code-editor"
+  )}
   </div>`;
 }
 
@@ -231,20 +247,25 @@ function renderBoostInfo(data) {
   return `<div class="section-content boost-info">
   <div class="boost-versions">${boostVersions}</div>
   ${renderCopyableField(templateId)}
-  ${renderButtonLink("", "Template Setting", templateSettingsURL)}
+  ${renderButtonLink(
+    "",
+    "Template Setting",
+    templateSettingsURL,
+    "template-settings"
+  )}
   </div>`;
 }
 
-function renderButtonLink(icon, text, url) {
-  return `<a class="button-link" href="${url}" target="_blank">
+function renderButtonLink(icon, text, url, classModifier) {
+  return `<a class="button-link ${classModifier}" href="${url}" target="_blank">
     ${text ? `<span class="text">${text}</span>` : ""}
     ${icon ? `<span class="icon">${icon}</span>` : ""}
   </a>`;
 }
 
-function renderCopyableField(title, value) {
+function renderCopyableField(title, value, classModifier = "") {
   const dataValue = value || title;
-  return `<div class="data-field">
+  return `<div class="data-field ${classModifier}">
     <span class="title" data-value="${dataValue}">${title}</span>
     <button class="copy-btn" data-value="${dataValue}" title="Copy">${svgLibrary.copyIcon}</button>
   </div>`;
@@ -252,15 +273,17 @@ function renderCopyableField(title, value) {
 
 // Event delegation for copy buttons
 document.addEventListener("click", function (e) {
-  if (e.target.closest(".copy-btn")) {
-    const btn = e.target.closest(".copy-btn");
+  const btn = e.target.closest(".copy-btn");
+  if (btn) {
     const value = btn.getAttribute("data-value");
     if (value) {
       navigator.clipboard.writeText(value);
-      btn.textContent = "Copied!";
-      setTimeout(() => {
-        btn.innerHTML = svgLibrary.copyIcon;
-      }, 1000);
+      // Add zoom effect to SVG
+      const svg = btn.querySelector("svg");
+      if (svg) {
+        svg.classList.add("clicked");
+        setTimeout(() => svg.classList.remove("clicked"), 300);
+      }
     }
   }
 });
