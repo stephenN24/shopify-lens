@@ -65,6 +65,12 @@ function renderPopupData(data) {
     jiraDataTab.innerHTML = `<div class="section-content jira-info">${jiraLink}</div>`;
     switchTab("tab2");
   }
+
+  if (data.isCached) {
+    const isCachedNotice = `<span>Cached</span>`;
+    const cachedNotice = document.querySelector(".cache-indicator");
+    cachedNotice.innerHTML = isCachedNotice;
+  }
 }
 
 function renderStoreInfo(data) {

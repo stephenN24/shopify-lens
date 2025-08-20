@@ -347,3 +347,18 @@ a.button-link {
   -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
   transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
+
+.cache-indicator {
+  position: absolute;
+  right: 20px;
+  bottom: 40px;
+}
+
+.cache-indicator > span {
+  color: #fff;
+  background: #eaae11;
+  padding: 2px 7px;
+  font-size: 8px;
+  border-radius: 15px;
+  font-weight: 500;
+}
