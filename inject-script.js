@@ -1,13 +1,14 @@
 (function () {
   const popupData = {
-    isShopifyStore: Boolean(window.Shopify),
-    storeData: window.Shopify || null,
+    isShopifyStore:
+      typeof window.Shopify?.shop === "string" &&
+      window.Shopify.shop.length > 0,
+    storeData: window.Shopify ?? null,
     jiraKey: findJiraKey(),
-    windowLocation: window.location || null,
+    windowLocation: window.location?.href ?? "",
     boostVersions: [],
     appData: {
-      templateId:
-        window.boostWidgetIntegration?.generalSettings?.templateId || "",
+      templateId: getTemplateId(),
     },
   };
 
@@ -17,6 +18,11 @@
       document.body.innerText || document.body.textContent || "";
     const match = pageContent.match(/jira_issue_key to (BOOST|BC)-\d+/);
     return match ? match[0].replace("jira_issue_key to ", "") : null;
+  }
+
+  // Get template ID from global settings
+  function getTemplateId() {
+    return window?.boostWidgetIntegration?.generalSettings?.templateId ?? "";
   }
 
   // Get boost version
@@ -46,6 +52,7 @@
     popupData.boostVersions.push("No Data");
   }
 
+  console.log("Popup Data:", popupData);
   // Send the data back to the content script
   window.postMessage(
     { type: "POPUP_DATA", popupData: JSON.parse(JSON.stringify(popupData)) },

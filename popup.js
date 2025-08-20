@@ -13,10 +13,13 @@ try {
         chrome.runtime.sendMessage(
           { action: "getCurrentPopupData" },
           (response) => {
+            console.log("Response from background:", response);
             if (response?.popupData?.isShopifyStore) {
               // If it's a Shopify store, render the new popup data
               renderPopupData(response.popupData);
+              console.log("RENDER DIRECTLY");
             } else {
+              console.log("GET FROM LOCAL STORAGE");
               // If not shopify store, load from localStorage
               chrome.storage.local.get("popupData", (result) => {
                 const cachedData = result.popupData;
@@ -65,7 +68,7 @@ function renderPopupData(data) {
     jiraDataTab.innerHTML = `<div class="section-content jira-info">${jiraLink}</div>`;
     switchTab("tab2");
   }
-
+  console.log("Popup data rendered", data);
   if (data.isCached) {
     const isCachedNotice = `<span>Cached</span>`;
     const cachedNotice = document.querySelector(".cache-indicator");
