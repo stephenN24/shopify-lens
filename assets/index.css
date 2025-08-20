@@ -271,6 +271,15 @@ img.no-result-message {
   /* background-color: #bddde4; */
 }
 
+.section-content.jira-info {
+  background-image: url("images/jira-background.png");
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position-y: 18%;
+}
+
 a.button-link {
   color: #fff;
 }
@@ -308,6 +317,33 @@ a.button-link {
   }
 }
 
-.jira-link .text {
-  color: #008060;
+.jira-content {
+  width: 90%;
+  margin: auto;
+}
+
+.button-link.jira-link {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  background: #0290ff;
+  border-radius: 15px;
+  padding: 5px 25px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  text-shadow: 1px 2px 0px rgb(15 199 230 / 60%);
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+
+.button-link.jira-link:hover,
+.button-link.jira-link:focus,
+.button-link.jira-link:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+  transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
