@@ -307,3 +307,7 @@ a.button-link {
     transform: scale(1);
   }
 }
+
+.jira-link .text {
+  color: #008060;
+}
