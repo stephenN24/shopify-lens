@@ -573,6 +573,9 @@ async function initSavedReplies(data) {
 
   await loadTemplates(data);
   setupEventListeners();
+  // Auto-select Template 1
+  templateSelect.value = "1";
+  selectTemplate();
 }
 
 // END SAVED REPLIES ------------
