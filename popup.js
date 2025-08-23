@@ -47,18 +47,19 @@ try {
 function renderPopupData(data) {
   const dashboardContent = document.querySelector(".dashboard-content");
   let sectionTemplate = `<section class="dashboard-section">{{sectionContent}}</section>`;
-  let html = "";
-  html += sectionTemplate.replace("{{sectionContent}}", renderStoreInfo(data));
-  html += sectionTemplate.replace("{{sectionContent}}", renderThemeInfo(data));
-  html += sectionTemplate.replace("{{sectionContent}}", renderBoostInfo(data));
 
-  if (html != "") {
-    dashboardContent.innerHTML = html;
-  }
+  const renderSections = [renderStoreInfo, renderThemeInfo, renderBoostInfo];
+  let html = "";
+  renderSections.forEach((fn) => {
+    html += sectionTemplate.replace("{{sectionContent}}", fn(data));
+  });
+
+  dashboardContent.innerHTML = html;
 
   const jiraDataTab = document.querySelector(".jira-content");
   const jiraKey = data.jiraKey;
   if (jiraKey) {
+    document.querySelector("[data-tab=tab2]").classList.remove("hidden"); // Show the Jira tab if jiraKey exists
     const jiraLink = renderButtonLink(
       "",
       jiraKey,
@@ -67,6 +68,8 @@ function renderPopupData(data) {
     );
     jiraDataTab.innerHTML = `<div class="section-content jira-info">${jiraLink}</div>`;
     switchTab("tab2");
+  } else {
+    document.querySelector("[data-tab=tab2]").classList.add("hidden"); // Hide the Jira tab if jiraKey does not exist
   }
   console.log("Popup data rendered", data);
   if (data.isCached) {
@@ -174,6 +177,12 @@ function renderCopyableField(title, value, classModifier = "") {
   </div>`;
 }
 
+//Utils
+function buildPreviewLink(windowLocation, themeId) {
+  const separator = windowLocation.search.length > 0 ? "&" : "?";
+  return `${windowLocation.href}${separator}preview_theme_id=${themeId}`;
+}
+
 // Event delegation for copy buttons
 document.addEventListener("click", function (e) {
   const dataField = e.target.closest(".data-field");
@@ -185,7 +194,7 @@ document.addEventListener("click", function (e) {
       navigator.clipboard.writeText(value);
       const svg = dataField.querySelector(".copy-btn svg");
       if (svg) {
-        svg.classList.add("clicked");
+        svg.classList.add("clicked"); // Add clicked class to animate
         setTimeout(() => svg.classList.remove("clicked"), 300);
       }
     }
@@ -216,15 +225,88 @@ function switchTab(tabId) {
   }
 }
 
-// Event listener for button clicks
+// Event listener for tab buttons
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     switchTab(button.dataset.tab);
   });
 });
 
-//Utils
-function buildPreviewLink(windowLocation, themeId) {
-  const separator = windowLocation.search.length > 0 ? "&" : "?";
-  return `${windowLocation.href}${separator}preview_theme_id=${themeId}`;
+// Use tab key to switch tabs
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Tab") {
+    e.preventDefault();
+    const visibleButtons = Array.from(buttons).filter(
+      (btn) => !btn.classList.contains("hidden")
+    );
+    const activeIndex = visibleButtons.findIndex((btn) =>
+      btn.classList.contains("active")
+    );
+    let nextIndex = (activeIndex + 1) % visibleButtons.length;
+    switchTab(visibleButtons[nextIndex].dataset.tab);
+    visibleButtons[nextIndex].focus();
+  }
+});
+
+// Tools - Refine API Request
+const openRefinedUrl = document.querySelector("#open-url-btn");
+const apiRequestInput = document.querySelector("#apiRequest");
+
+openRefinedUrl.addEventListener("click", handleOpenRefinedUrl);
+apiRequestInput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    handleOpenRefinedUrl();
+  }
+});
+
+function handleOpenRefinedUrl() {
+  const originalApiRequest = apiRequestInput.value;
+  const url = refineAPIRequest(originalApiRequest);
+  const errorMsg = document.querySelector(".url-refactor .error-message");
+  if (url) {
+    window.open(url, "_blank");
+    errorMsg.style.display = "none";
+  } else {
+    errorMsg.textContent = "Invalid URL";
+    errorMsg.style.display = "inline";
+  }
 }
+
+function refineAPIRequest(url) {
+  try {
+    const urlObj = new URL(url);
+    urlObj.searchParams.delete("widgetId");
+    return urlObj.toString();
+  } catch (e) {
+    console.warn("Invalid URL:", url);
+    return null;
+  }
+}
+
+// Tools - Helpdoc Finder
+const helpdocSearchInput = document.getElementById("helpdocSearch");
+
+function handleHelpdocSearch() {
+  const keyword = helpdocSearchInput.value.trim();
+  const errorMsg = document.querySelector(".helpdoc-finder .error-message");
+  if (keyword) {
+    const url = `https://support.boostcommerce.net/en/?q=${encodeURIComponent(
+      keyword
+    )}`;
+    window.open(url, "_blank");
+    errorMsg.style.display = "none";
+  } else {
+    errorMsg.textContent = "Please enter a keyword";
+    errorMsg.style.display = "inline";
+  }
+}
+
+document
+  .getElementById("search-helpdoc-btn")
+  .addEventListener("click", handleHelpdocSearch);
+
+helpdocSearchInput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    handleHelpdocSearch();
+  }
+});

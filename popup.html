@@ -109,6 +109,14 @@
             </g>
           </svg>
         </button>
+        <button data-tab="tab3" class="tab-btn">
+          <img
+            src="assets/images/tools-icon.ico"
+            alt="Tools Icon"
+            width="30"
+            height="35"
+          />
+        </button>
       </div>
       <div class="content">
         <div id="tab1" class="tab active popup-content">
@@ -129,6 +137,60 @@
         </div>
         <div id="tab2" class="tab">
           <div class="jira-content">No Jira data available.</div>
+        </div>
+        <div id="tab3" class="tab">
+          <div class="tools">
+            <div class="tools-list">
+              <div class="tool-item url-refactor">
+                <div class="tool-name">Refine API request</div>
+                <div class="input-wrapper">
+                  <input type="text" id="apiRequest" class="tool-input" />
+                  <button id="open-url-btn" class="tool-btn">Go</button>
+                </div>
+
+                <span
+                  class="error-message"
+                  style="color: red; margin-left: 8px; display: none"
+                ></span>
+              </div>
+              <div class="tool-item helpdoc-finder">
+                <div class="tool-name">Find support article</div>
+                <div class="search-bar">
+                  <input type="text" id="helpdocSearch" class="tool-input" />
+                  <button id="search-helpdoc-btn" class="tool-btn icon-btn">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="22"
+                      width="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <circle
+                        cx="11"
+                        cy="11"
+                        r="8"
+                        stroke="#fff"
+                        stroke-width="2"
+                      />
+                      <line
+                        x1="21"
+                        y1="21"
+                        x2="16.65"
+                        y2="16.65"
+                        stroke="#fff"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <span
+                  class="error-message"
+                  style="color: red; margin-left: 8px; display: none"
+                ></span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>

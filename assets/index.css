@@ -47,6 +47,10 @@ header {
   width: 100%;
 }
 
+button {
+  outline: none;
+}
+
 .app-header-wrapper {
   position: relative;
 }
@@ -318,7 +322,8 @@ a.button-link {
   }
 }
 
-.jira-content {
+.jira-content,
+.tools {
   width: 90%;
   margin: auto;
 }
@@ -366,4 +371,101 @@ a.button-link {
 
 .data-field {
   cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Tools Section Styling */
+.tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px 0;
+}
+
+.tool-item {
+  background: #f7fbfc;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  padding: 18px 22px;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tool-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0290ff;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.tool-input {
+  width: 100%;
+  max-width: 340px;
+  padding: 9px 14px;
+  border: 1px solid #cbe7f3;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.tool-input:focus {
+  border-color: #0290ff;
+  outline: none;
+}
+
+.tool-btn {
+  background: linear-gradient(90deg, #0290ff 60%, #15c6e2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 5px 30px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(99, 199, 239, 0.12);
+  transition: background 0.2s, transform 0.2s;
+  margin-right: 8px;
+}
+
+.tool-btn:hover,
+.tool-btn:focus {
+  background: linear-gradient(90deg, #15c6e2 0%, #0290ff 100%);
+  transform: scale(1.05);
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.error-message {
+  font-size: 13px;
+  font-weight: 500;
+  color: #e74c3c !important;
+  margin-top: 4px;
+  margin-left: 2px;
+  display: inline-block;
+}
+
+.input-wrapper {
+  display: flex;
+  width: 100%;
+  gap: 20px;
 }
