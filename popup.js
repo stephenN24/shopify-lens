@@ -353,6 +353,8 @@ async function initSavedReplies(data) {
   const templateName = document.getElementById("templateName");
   const templateText = document.getElementById("templateText");
   const preview = document.getElementById("preview");
+  const editSection = document.getElementById("editSection");
+  const editBtn = document.getElementById("editBtn");
   const saveBtn = document.getElementById("saveBtn");
   const copyBtn = document.getElementById("copyBtn");
   const notification = document.getElementById("notification");
@@ -398,6 +400,7 @@ async function initSavedReplies(data) {
   function setupEventListeners() {
     templateSelect.addEventListener("change", selectTemplate);
     templateText.addEventListener("input", updatePreview);
+    editBtn.addEventListener("click", toggleEditMode);
     saveBtn.addEventListener("click", saveTemplate);
     copyBtn.addEventListener("click", copyToClipboard);
   }
@@ -412,17 +415,28 @@ async function initSavedReplies(data) {
         templateEditor.classList.add("active");
         templateName.textContent = template.name;
         templateText.value = template.text;
+
+        // Reset to view mode when selecting a new template
+        exitEditMode();
         updatePreview();
       }
     } else {
       templateEditor.classList.remove("active");
       currentTemplateId = null;
+      exitEditMode();
     }
   }
 
   // Update preview with rendered template
   function updatePreview() {
-    const text = templateText.value;
+    let text = templateText.value;
+    if (editSection.style.display !== "none") {
+      text = templateText.value;
+    } else if (currentTemplateId && templates[currentTemplateId]) {
+      text = templates[currentTemplateId].text;
+    } else {
+      text = "";
+    }
 
     if (!text.trim()) {
       preview.textContent = "Enter some text to see the preview";
@@ -458,6 +472,7 @@ async function initSavedReplies(data) {
       templates[currentTemplateId].text = text;
       await saveTemplatesToStorage();
       showNotification("Template saved successfully!", "success");
+      exitEditMode();
       updatePreview();
     } catch (error) {
       console.error("Error saving template:", error);
@@ -473,7 +488,12 @@ async function initSavedReplies(data) {
     }
 
     // Get the original text with line breaks preserved
-    const text = templateText.value;
+    let text;
+    if (editSection.style.display !== "none") {
+      text = templateText.value;
+    } else {
+      text = templates[currentTemplateId].text;
+    }
 
     if (!text.trim()) {
       showNotification("Nothing to copy", "info");
@@ -505,6 +525,39 @@ async function initSavedReplies(data) {
         showNotification("Failed to copy to clipboard", "error");
       }
     }
+  }
+
+  // Toggle edit mode
+  function toggleEditMode() {
+    if (!currentTemplateId) {
+      showNotification("Please select a template first", "info");
+      return;
+    }
+
+    const isEditing = editSection.style.display !== "none";
+
+    if (isEditing) {
+      exitEditMode();
+    } else {
+      enterEditMode();
+    }
+  }
+
+  // Enter edit mode
+  function enterEditMode() {
+    editSection.style.display = "block";
+    editBtn.textContent = "Cancel Edit";
+    editBtn.style.background = "linear-gradient(135deg, #e74c3c, #c0392b)";
+    saveBtn.style.display = "inline-block";
+    templateText.focus();
+  }
+
+  // Exit edit mode
+  function exitEditMode() {
+    editSection.style.display = "none";
+    editBtn.textContent = "Edit Template";
+    editBtn.style.background = "linear-gradient(135deg, #f39c12, #e67e22)";
+    saveBtn.style.display = "none";
   }
 
   // Show notification

@@ -219,7 +219,11 @@
                   <div id="templateEditor" class="template-editor">
                     <div class="template-name" id="templateName"></div>
 
-                    <div class="editor-section">
+                    <div
+                      class="editor-section"
+                      id="editSection"
+                      style="display: none"
+                    >
                       <label>Edit Template:</label>
                       <textarea
                         id="templateText"
@@ -235,11 +239,18 @@
                     </div>
 
                     <div class="actions">
-                      <button class="btn btn-save" id="saveBtn">
+                      <button class="btn btn-edit" id="editBtn">
+                        Edit Template
+                      </button>
+                      <button
+                        class="btn btn-save"
+                        id="saveBtn"
+                        style="display: none"
+                      >
                         Save Changes
                       </button>
                       <button class="btn btn-copy" id="copyBtn">
-                        Copy to Clipboard
+                        Copy Output
                       </button>
                     </div>
                   </div>

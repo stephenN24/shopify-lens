@@ -696,3 +696,8 @@ textarea:focus {
 .notification.error {
   background: linear-gradient(135deg, #e74c3c, #c0392b);
 }
+
+.btn-edit {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  color: white;
+}
