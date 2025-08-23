@@ -1,11 +1,9 @@
 (function () {
   const popupData = {
-    isShopifyStore:
-      typeof window.Shopify?.shop === "string" &&
-      window.Shopify.shop.length > 0,
-    storeData: window.Shopify ?? null,
+    isShopifyStore: Boolean(window?.Shopify?.shop),
+    storeData: window.Shopify || null,
     jiraKey: findJiraKey(),
-    windowLocation: window.location?.href ?? "",
+    windowLocation: window.location || null,
     boostVersions: [],
     appData: {
       templateId: getTemplateId(),
