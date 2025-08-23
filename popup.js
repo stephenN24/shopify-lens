@@ -86,7 +86,7 @@ function renderStoreInfo(data) {
   const dashboardLink = renderButtonLink(
     "",
     "Dashboard",
-    `https://dashboard.bc-solutions.net/sync-hook-details/${shopURLWithoutDomain}`,
+    `https://dashboard.bc-solutions.net/sync-hook-details/${tenantId}`,
     "system-dashboard"
   );
 
