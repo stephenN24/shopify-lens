@@ -117,6 +117,14 @@
             height="35"
           />
         </button>
+        <button data-tab="tab4" class="tab-btn">
+          <img
+            src="assets/images/saved-replies-icon.png"
+            alt="Tools Icon"
+            width="30"
+            height="30"
+          />
+        </button>
       </div>
       <div class="content">
         <div id="tab1" class="tab active popup-content">
@@ -145,7 +153,7 @@
                 <div class="tool-name">Refine API request</div>
                 <div class="input-wrapper">
                   <input type="text" id="apiRequest" class="tool-input" />
-                  <button id="open-url-btn" class="tool-btn">Go</button>
+                  <button id="open-url-btn" class="styled-btn small">Go</button>
                 </div>
 
                 <span
@@ -157,7 +165,7 @@
                 <div class="tool-name">Find support article</div>
                 <div class="search-bar">
                   <input type="text" id="helpdocSearch" class="tool-input" />
-                  <button id="search-helpdoc-btn" class="tool-btn icon-btn">
+                  <button id="search-helpdoc-btn" class="styled-btn small">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       height="22"
@@ -189,74 +197,82 @@
                   style="color: red; margin-left: 8px; display: none"
                 ></span>
               </div>
-              <div class="tool-item saved-reply">
-                <div class="tool-content-wrapper">
-                  <div class="tool-item-header">
-                    <span>Saved Replies</span>
-                    <p>Select, customize, and copy saved replies</p>
-                  </div>
+            </div>
+          </div>
+        </div>
+        <div id="tab4" class="tab">
+          <div class="tool-item saved-reply">
+            <div class="tool-content-wrapper">
+              <div class="tool-item-header">
+                <span>Saved Replies</span>
+                <p>Select, customize, and copy saved replies</p>
+                <!-- Start tooltip -->
+                <div class="tooltip-container">
+                  <button class="styled-btn small">Available Variables</button>
 
                   <div class="variable-info">
-                    <div class="variable-info-title">Available Variables</div>
                     <p>
                       {{themeId}}: Theme ID<br />
                       {{themeName}}: Theme Name<br />
-                      {{tenantId}}: Tenant Id<br />
+                      {{tenantId}}: Tenant Id
                     </p>
                   </div>
+                </div>
+                <!-- End tooltip -->
+              </div>
 
-                  <div class="template-selector">
-                    <label for="templateSelect">Choose a Template:</label>
-                    <select id="templateSelect">
-                      <option value="">-- Select a template --</option>
-                      <option value="1" selected>Template 1</option>
-                      <option value="2">Template 2</option>
-                      <option value="3">Template 3</option>
-                      <option value="4">Template 4</option>
-                    </select>
-                  </div>
+              <div class="template-selector">
+                <label for="templateSelect">Choose a Template:</label>
+                <select id="templateSelect">
+                  <option value="">-- Select a template --</option>
+                  <option value="1" selected>Template 1</option>
+                  <option value="2">Template 2</option>
+                  <option value="3">Template 3</option>
+                  <option value="4">Template 4</option>
+                </select>
+              </div>
 
-                  <div id="templateEditor" class="template-editor">
-                    <div class="template-name" id="templateName"></div>
+              <div id="templateEditor" class="template-editor">
+                <div class="template-name" id="templateName"></div>
 
-                    <div
-                      class="editor-section"
-                      id="editSection"
-                      style="display: none"
-                    >
-                      <label>Edit Template:</label>
-                      <textarea
-                        id="templateText"
-                        placeholder="Enter your template text here..."
-                      ></textarea>
-                    </div>
+                <div
+                  class="editor-section"
+                  id="editSection"
+                  style="display: none"
+                >
+                  <label>Edit Template:</label>
+                  <textarea
+                    id="templateText"
+                    placeholder="Enter your template text here..."
+                  ></textarea>
+                </div>
 
-                    <div class="editor-section">
-                      <label>Preview:</label>
-                      <div class="preview" id="preview">
-                        Select a template to see the preview
-                      </div>
-                    </div>
-
-                    <div class="actions">
-                      <button class="btn btn-edit" id="editBtn">
-                        Edit Template
-                      </button>
-                      <button
-                        class="btn btn-save"
-                        id="saveBtn"
-                        style="display: none"
-                      >
-                        Save Changes
-                      </button>
-                      <button class="btn btn-copy" id="copyBtn">Copy</button>
-                    </div>
+                <div class="editor-section">
+                  <label>Preview:</label>
+                  <div class="preview" id="preview">
+                    Select a template to see the preview
                   </div>
                 </div>
 
-                <div class="notification" id="notification"></div>
+                <div class="actions">
+                  <button class="styled-btn small btn-copy" id="copyBtn">
+                    Copy
+                  </button>
+                  <button class="styled-btn small btn-edit" id="editBtn">
+                    Edit Template
+                  </button>
+                  <button
+                    class="styled-btn small btn-save"
+                    id="saveBtn"
+                    style="display: none"
+                  >
+                    Save Changes
+                  </button>
+                </div>
               </div>
             </div>
+
+            <div class="notification" id="notification"></div>
           </div>
         </div>
       </div>

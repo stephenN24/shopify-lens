@@ -421,33 +421,6 @@ a.button-link {
   outline: none;
 }
 
-.tool-btn {
-  background: linear-gradient(90deg, #0290ff 60%, #15c6e2 100%);
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  padding: 5px 30px;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(99, 199, 239, 0.12);
-  transition: background 0.2s, transform 0.2s;
-  margin-right: 8px;
-}
-
-.tool-btn:hover,
-.tool-btn:focus {
-  background: linear-gradient(90deg, #15c6e2 0%, #0290ff 100%);
-  transform: scale(1.05);
-}
-
-.icon-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px 12px;
-}
-
 .search-bar {
   display: flex;
   align-items: center;
@@ -627,42 +600,6 @@ textarea:focus {
   color: white;
 }
 
-.variable-info {
-  background: #e3f2fd;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  border-left: 3px solid #2196f3;
-}
-
-.variable-info .variable-info-title {
-  color: #1976d2;
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-}
-
-.variable-info p {
-  color: #555;
-  margin-bottom: 8px;
-  font-size: 0.85rem;
-}
-
-.variable-tags {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.variable-tag {
-  background: rgba(33, 150, 243, 0.1);
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-family: "Courier New", monospace;
-  font-size: 12px;
-  color: #1976d2;
-  border: 1px solid rgba(33, 150, 243, 0.3);
-}
-
 .notification {
   position: fixed;
   top: 10px;
@@ -701,3 +638,216 @@ textarea:focus {
   background: linear-gradient(135deg, #f39c12, #e67e22);
   color: white;
 }
+
+/* Start CSS for tooltip */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.variable-info {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  color: #374151;
+  padding: 14px 10px;
+  border-radius: 16px;
+  font-size: 13px;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.variable-info::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.95);
+}
+
+.tooltip-container:hover .variable-info {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.variable-info-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 1px;
+}
+
+.variable-info p {
+  line-height: 1.8;
+  color: #6b7280;
+  font-size: 10px;
+}
+
+/* Add sparkle animation */
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* End CSS for tooltip */
+
+/* === Start CSS for styled-btn === */
+.styled-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+}
+
+.styled-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.styled-btn:hover::before {
+  left: 100%;
+}
+
+.styled-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+}
+
+.styled-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.styled-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+}
+
+.styled-btn:disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+}
+
+.styled-btn:disabled::before {
+  display: none;
+}
+
+/* Sparkle effect - optional */
+.styled-btn.sparkle::after {
+  content: "✨";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 12px;
+  animation: sparkle 2s infinite;
+  animation-delay: 1s;
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Size variants */
+.styled-btn.small {
+  padding: 8px 16px;
+  font-size: 12px;
+  border-radius: 8px;
+  min-width: 80px;
+}
+
+.styled-btn.large {
+  padding: 16px 32px;
+  font-size: 16px;
+  border-radius: 16px;
+  min-width: 160px;
+}
+
+/* Color variants */
+.styled-btn.success {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  box-shadow: 0 4px 20px rgba(72, 187, 120, 0.25);
+}
+
+.styled-btn.success:hover {
+  box-shadow: 0 8px 30px rgba(72, 187, 120, 0.4);
+}
+
+.styled-btn.danger {
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+  box-shadow: 0 4px 20px rgba(245, 101, 101, 0.25);
+}
+
+.styled-btn.danger:hover {
+  box-shadow: 0 8px 30px rgba(245, 101, 101, 0.4);
+}
+
+.styled-btn.secondary {
+  background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+  box-shadow: 0 4px 20px rgba(113, 128, 150, 0.25);
+}
+
+.styled-btn.secondary:hover {
+  box-shadow: 0 8px 30px rgba(113, 128, 150, 0.4);
+}
+
+/* === End CSS for styled-btn  === */
