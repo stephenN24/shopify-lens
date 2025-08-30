@@ -133,8 +133,8 @@ function renderThemeInfo({ storeData, windowLocation }) {
   const themeCodeEditorLink = `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/${themeId}`;
 
   return `<div class="section-content theme-info">
-  ${renderCopyableField(themeId, undefined, "theme-id")}
   ${renderCopyableField(themeName, undefined, "theme-name")}
+  ${renderCopyableField(themeId, undefined, "theme-id")}
   ${renderCopyableField(themeSchema, undefined, "theme-schema")}
   ${renderCopyableField("Preview Link", previewLink, "preview-link")}
   ${renderButtonLink(
