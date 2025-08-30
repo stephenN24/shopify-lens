@@ -190,9 +190,10 @@ img.no-result-message {
 
 .dashboard {
   display: flex;
-  height: 400px;
+  height: auto;
   width: 100%;
   overflow: hidden;
+  margin-bottom: 25px;
 }
 
 .dashboard-content {
