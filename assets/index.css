@@ -296,11 +296,6 @@ img.no-result-message {
   background-position-y: 18%;
 }
 
-a.button-link {
-  color: #fff;
-  display: inline-block;
-}
-
 .data-field .copy-btn {
   opacity: 0;
   background: unset;
