@@ -183,7 +183,7 @@ function renderButtonLink(icon, text, url, classModifier) {
 function renderCopyableField(title, value, classModifier = "") {
   const dataValue = value || title;
   return `<div class="data-field ${classModifier}">
-    <span class="title" data-value="${dataValue}">${title}</span>
+    <div class="title" data-value="${dataValue}">${title}</div>
     <button class="copy-btn" data-value="${dataValue}" title="Copy">${svgLibrary.copyIcon}</button>
   </div>`;
 }

@@ -882,6 +882,7 @@ a.styled-btn.button-link {
 /* === Styling for store info header === */
 .data-field .title {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: inline-block;
 }
 
 .data-field.tenant-id .title {
