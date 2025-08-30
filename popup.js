@@ -93,31 +93,33 @@ function renderStoreInfo(data) {
   const tenantIdHTML = renderCopyableField(tenantId, undefined, "tenant-id");
   const shopURLWithoutDomain = tenantId.replace(".myshopify.com", "");
   const dashboardLink = renderButtonLink(
+    svgLibrary.react,
     "",
-    "Dashboard",
     `https://dashboard.bc-solutions.net/sync-hook-details/${tenantId}`,
     "system-dashboard"
   );
 
   const shopifyPartnersLink = renderButtonLink(
+    svgLibrary.shopifyPartner,
     "",
-    "Shopify Partners",
     `https://partners.shopify.com/524425/stores?search_value=${tenantId}`,
     "shopify-partners"
   );
 
   const themesPageLink = renderButtonLink(
+    svgLibrary.shopifyTheme,
     "",
-    "Themes Page",
     `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes`,
     "themes-page"
   );
 
   return `<div class="header-info-content store-info">
   ${tenantIdHTML}
+  <div class="links-wrapper">
+  ${themesPageLink}
   ${dashboardLink}
   ${shopifyPartnersLink}
-  ${themesPageLink}
+  </div>
   </div>`;
 }
 
@@ -136,8 +138,8 @@ function renderThemeInfo({ storeData, windowLocation }) {
   ${renderCopyableField(themeSchema, undefined, "theme-schema")}
   ${renderCopyableField("Preview Link", previewLink, "preview-link")}
   ${renderButtonLink(
+    svgLibrary.themeEdit,
     "",
-    "Theme Code Editor",
     themeCodeEditorLink,
     "theme-code-editor"
   )}
@@ -157,14 +159,14 @@ function renderBoostInfo(data) {
   <div class="boost-versions">${boostVersions}</div>
   ${renderCopyableField(templateId)}
   ${renderButtonLink(
+    svgLibrary.templateSettings,
     "",
-    "Template Setting",
     templateSettingsURL,
     "template-settings"
   )}
   ${renderButtonLink(
+    svgLibrary.shopifyIntegration,
     "",
-    "Shopify Integration",
     shopifyIntegrationLink,
     "shopify-integration"
   )}
@@ -172,9 +174,9 @@ function renderBoostInfo(data) {
 }
 
 function renderButtonLink(icon, text, url, classModifier) {
-  return `<a class="button-link ${classModifier}" href="${url}" target="_blank">
+  return `<a class="button-link styled-btn ${classModifier}" href="${url}" target="_blank">
     ${text ? `<span class="text">${text}</span>` : ""}
-    ${icon ? `<span class="icon">${icon}</span>` : ""}
+    ${icon ? `<div class="icon">${icon}</div>` : ""}
   </a>`;
 }
 

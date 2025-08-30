@@ -51,6 +51,10 @@ button {
   outline: none;
 }
 
+.header-store-info {
+  min-height: 110px;
+}
+
 .app-header-wrapper {
   position: relative;
 }
@@ -76,6 +80,13 @@ button {
 .app-logo {
   width: 40px;
   height: 40px;
+}
+
+/* Styling for header store info */
+.data-field.tenant-id .title {
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 #popup-content {
@@ -266,6 +277,11 @@ img.no-result-message {
   background-image: url("images/store-info-bg.jpg");
   max-width: 100%;
   margin-bottom: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
 }
 .section-content.theme-info {
   background-image: url("images/theme-info-bg.jpg");
@@ -288,7 +304,7 @@ img.no-result-message {
 
 a.button-link {
   color: #fff;
-  display: block;
+  display: inline-block;
 }
 
 .data-field .copy-btn {
@@ -359,7 +375,7 @@ a.button-link {
 .cache-indicator {
   position: absolute;
   right: 20px;
-  bottom: 40px;
+  top: 10px;
 }
 
 .cache-indicator > span {
@@ -853,3 +869,29 @@ textarea:focus {
 }
 
 /* === End CSS for styled-btn  === */
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+a.styled-btn.button-link {
+  color: #fff;
+  min-width: 50px;
+  min-height: 25px;
+  padding: 2px;
+  background: #fff;
+  display: inline-flex;
+  margin: 2px;
+}
+
+/* === Styling for store info header === */
+.shopify-partners svg {
+  width: 15px;
+  height: 20px;
+}
+
+.data-field.tenant-id {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
