@@ -1,7 +1,23 @@
 (function () {
+  const { shop, country, currency, locale, theme, abc } = window.Shopify || {};
+
+  const storeData = {
+    shop,
+    country,
+    currency,
+    locale,
+    theme: {
+      id: theme?.id,
+      name: theme?.name,
+      role: theme?.role,
+      schema_name: theme?.schema_name,
+      schema_version: theme?.schema_version,
+    },
+  };
+
   const popupData = {
     isShopifyStore: Boolean(window?.Shopify?.shop),
-    storeData: window.Shopify || null,
+    storeData,
     jiraKey: findJiraKey(),
     windowLocation: window.location || null,
     boostVersions: [],
@@ -52,6 +68,7 @@
 
   console.log("Popup Data:", popupData);
   // Send the data back to the content script
+
   window.postMessage(
     { type: "POPUP_DATA", popupData: JSON.parse(JSON.stringify(popupData)) },
     "*"
