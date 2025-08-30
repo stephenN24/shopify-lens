@@ -46,9 +46,15 @@ try {
 // Function to render the popup data
 function renderPopupData(data) {
   const dashboardContent = document.querySelector(".dashboard-content");
+  const headerStoreInfo = document.querySelector(".header-store-info");
   let sectionTemplate = `<section class="dashboard-section">{{sectionContent}}</section>`;
 
-  const renderSections = [renderStoreInfo, renderThemeInfo, renderBoostInfo];
+  // Render header info - store data
+  let storeInfoHtml = renderStoreInfo(data);
+  headerStoreInfo.innerHTML = storeInfoHtml;
+
+  // Render dashboard sections
+  const renderSections = [renderThemeInfo, renderBoostInfo];
   let html = "";
   renderSections.forEach((fn) => {
     html += sectionTemplate.replace("{{sectionContent}}", fn(data));
@@ -107,7 +113,7 @@ function renderStoreInfo(data) {
     "themes-page"
   );
 
-  return `<div class="section-content store-info">
+  return `<div class="header-info-content store-info">
   ${tenantIdHTML}
   ${dashboardLink}
   ${shopifyPartnersLink}

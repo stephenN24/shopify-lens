@@ -248,7 +248,8 @@ img.no-result-message {
   height: 30px;
 }
 
-.section-content {
+.section-content,
+.header-info-content {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -261,9 +262,10 @@ img.no-result-message {
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
-.section-content.store-info {
+.header-info-content.store-info {
   background-image: url("images/store-info-bg.jpg");
-  /* background-color: #9fb3df; */
+  max-width: 100%;
+  margin-bottom: 15px;
 }
 .section-content.theme-info {
   background-image: url("images/theme-info-bg.jpg");
