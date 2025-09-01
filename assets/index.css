@@ -865,16 +865,15 @@ a.styled-btn.button-link:not(.jira-link) {
 
 /* === Start styling for search bar === */
 .search-container {
-  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   border-radius: 15px;
-  padding: 10px;
+  padding: 20px 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
   max-width: 600px;
   width: 100%;
   transition: all 0.3s ease;
+  background: linear-gradient(to right, rgb(121 164 250), rgb(144 95 181));
 }
 
 .search-wrapper {
@@ -1063,7 +1062,7 @@ a.styled-btn.button-link:not(.jira-link) {
 
 .search-button {
   margin-right: 10px;
-  background: linear-gradient(135deg, rgb(243, 156, 18), rgb(230, 126, 34));
+  background: linear-gradient(135deg, rgb(135 151 228), rgb(118, 75, 162));
   position: absolute;
   right: 0;
 }
