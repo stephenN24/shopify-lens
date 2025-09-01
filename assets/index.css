@@ -864,7 +864,7 @@ textarea:focus {
   height: 20px;
 }
 
-a.styled-btn.button-link {
+a.styled-btn.button-link:not(.jira-link) {
   color: #fff;
   min-width: 50px;
   min-height: 25px;
