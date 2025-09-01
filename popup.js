@@ -1,47 +1,43 @@
 import svgLibrary from "./assets/svgs/svgLibrary.js";
 
-try {
-  // Request the current popup data
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    const currentTab = tabs[0]; // The current active tab
-    const tabId = currentTab.id; // The ID of the current tab
-    chrome.tabs.sendMessage(tabId, { action: "injectScript" }, function () {
-      if (chrome.runtime.lastError) {
-        console.log("Message failed:", chrome.runtime.lastError.message);
-      }
-      setTimeout(function () {
-        chrome.runtime.sendMessage(
-          { action: "getCurrentPopupData" },
-          (response) => {
-            console.log("Response from background:", response);
-            if (response?.popupData?.isShopifyStore) {
-              // If it's a Shopify store, render the new popup data
-              renderPopupData(response.popupData);
-              console.log("RENDER DIRECTLY");
-            } else {
-              console.log("GET FROM LOCAL STORAGE");
-              // If not shopify store, load from localStorage
-              chrome.storage.local.get("popupData", (result) => {
-                const cachedData = result.popupData;
-                if (!cachedData) {
-                  renderPopupData(response.popupData);
-                  return;
-                }
-                //Update the cached data fields
-                cachedData.isCached = true;
-                cachedData.isShopifyStore = false;
-                cachedData.jiraKey = response?.popupData?.jiraKey || null;
-                renderPopupData(cachedData);
-              });
-            }
+// Request the current popup data
+chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+  const currentTab = tabs[0]; // The current active tab
+  const tabId = currentTab.id; // The ID of the current tab
+  chrome.tabs.sendMessage(tabId, { action: "injectScript" }, function () {
+    if (chrome.runtime.lastError) {
+      console.log("Message failed:", chrome.runtime.lastError.message);
+    }
+    setTimeout(function () {
+      chrome.runtime.sendMessage(
+        { action: "getCurrentPopupData" },
+        (response) => {
+          console.log("Response from background:", response);
+          if (response?.popupData?.isShopifyStore) {
+            // If it's a Shopify store, render the new popup data
+            renderPopupData(response.popupData);
+            console.log("RENDER DIRECTLY");
+          } else {
+            console.log("GET FROM LOCAL STORAGE");
+            // If not shopify store, load from localStorage
+            chrome.storage.local.get("popupData", (result) => {
+              const cachedData = result.popupData;
+              if (!cachedData) {
+                renderPopupData(response.popupData);
+                return;
+              }
+              //Update the cached data fields
+              cachedData.isCached = true;
+              cachedData.isShopifyStore = false;
+              cachedData.jiraKey = response?.popupData?.jiraKey || null;
+              renderPopupData(cachedData);
+            });
           }
-        );
-      }, 100);
-    });
+        }
+      );
+    }, 100);
   });
-} catch (error) {
-  console.warn(error);
-}
+});
 
 // Function to render the popup data
 function renderPopupData(data) {
@@ -50,14 +46,14 @@ function renderPopupData(data) {
   let sectionTemplate = `<section class="dashboard-section">{{sectionContent}}</section>`;
 
   // Render header info - store data
-  let storeInfoHtml = renderStoreInfo(data);
+  let storeInfoHtml = renderStoreInfo(data.storeData);
   headerStoreInfo.innerHTML = storeInfoHtml;
 
   // Render dashboard sections
   const renderSections = [renderSearchBar, renderThemeInfo, renderBoostInfo];
   let html = "";
   renderSections.forEach((fn) => {
-    html += sectionTemplate.replace("{{sectionContent}}", fn(data));
+    html += sectionTemplate.replace("{{sectionContent}}", fn(data.storeData));
   });
 
   dashboardContent.innerHTML = html;
@@ -65,6 +61,7 @@ function renderPopupData(data) {
   // Bind events for search bar
   bindEventsForSearchBar();
 
+  // Render Jira info
   const jiraDataTab = document.querySelector(".jira-content");
   const jiraKey = data.jiraKey;
   if (jiraKey) {
@@ -88,13 +85,11 @@ function renderPopupData(data) {
   }
 
   // Init Saved Replies feature
-  initSavedReplies(data);
+  initSavedReplies(data.storeData);
 }
 
-function renderStoreInfo(data) {
-  const tenantId = data.storeData.shop;
+function renderStoreInfo({ tenantId, shopURLwithoutDomain }) {
   const tenantIdHTML = renderCopyableField(tenantId, undefined, "tenant-id");
-  const shopURLWithoutDomain = tenantId.replace(".myshopify.com", "");
   const dashboardLink = renderButtonLink(
     svgLibrary.react,
     "",
@@ -112,7 +107,7 @@ function renderStoreInfo(data) {
   const themesPageLink = renderButtonLink(
     svgLibrary.shopifyTheme,
     "",
-    `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes`,
+    `https://admin.shopify.com/store/${shopURLwithoutDomain}/themes`,
     "themes-page"
   );
 
@@ -126,19 +121,23 @@ function renderStoreInfo(data) {
   </div>`;
 }
 
-function renderThemeInfo({ storeData, windowLocation }) {
-  const themeId = storeData.theme.id;
-  const tenantId = storeData.shop;
-  const shopURLWithoutDomain = tenantId.replace(".myshopify.com", "");
-  const themeName = storeData.theme.name;
-  const themeSchema = `${storeData.theme.schema_name}_v${storeData.theme.schema_version}`;
+function renderThemeInfo({
+  themeId,
+  themeName,
+  themeSchema,
+  schema_name,
+  schema_version,
+  shopURLWithoutDomain,
+  windowLocation,
+}) {
+  const themeSchemaInfo = `${schema_name}_v${schema_version}`;
   const previewLink = buildPreviewLink(windowLocation, themeId);
   const themeCodeEditorLink = `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/${themeId}`;
 
   return `<div class="section-content theme-info">
   ${renderCopyableField(themeName, undefined, "theme-name")}
   ${renderCopyableField(themeId, undefined, "theme-id")}
-  ${renderCopyableField(themeSchema, undefined, "theme-schema")}
+  ${renderCopyableField(themeSchemaInfo, undefined, "theme-schema")}
   ${renderCopyableField("Preview Link", previewLink, "preview-link")}
   ${renderButtonLink(
     svgLibrary.themeEdit,
@@ -149,17 +148,19 @@ function renderThemeInfo({ storeData, windowLocation }) {
   </div>`;
 }
 
-function renderBoostInfo(data) {
-  const tenantId = data.storeData.shop;
-  const themeId = data.storeData.theme.id;
-  const templateId = data.appData.templateId;
-  const shopURLWithoutDomain = tenantId.replace(".myshopify.com", "");
+function renderBoostInfo({
+  themeId,
+  shopURLWithoutDomain,
+  boostVersions,
+  appData,
+}) {
+  const templateId = appData.templateId;
   const templateSettingsURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration/${themeId}`;
-  const boostVersions = data.boostVersions.join(", ");
+  const boostVersionsInfo = boostVersions.join(", ");
   const shopifyIntegrationLink = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration`;
 
   return `<div class="section-content boost-info">
-  <div class="boost-versions">${boostVersions}</div>
+  <div class="boost-versions">${boostVersionsInfo}</div>
   ${renderCopyableField(templateId)}
   ${renderButtonLink(
     svgLibrary.templateSettings,
@@ -193,6 +194,7 @@ function renderCopyableField(title, value, classModifier = "") {
 
 //Utils
 function buildPreviewLink(windowLocation, themeId) {
+  if (!windowLocation || !themeId) return "No preview link available";
   const separator = windowLocation.search.length > 0 ? "&" : "?";
   return `${windowLocation.href}${separator}preview_theme_id=${themeId}`;
 }
@@ -341,7 +343,7 @@ const defaultTemplates = {
   },
   2: {
     name: "Template 2",
-    text: "Working theme: {{themeName}}{{isLive}} - ID: {{themeId}}",
+    text: "Working theme: {{themeName}}{{isLiveTheme}} - ID: {{themeId}}",
   },
   3: {
     name: "Template 3",
@@ -349,12 +351,17 @@ const defaultTemplates = {
   },
   4: {
     name: "Template 4",
-    text: "1/ Detailed description of the issue/request/idea\n\nWorking theme: {{themeName}}{{isLive}} - ID: {{themeId}}\nPreview link: {{previewLink}}\nAccess granted.",
+    text: "1/ Detailed description of the issue/request/idea\n\nWorking theme: {{themeName}}{{isLiveTheme}} - ID: {{themeId}}\nPreview link: {{previewLink}}\nAccess granted.",
   },
 };
 
 // Initialize the extension
-async function initSavedReplies(data) {
+async function initSavedReplies({
+  themeId,
+  themeName,
+  windowLocation,
+  isLive,
+}) {
   let templates = {};
   let currentTemplateId = null;
 
@@ -371,12 +378,9 @@ async function initSavedReplies(data) {
   const notification = document.getElementById("notification");
 
   // Variables - need improvement
-  const windowLocation = data?.windowLocation || null; // need improvement
-  const isLive = data?.storeData?.theme?.role == "main" ? " (LIVE)" : "";
-  const themeId = data?.storeData?.theme?.id || "No theme ID";
+  const isLiveTheme = isLive ? " (Live)" : "(Draft)";
   const previewLink =
     buildPreviewLink(windowLocation, themeId) || "No preview link available";
-  const themeName = data?.storeData?.theme?.name || "No theme name";
 
   // Load templates from Chrome storage
   async function loadTemplates() {
@@ -457,7 +461,7 @@ async function initSavedReplies(data) {
     const rendered = text
       .replace(/\{\{themeName\}\}/g, themeName)
       .replace(/\{\{themeId\}\}/g, themeId)
-      .replace(/\{\{isLive\}\}/g, isLive)
+      .replace(/\{\{isLiveTheme\}\}/g, isLiveTheme)
       .replace(/\{\{previewLink\}\}/g, previewLink);
 
     // Convert line breaks to HTML breaks for display
@@ -514,7 +518,7 @@ async function initSavedReplies(data) {
     const textToCopy = text
       .replace(/\{\{themeName\}\}/g, themeName)
       .replace(/\{\{themeId\}\}/g, themeId)
-      .replace(/\{\{isLive\}\}/g, isLive)
+      .replace(/\{\{isLiveTheme\}\}/g, isLiveTheme)
       .replace(/\{\{previewLink\}\}/g, previewLink);
 
     try {
@@ -582,7 +586,7 @@ async function initSavedReplies(data) {
     }, 3000);
   }
 
-  await loadTemplates(data);
+  await loadTemplates();
   setupEventListeners();
   // Auto-select Template 1
   templateSelect.value = "1";
@@ -594,10 +598,7 @@ async function initSavedReplies(data) {
 // START SEACRH BAR ------------
 
 // Render search bar HTML
-function renderSearchBar({ storeData }) {
-  const tenantId = storeData.shop;
-  const shopURLWithoutDomain = tenantId.replace(".myshopify.com", "");
-
+function renderSearchBar({ tenantId, shopURLWithoutDomain }) {
   return `
     <div class="search-container">
       <div class="search-wrapper">

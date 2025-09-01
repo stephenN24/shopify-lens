@@ -1,17 +1,21 @@
 (function () {
-  const { shop, country, currency, locale, theme, abc } = window.Shopify || {};
+  const { shop, country, currency, locale, theme } = window.Shopify || {};
 
   const storeData = {
-    shop,
+    tenantId: shop,
+    shopURLwithoutDomain: shop ? shop.split(".myshopify.com")[0] : "",
     country,
     currency,
     locale,
-    theme: {
-      id: theme?.id,
-      name: theme?.name,
-      role: theme?.role,
-      schema_name: theme?.schema_name,
-      schema_version: theme?.schema_version,
+    themeId: theme?.id,
+    themeName: theme?.name,
+    themeSchema: theme?.schema_name,
+    themeSchemaVersion: theme?.schema_version,
+    isLive: theme?.role === "main" ? true : false,
+    windowLocation: window.location || null,
+    boostVersions: [],
+    appData: {
+      templateId: getTemplateId(),
     },
   };
 
@@ -19,11 +23,6 @@
     isShopifyStore: Boolean(window?.Shopify?.shop),
     storeData,
     jiraKey: findJiraKey(),
-    windowLocation: window.location || null,
-    boostVersions: [],
-    appData: {
-      templateId: getTemplateId(),
-    },
   };
 
   // Find Jira key
@@ -41,29 +40,35 @@
 
   // Get boost version
   for (let key in window) {
-    if (key.includes("bcsf") && !popupData.boostVersions.includes("V1")) {
-      popupData.boostVersions.push("V1");
+    if (
+      key.includes("bcsf") &&
+      !popupData.storeData.boostVersions.includes("V1")
+    ) {
+      popupData.storeData.boostVersions.push("V1");
     }
-    if (key.includes("BoostPFS") && !popupData.boostVersions.includes("V2")) {
-      popupData.boostVersions.push("V2");
+    if (
+      key.includes("BoostPFS") &&
+      !popupData.storeData.boostVersions.includes("V2")
+    ) {
+      popupData.storeData.boostVersions.push("V2");
     }
     if (
       key.includes("boostSDAppConfig") &&
       key.includes("boostSD") &&
-      !popupData.boostVersions.includes("V3")
+      !popupData.storeData.boostVersions.includes("V3")
     ) {
-      popupData.boostVersions.push("V3");
+      popupData.storeData.boostVersions.push("V3");
     }
     if (
       key.includes("boostWidgetIntegration") &&
-      !popupData.boostVersions.includes("Turbo")
+      !popupData.storeData.boostVersions.includes("Turbo")
     ) {
-      popupData.boostVersions.push("Turbo");
+      popupData.storeData.boostVersions.push("Turbo");
     }
   }
 
-  if (popupData.boostVersions.length == 0) {
-    popupData.boostVersions.push("No Data");
+  if (popupData.storeData.boostVersions.length == 0) {
+    popupData.storeData.boostVersions.push("No Data");
   }
 
   console.log("Popup Data:", popupData);
