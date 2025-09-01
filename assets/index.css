@@ -1089,6 +1089,8 @@ a.styled-btn.button-link {
 .search-button {
   margin-right: 10px;
   background: linear-gradient(135deg, rgb(243, 156, 18), rgb(230, 126, 34));
+  position: absolute;
+  right: 0;
 }
 /* === End styling for search bar === */
 
