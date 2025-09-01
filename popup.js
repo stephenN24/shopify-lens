@@ -378,7 +378,7 @@ async function initSavedReplies({
   const notification = document.getElementById("notification");
 
   // Variables - need improvement
-  const isLiveTheme = isLive ? " (Live)" : "(Draft)";
+  const isLiveTheme = isLive ? " [Live]" : "";
   const previewLink =
     buildPreviewLink(windowLocation, themeId) || "No preview link available";
 
@@ -602,7 +602,7 @@ function renderSearchBar({ shopURLWithoutDomain }) {
   return `
     <div class="search-container">
       <div class="search-wrapper">
-        ${renderFilterDropdown()}
+        ${renderFilterDropdown(shopURLWithoutDomain)}
           <input 
             type="text"   
             class="search-input" 
@@ -616,12 +616,12 @@ function renderSearchBar({ shopURLWithoutDomain }) {
   `;
 }
 
-function renderFilterDropdown() {
+function renderFilterDropdown(shopURLWithoutDomain) {
   const options = [
     {
-      value: "product",
-      href: "/search/products",
-      placeholder: "Search for products...",
+      searchType: "product",
+      href: `https://admin.shopify.com/store/${shopURLWithoutDomain}/products`,
+      placeholder: "Search product...",
       label: "Product",
       active: true,
       icon: `
@@ -630,9 +630,9 @@ function renderFilterDropdown() {
       `,
     },
     {
-      value: "collection",
-      href: "/search/collections",
-      placeholder: "Search collections...",
+      searchType: "collection",
+      href: `https://admin.shopify.com/store/${shopURLWithoutDomain}/collections`,
+      placeholder: "Search collection...",
       label: "Collection",
       icon: `
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -640,9 +640,9 @@ function renderFilterDropdown() {
       `,
     },
     {
-      value: "theme",
-      href: "/search/themes",
-      placeholder: "Search themes...",
+      searchType: "theme",
+      href: `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/`,
+      placeholder: "Go to theme...",
       label: "Theme",
       icon: `
         <circle cx="12" cy="12" r="3"/>
@@ -664,7 +664,7 @@ function renderFilterDropdown() {
 function renderFilterButton() {
   return `
     <button class="filter-button" id="filterButton">
-      <div style="display: flex; align-items: center; gap: 8px;">
+      <div>
         <svg class="filter-icon" viewBox="0 0 24 24">
           <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/>
         </svg>
@@ -678,7 +678,7 @@ function renderFilterButton() {
 }
 
 function renderDropdownOption({
-  value,
+  searchType,
   href,
   placeholder,
   label,
@@ -688,7 +688,7 @@ function renderDropdownOption({
   return `
     <div 
       class="dropdown-option ${active ? "active" : ""}" 
-      data-value="${value}" 
+      data-searchType="${searchType}" 
       data-href="${href}" 
       data-placeholder="${placeholder}">
       <svg class="filter-icon" viewBox="0 0 24 24">${icon}</svg>
@@ -730,7 +730,8 @@ function bindEventsForSearchBar() {
       option.classList.add("active");
 
       // Update filter text
-      const value = option.dataset.value;
+      const value = option.dataset.searchtype;
+      searchInput.dataset.searchtype = value;
       filterText.textContent = value.charAt(0).toUpperCase() + value.slice(1);
 
       // Update input placeholder
@@ -753,18 +754,14 @@ function bindEventsForSearchBar() {
   // Handle search input
   searchInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-      const currentHref = searchButton.href;
-      const searchQuery = encodeURIComponent(searchInput.value);
-      window.open(`${currentHref}?query=${searchQuery}`, "_blank");
+      performSearch();
     }
   });
 
   // Add search functionality to the Go button
   searchButton.addEventListener("click", (e) => {
     e.preventDefault();
-    const searchQuery = encodeURIComponent(searchInput.value);
-    const baseHref = searchButton.href;
-    window.open(`${baseHref}?query=${searchQuery}`, "_blank");
+    performSearch();
   });
 
   // Add floating label effect
@@ -780,6 +777,17 @@ function bindEventsForSearchBar() {
   dropdownMenu.addEventListener("click", (e) => {
     e.stopPropagation();
   });
+
+  function performSearch() {
+    const searchQuery = encodeURIComponent(searchInput.value);
+    const currentHref = searchButton.href;
+    const searchType = searchInput.dataset.searchtype;
+    let searchURL = `${currentHref}?query=${searchQuery}`;
+    if (searchType === "theme") {
+      searchURL = `${currentHref}${searchQuery}`;
+    }
+    window.open(searchURL, "_blank");
+  }
 }
 
 // END SEARCH BAR ------------

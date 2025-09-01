@@ -917,6 +917,12 @@ a.styled-btn.button-link:not(.jira-link) {
   border-radius: 5px;
 }
 
+.filter-button > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .filter-button:hover {
   background: rgba(102, 126, 234, 0.1);
   color: #667eea;
