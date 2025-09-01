@@ -1,3 +1,15 @@
+:root {
+  /* Default variables */
+  --main-color: #468b76;
+  --main-theme-gradient: linear-gradient(
+    135deg,
+    rgb(56 164 152),
+    rgb(54 84 82)
+  );
+  --secondary-color: #2ecc71;
+  --font-size: 16px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,7 +28,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(99, 199, 239, 0.912);
+  background-color: var(--main-color);
 
   background-image: -webkit-gradient(
     linear,
@@ -245,6 +257,7 @@ img.no-result-message {
   flex-direction: column;
   justify-content: center;
   gap: 10px;
+  background-position-y: 30%;
 }
 .section-content.theme-info {
   background-image: url("images/theme-info-bg.jpg");
@@ -435,7 +448,7 @@ img.no-result-message {
   color: #333;
   font-size: 1.8rem;
   margin-bottom: 5px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: var(--main-theme-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -471,7 +484,7 @@ select {
 
 select:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--main-color);
   box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
 }
 
@@ -487,7 +500,7 @@ select:focus {
 
 .template-editor.active {
   display: block;
-  border-color: #667eea;
+  border-color: var(--main-color);
   box-shadow: 0 3px 15px rgba(102, 126, 234, 0.15);
 }
 
@@ -525,7 +538,7 @@ textarea {
 
 textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--main-color);
   box-shadow: 0 0 8px rgba(102, 126, 234, 0.2);
 }
 
@@ -533,7 +546,7 @@ textarea:focus {
   background: #f8f9fa;
   padding: 12px;
   border-radius: 8px;
-  border-left: 3px solid #667eea;
+  border-left: 3px solid var(--main-color);
   font-style: italic;
   color: #555;
   min-height: 40px;
@@ -694,7 +707,7 @@ textarea:focus {
 
 /* === Start CSS for styled-btn === */
 .styled-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--main-theme-gradient);
   color: white;
   padding: 12px 24px;
   border: none;
@@ -873,7 +886,10 @@ a.styled-btn.button-link:not(.jira-link) {
   max-width: 600px;
   width: 100%;
   transition: all 0.3s ease;
-  background: linear-gradient(to right, rgb(121 164 250), rgb(144 95 181));
+  /* background: linear-gradient(to right, rgb(121 164 250), rgb(144 95 181)); */
+  background-image: url("images/search-background.jpg");
+  background-size: cover;
+  background-position-y: 53%;
 }
 
 .search-wrapper {
@@ -888,7 +904,7 @@ a.styled-btn.button-link:not(.jira-link) {
 }
 
 .search-wrapper:focus-within {
-  border-color: #667eea;
+  border-color: var(--main-color);
   box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
   background: #ffffff;
 }
@@ -924,7 +940,7 @@ a.styled-btn.button-link:not(.jira-link) {
 
 .filter-button:hover {
   background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
+  color: var(--main-color);
 }
 
 .filter-icon {
@@ -994,12 +1010,12 @@ a.styled-btn.button-link:not(.jira-link) {
 
 .dropdown-option:hover {
   background: #f8f9fa;
-  color: #667eea;
+  color: var(--main-color);
 }
 
 .dropdown-option.active {
   background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
+  color: var(--main-color);
   font-weight: 600;
 }
 
@@ -1062,7 +1078,8 @@ a.styled-btn.button-link:not(.jira-link) {
 
 .search-button {
   margin-right: 10px;
-  background: linear-gradient(135deg, rgb(135 151 228), rgb(118, 75, 162));
+  background: var(--main-theme-gradient);
+  /* background: linear-gradient(135deg, rgb(135 151 228), rgb(118, 75, 162)); */
   position: absolute;
   right: 0;
 }
@@ -1119,6 +1136,7 @@ a.styled-btn.button-link:not(.jira-link) {
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transform-origin: left center;
+  overflow: hidden;
 }
 
 .sidebar .tab-btn::before {
@@ -1128,7 +1146,7 @@ a.styled-btn.button-link:not(.jira-link) {
   left: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg, #667eea, #764ba2);
+  background: var(--main-theme-gradient);
   border-radius: 4px 0 0 4px;
   transform: scaleY(0);
   transition: transform 0.3s ease;
@@ -1147,7 +1165,7 @@ a.styled-btn.button-link:not(.jira-link) {
 }
 
 .sidebar .tab-btn.active {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: var(--main-theme-gradient);
   color: white;
   transform: rotateY(8deg) translateZ(15px) scale(1.02);
   box-shadow: -8px 15px 30px rgba(102, 126, 234, 0.3),
