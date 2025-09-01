@@ -3,7 +3,7 @@
 
   const storeData = {
     tenantId: shop,
-    shopURLwithoutDomain: shop ? shop.split(".myshopify.com")[0] : "",
+    shopURLWithoutDomain: shop ? shop.split(".myshopify.com")[0] : "",
     country,
     currency,
     locale,

@@ -88,7 +88,7 @@ function renderPopupData(data) {
   initSavedReplies(data.storeData);
 }
 
-function renderStoreInfo({ tenantId, shopURLwithoutDomain }) {
+function renderStoreInfo({ tenantId, shopURLWithoutDomain }) {
   const tenantIdHTML = renderCopyableField(tenantId, undefined, "tenant-id");
   const dashboardLink = renderButtonLink(
     svgLibrary.react,
@@ -107,7 +107,7 @@ function renderStoreInfo({ tenantId, shopURLwithoutDomain }) {
   const themesPageLink = renderButtonLink(
     svgLibrary.shopifyTheme,
     "",
-    `https://admin.shopify.com/store/${shopURLwithoutDomain}/themes`,
+    `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes`,
     "themes-page"
   );
 
@@ -125,12 +125,11 @@ function renderThemeInfo({
   themeId,
   themeName,
   themeSchema,
-  schema_name,
-  schema_version,
+  themeSchemaVersion,
   shopURLWithoutDomain,
   windowLocation,
 }) {
-  const themeSchemaInfo = `${schema_name}_v${schema_version}`;
+  const themeSchemaInfo = `${themeSchema}_v${themeSchemaVersion}`;
   const previewLink = buildPreviewLink(windowLocation, themeId);
   const themeCodeEditorLink = `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/${themeId}`;
 
@@ -185,6 +184,7 @@ function renderButtonLink(icon, text, url, classModifier) {
 }
 
 function renderCopyableField(title, value, classModifier = "") {
+  if (!title && !value) return "";
   const dataValue = value || title;
   return `<div class="data-field ${classModifier}">
     <div class="title" data-value="${dataValue}">${title}</div>
@@ -598,7 +598,7 @@ async function initSavedReplies({
 // START SEACRH BAR ------------
 
 // Render search bar HTML
-function renderSearchBar({ tenantId, shopURLWithoutDomain }) {
+function renderSearchBar({ shopURLWithoutDomain }) {
   return `
     <div class="search-container">
       <div class="search-wrapper">
