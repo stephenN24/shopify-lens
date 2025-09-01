@@ -41,6 +41,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: calc(100% - 40px);
   margin: 10px;
+  height: 560px;
 }
 
 header {
@@ -197,41 +198,9 @@ img.no-result-message {
   gap: 10px;
   overflow: auto;
 }
-
-.sidebar {
-  width: 10%;
-  background-color: #e3e3e3;
-  display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-  padding-top: 30px;
-  margin-left: 10px;
-}
-
-.sidebar button {
-  background: none;
-  border: none;
-  color: #ecf0f1;
-  padding: 20px 10px;
-  cursor: pointer;
-  font-size: 16px;
-  text-align: center;
-  border-left: 4px solid transparent;
-  transition: background-color 0.3s, border-left-color 0.3s;
-}
-
-.sidebar button:hover {
-  background-color: #b3b3b3;
-}
-
-.sidebar button.active {
-  background-color: #d1d1d1;
-  border-left-color: #848484;
-  font-weight: bold;
-}
-
 /* Main content area */
 .content {
+  width: 80%;
   flex-grow: 1;
   padding: 0;
   background-color: #fff;
@@ -1117,3 +1086,74 @@ a.styled-btn.button-link:not(.jira-link) {
 .search-container:hover {
   transform: translateY(-5px);
 } */
+
+/* === Styling for sidebar === */
+
+.sidebar {
+  width: 20%;
+  height: 400px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 30px 20px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.sidebar .tab-btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  color: #495057;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform-origin: left center;
+}
+
+.sidebar .tab-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #667eea, #764ba2);
+  border-radius: 4px 0 0 4px;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+  transform-origin: bottom;
+}
+
+.sidebar .tab-btn:hover {
+  transform: rotateY(5deg) translateZ(10px);
+  box-shadow: -5px 10px 20px rgba(0, 0, 0, 0.15),
+    0 5px 15px rgba(102, 126, 234, 0.1);
+  background: #f8f9fa;
+}
+
+.sidebar .tab-btn:hover::before {
+  transform: scaleY(1);
+}
+
+.sidebar .tab-btn.active {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  transform: rotateY(8deg) translateZ(15px) scale(1.02);
+  box-shadow: -8px 15px 30px rgba(102, 126, 234, 0.3),
+    0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* === End styling for sidebar === */
