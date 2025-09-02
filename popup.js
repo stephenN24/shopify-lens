@@ -23,6 +23,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.storage.local.get("popupData", (result) => {
               const cachedData = result.popupData;
               if (!cachedData) {
+                // Should have fallback
                 renderPopupData(response.popupData);
                 return;
               }
@@ -43,7 +44,6 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 function renderPopupData(data) {
   const dashboardContent = document.querySelector(".dashboard-content");
   const headerStoreInfo = document.querySelector(".header-store-info");
-  let sectionTemplate = `<section class="dashboard-section">{{sectionContent}}</section>`;
 
   // Render header info - store data
   let storeInfoHtml = renderStoreInfo(data.storeData);
@@ -53,7 +53,11 @@ function renderPopupData(data) {
   const renderSections = [renderSearchBar, renderThemeInfo, renderBoostInfo];
   let html = "";
   renderSections.forEach((fn) => {
-    html += sectionTemplate.replace("{{sectionContent}}", fn(data.storeData));
+    html += `
+        <section class="dashboard-section">
+          ${fn(data.storeData)}
+        </section>
+      `;
   });
 
   dashboardContent.innerHTML = html;
