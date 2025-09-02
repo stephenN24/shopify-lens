@@ -8,15 +8,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     sendResponse({ popupData: currentPopupData });
   }
 
-  if (
-    currentPopupData &&
-    currentPopupData.isShopifyStore &&
-    currentPopupData.storeData
-  ) {
+  if (currentPopupData && currentPopupData.isShopifyStore) {
     // If a shopify store, save data in storage
     chrome.storage.local.set({ popupData: currentPopupData });
   }
-  // chrome.storage.local.get(null, (items) => console.log("Cached data", items));
   return true;
 });
 
