@@ -128,6 +128,7 @@ function renderStoreInfo({ tenantId, shopURLWithoutDomain }) {
 function renderThemeInfo({
   themeId,
   themeName,
+  isLive,
   themeSchema,
   themeSchemaVersion,
   shopURLWithoutDomain,
@@ -135,18 +136,35 @@ function renderThemeInfo({
 }) {
   const themeSchemaInfo = `${themeSchema}_v${themeSchemaVersion}`;
   const previewLink = buildPreviewLink(windowLocation, themeId);
+  const themeEditorLink = buildThemeEditorLink(
+    windowLocation,
+    shopURLWithoutDomain,
+    themeId
+  );
   const themeCodeEditorLink = `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/${themeId}`;
 
+  //Add live beacon
   return `<div class="section-content theme-info">
-  ${renderCopyableField(themeName, undefined, "theme-name")}
-  ${renderCopyableField(themeId, undefined, "theme-id")}
-  ${renderCopyableField(themeSchemaInfo, undefined, "theme-schema")}
-  ${renderCopyableField("Preview Link", previewLink, "preview-link")}
+  ${
+    isLive
+      ? `<div class="beacon-wrapper"><div class="live-beacon"></div><span>Live</span></div>`
+      : ""
+  }
+  ${renderCopyableField(themeName, undefined, undefined, "theme-name")}
+  ${renderCopyableField(themeId, undefined, svgLibrary.themeID, "theme-id")}
+  ${renderCopyableField(themeSchemaInfo, undefined, undefined, "theme-schema")}
+  ${renderCopyableField("Preview Link", previewLink, undefined, "preview-link")}
   ${renderButtonLink(
     svgLibrary.themeEdit,
     "",
     themeCodeEditorLink,
     "theme-code-editor"
+  )}
+  ${renderButtonLink(
+    svgLibrary.themeEditor,
+    "",
+    themeEditorLink,
+    "theme-editor"
   )}
   </div>`;
 }
@@ -187,12 +205,15 @@ function renderButtonLink(icon, text, url, classModifier) {
   </a>`;
 }
 
-function renderCopyableField(title, value, classModifier = "") {
+function renderCopyableField(title, value, icon, classModifier = "") {
   if (!title && !value) return "";
   const dataValue = value || title;
   return `<div class="data-field ${classModifier}">
+    ${icon ? `<div class="icon">${icon}</div>` : ""}
     <div class="title" data-value="${dataValue}">${title}</div>
-    <button class="copy-btn" data-value="${dataValue}" title="Copy">${svgLibrary.copyIcon}</button>
+    <button class="copy-btn" data-value="${dataValue}" title="Copy">${
+    svgLibrary.copyIcon
+  }</button>
   </div>`;
 }
 
@@ -201,6 +222,13 @@ function buildPreviewLink(windowLocation, themeId) {
   if (!windowLocation || !themeId) return "No preview link available";
   const separator = windowLocation.search.length > 0 ? "&" : "?";
   return `${windowLocation.href}${separator}preview_theme_id=${themeId}`;
+}
+
+function buildThemeEditorLink(windowLocation, shopURLWithoutDomain, themeId) {
+  if (!windowLocation || !themeId) return "No edior link available";
+  return `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/${themeId}/editor?previewPath=${encodeURIComponent(
+    windowLocation.pathname.replace(/^\/[a-z]{2}(?=\/)/i, "") // Strip locale
+  )}`; // Strip locale
 }
 
 // Event delegation for copy buttons
