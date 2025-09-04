@@ -93,7 +93,12 @@ function renderPopupData(data) {
 }
 
 function renderStoreInfo({ tenantId, shopURLWithoutDomain }) {
-  const tenantIdHTML = renderCopyableField(tenantId, undefined, "tenant-id");
+  const tenantIdHTML = renderCopyableField(
+    "",
+    tenantId,
+    undefined,
+    "tenant-id"
+  );
   const dashboardLink = renderButtonLink(
     svgLibrary.react,
     "",
@@ -145,15 +150,19 @@ function renderThemeInfo({
 
   //Add live beacon
   return `<div class="section-content theme-info">
-  ${
-    isLive
-      ? `<div class="beacon-wrapper"><div class="live-beacon"></div><span>Live</span></div>`
-      : ""
-  }
-  ${renderCopyableField(themeName, undefined, "theme-name")}
-  ${renderCopyableField(themeId, undefined, "theme-id")}
-  ${renderCopyableField(themeSchemaInfo, undefined, "theme-schema")}
-  ${renderCopyableField("Preview Link", previewLink, "preview-link")}
+    <div class="beacon-wrapper">
+      <div class="beacon ${
+        isLive ? "live-theme-beacon" : "unpublished-theme-beacon"
+      }"></div>
+        <span>${isLive ? "Live" : "Draft"}</span>
+    </div>
+  ${renderCopyableField("", themeName, undefined, "theme-name")}
+  <hr class="divider"/>
+  <div class="theme-extra-info">
+    ${renderCopyableField("ID", themeId, undefined, "theme-id")}
+    ${renderCopyableField("Schema", themeSchemaInfo, undefined, "theme-schema")}
+  </div>
+  ${renderCopyableField("", "Preview Link", previewLink, "preview-link")}
   ${renderButtonLink(
     svgLibrary.themeEdit,
     "",
@@ -205,12 +214,15 @@ function renderButtonLink(icon, text, url, classModifier) {
   </a>`;
 }
 
-function renderCopyableField(title, value, classModifier = "") {
+function renderCopyableField(fieldName, title, value, classModifier = "") {
   if (!title && !value) return "";
   const dataValue = value || title;
   return `<div class="data-field ${classModifier}">
+    ${fieldName ? `<div class="field-name">• ${fieldName} | </div>` : ""}
     <div class="title" data-value="${dataValue}">${title}</div>
-    <button class="copy-btn" data-value="${dataValue}" title="Copy">${svgLibrary.copyIcon}</button>
+    <button class="copy-btn" data-value="${dataValue}" title="Copy">${
+    svgLibrary.copyIcon
+  }</button>
   </div>`;
 }
 
