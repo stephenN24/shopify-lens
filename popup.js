@@ -150,10 +150,10 @@ function renderThemeInfo({
       ? `<div class="beacon-wrapper"><div class="live-beacon"></div><span>Live</span></div>`
       : ""
   }
-  ${renderCopyableField(themeName, undefined, undefined, "theme-name")}
-  ${renderCopyableField(themeId, undefined, svgLibrary.themeID, "theme-id")}
-  ${renderCopyableField(themeSchemaInfo, undefined, undefined, "theme-schema")}
-  ${renderCopyableField("Preview Link", previewLink, undefined, "preview-link")}
+  ${renderCopyableField(themeName, undefined, "theme-name")}
+  ${renderCopyableField(themeId, undefined, "theme-id")}
+  ${renderCopyableField(themeSchemaInfo, undefined, "theme-schema")}
+  ${renderCopyableField("Preview Link", previewLink, "preview-link")}
   ${renderButtonLink(
     svgLibrary.themeEdit,
     "",
@@ -205,15 +205,12 @@ function renderButtonLink(icon, text, url, classModifier) {
   </a>`;
 }
 
-function renderCopyableField(title, value, icon, classModifier = "") {
+function renderCopyableField(title, value, classModifier = "") {
   if (!title && !value) return "";
   const dataValue = value || title;
   return `<div class="data-field ${classModifier}">
-    ${icon ? `<div class="icon">${icon}</div>` : ""}
     <div class="title" data-value="${dataValue}">${title}</div>
-    <button class="copy-btn" data-value="${dataValue}" title="Copy">${
-    svgLibrary.copyIcon
-  }</button>
+    <button class="copy-btn" data-value="${dataValue}" title="Copy">${svgLibrary.copyIcon}</button>
   </div>`;
 }
 

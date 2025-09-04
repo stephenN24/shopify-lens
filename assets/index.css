@@ -874,6 +874,7 @@ a.styled-btn.button-link:not(.jira-link) {
 }
 
 .data-field.tenant-id {
+  justify-content: center;
   margin-top: 20px;
   margin-bottom: 15px;
 }
