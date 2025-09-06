@@ -159,12 +159,12 @@ function renderThemeInfo({
         <span>${isLive ? "Live" : "Draft"}</span>
     </div>
   ${renderCopyableField("", themeName, undefined, "theme-name")}
+  ${renderCopyableField("", "Preview Link", previewLink, "preview-link")}
   <hr class="divider"/>
   <div class="theme-extra-info">
     ${renderCopyableField("ID", themeId, undefined, "theme-id")}
     ${renderCopyableField("Schema", themeSchemaInfo, undefined, "theme-schema")}
   </div>
-  ${renderCopyableField("", "Preview Link", previewLink, "preview-link")}
   ${renderButtonLink(
     svgLibrary.themeEdit,
     "",
@@ -220,8 +220,9 @@ function renderCopyableField(fieldName, title, value, classModifier = "") {
   if (!title && !value) return "";
   const dataValue = value || title;
   return `<div class="data-field ${classModifier}">
-    ${fieldName ? `<div class="field-name">• ${fieldName} | </div>` : ""}
-    <div class="title" data-value="${dataValue}">${title}</div>
+    <div class="title" data-value="${dataValue}">${
+    fieldName ? `<div class="field-name">• ${fieldName} | </div>` : ""
+  }${title}</div>
     <button class="copy-btn" data-value="${dataValue}" title="Copy">${
     svgLibrary.copyIcon
   }</button>

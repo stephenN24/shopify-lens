@@ -6,8 +6,6 @@
     rgb(56 164 152),
     rgb(54 84 82)
   );
-  --secondary-color: #2ecc71;
-  --font-size: 16px;
 }
 
 * {
@@ -243,7 +241,7 @@ img.no-result-message {
   min-height: 110px;
   max-width: 430px;
   color: #fff;
-  padding: 15px 15px;
+  padding: 15px 17px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
@@ -362,6 +360,7 @@ img.no-result-message {
   cursor: pointer;
   display: flex;
   gap: 5px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hidden {
@@ -855,7 +854,7 @@ a.styled-btn.button-link:not(.jira-link) {
   padding: 2px;
   background: #fff;
   display: inline-flex;
-  margin: 2px;
+  margin: 0;
 }
 
 /* === Styling for store info header === */
@@ -1189,6 +1188,7 @@ a.styled-btn.button-link:not(.jira-link) {
   display: flex;
   gap: 5px;
   align-items: center;
+  margin-bottom: 5px;
 }
 
 .beacon {
@@ -1230,10 +1230,10 @@ a.styled-btn.button-link:not(.jira-link) {
 /* Styling for theme info section */
 .divider {
   border: 0;
-  height: 1px;
-  width: 70%;
+  height: 0.5px;
+  width: 100%;
   background: #e9e1e1;
-  margin: 8px 0;
+  margin: 2px 0 10px 0;
 }
 
 .data-field.theme-name .title {
@@ -1242,12 +1242,22 @@ a.styled-btn.button-link:not(.jira-link) {
   font-size: 13px;
 }
 
+.data-field.preview-link .title,
+.data-field.template-id .title {
+  border: 1px solid;
+  padding: 4px 24px;
+  border-radius: 25px;
+  font-size: 10px;
+  margin: 10px 0;
+}
+
 .theme-extra-info {
   display: flex;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
-.theme-extra-info .data-field {
+.theme-extra-info .title {
   background: #fff;
   border-radius: 25px;
   padding: 5px 10px;
@@ -1255,17 +1265,16 @@ a.styled-btn.button-link:not(.jira-link) {
   font-size: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  display: flex;
+  gap: 5px;
+  color: #000;
+  text-shadow: unset;
 }
 
 .theme-extra-info .field-name {
   color: gray;
 }
 
-.theme-extra-info .title {
-  color: #000;
-  text-shadow: unset;
-}
-
-.theme-extra-info button {
-  display: none;
+.data-field.preview-link button {
+  opacity: 1;
 }
