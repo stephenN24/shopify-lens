@@ -1,6 +1,6 @@
 (function () {
   const { shop, country, currency, locale, theme } = window.Shopify || {};
-
+  const { rtyp, rid } = __st || {};
   const storeData = {
     tenantId: shop,
     shopURLWithoutDomain: shop ? shop.split(".myshopify.com")[0] : "",
@@ -17,6 +17,8 @@
     appData: {
       templateId: getTemplateId(),
     },
+    resourceType: rtyp, //Current page type
+    resourceId: rid, //Collection/product id
   };
 
   const popupData = {
