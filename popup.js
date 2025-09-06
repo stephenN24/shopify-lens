@@ -139,7 +139,9 @@ function renderThemeInfo({
   shopURLWithoutDomain,
   windowLocation,
 }) {
-  const themeSchemaInfo = `${themeSchema}_v${themeSchemaVersion}`;
+  const themeSchemaInfo = themeSchema
+    ? `${themeSchema}${themeSchemaVersion ? `_v${themeSchemaVersion}` : ""}`
+    : "No Data";
   const previewLink = buildPreviewLink(windowLocation, themeId);
   const themeEditorLink = buildThemeEditorLink(
     windowLocation,
@@ -191,7 +193,7 @@ function renderBoostInfo({
 
   return `<div class="section-content boost-info">
   <div class="boost-versions">${boostVersionsInfo}</div>
-  ${renderCopyableField(templateId)}
+  ${renderCopyableField("", templateId, "", "template-id")}
   ${renderButtonLink(
     svgLibrary.templateSettings,
     "",
