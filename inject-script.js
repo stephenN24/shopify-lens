@@ -1,6 +1,6 @@
 (function () {
   const { shop, country, currency, locale, theme } = window.Shopify || {};
-  const { rtyp, rid } = __st || {};
+  const { rtyp, rid } = window?.__st || {};
   const storeData = {
     tenantId: shop,
     shopURLWithoutDomain: shop ? shop.split(".myshopify.com")[0] : "",
