@@ -555,6 +555,7 @@ textarea:focus {
   align-items: center;
   font-size: 13px;
   line-height: 1.4;
+  word-break: break-word;
 }
 
 .actions {
@@ -861,6 +862,12 @@ a.styled-btn.button-link:not(.jira-link) {
 .data-field .title {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   display: inline-block;
+  white-space: nowrap;
+}
+
+.data-field .title-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .data-field.tenant-id .title {
@@ -1269,6 +1276,7 @@ a.styled-btn.button-link:not(.jira-link) {
   gap: 5px;
   color: #000;
   text-shadow: unset;
+  max-width: 150px;
 }
 
 .theme-extra-info .field-name {

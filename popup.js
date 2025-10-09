@@ -222,7 +222,7 @@ function renderCopyableField(fieldName, title, value, classModifier = "") {
   return `<div class="data-field ${classModifier}">
     <div class="title" data-value="${dataValue}">${
     fieldName ? `<div class="field-name">• ${fieldName} | </div>` : ""
-  }${title}</div>
+  }<span class="title-text">${title}</span></div>
     <button class="copy-btn" data-value="${dataValue}" title="Copy">${
     svgLibrary.copyIcon
   }</button>
