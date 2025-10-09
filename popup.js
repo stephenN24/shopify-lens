@@ -880,7 +880,7 @@ function bindEventsForSearchBar() {
 function bindToggleButton() {
   const card = document.querySelector(".header-info-content");
   const toggleBtn = document.getElementById("toggleBtn");
-
+  if (!toggleBtn) return;
   toggleBtn.addEventListener("click", () => {
     card.classList.toggle("expanded");
   });
