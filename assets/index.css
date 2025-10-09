@@ -885,6 +885,54 @@ a.styled-btn.button-link:not(.jira-link) {
   margin-bottom: 15px;
 }
 
+.current-page-data {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-info-content.store-info.expanded .current-page-data {
+  max-height: 200px;
+  opacity: 1;
+  margin-bottom: 12px;
+  margin-top: 10px;
+}
+
+.data-field.extra-page-data {
+  margin-left: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.data-field.extra-page-data .title {
+  text-transform: capitalize;
+}
+
+.arrow-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 20px;
+  position: absolute;
+  bottom: 2px;
+  right: 46%;
+  width: 41px;
+}
+
+.arrow-button:hover {
+  transform: translateY(2px);
+}
+
+.arrow-button svg {
+  width: 15px;
+  height: 15px;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
 /* === Start styling for search bar === */
 .search-container {
   backdrop-filter: blur(20px);
@@ -1264,7 +1312,8 @@ a.styled-btn.button-link:not(.jira-link) {
   margin-bottom: 10px;
 }
 
-.theme-extra-info .title {
+.theme-extra-info .title,
+.extra-page-data .title {
   background: #fff;
   border-radius: 25px;
   padding: 5px 10px;
@@ -1279,7 +1328,8 @@ a.styled-btn.button-link:not(.jira-link) {
   max-width: 150px;
 }
 
-.theme-extra-info .field-name {
+.theme-extra-info .field-name,
+.extra-page-data .field-name {
   color: gray;
 }
 

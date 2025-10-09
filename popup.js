@@ -27,10 +27,13 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 renderPopupData(response.popupData);
                 return;
               }
-              //Update the cached data fields
+              //Update the cached data fields with latest dynamic values
               cachedData.isCached = true;
               cachedData.isShopifyStore = false;
-              cachedData.jiraKey = response?.popupData?.jiraKey || null;
+              cachedData.storeData.resourceId =
+                response?.storeData?.resourceId || null;
+              cachedData.storeData.resourceType =
+                response?.storeData?.resourceType || null;
               renderPopupData(cachedData);
             });
           }
@@ -65,6 +68,9 @@ function renderPopupData(data) {
   // Bind events for search bar
   bindEventsForSearchBar();
 
+  //Bind events for toggle button
+  bindToggleButton();
+
   // Render Jira info
   const jiraDataTab = document.querySelector(".jira-content");
   const jiraKey = data.jiraKey;
@@ -92,7 +98,12 @@ function renderPopupData(data) {
   initSavedReplies(data.storeData);
 }
 
-function renderStoreInfo({ tenantId, shopURLWithoutDomain }) {
+function renderStoreInfo({
+  tenantId,
+  shopURLWithoutDomain,
+  resourceId,
+  resourceType,
+}) {
   const tenantIdHTML = renderCopyableField(
     "",
     tenantId,
@@ -120,6 +131,21 @@ function renderStoreInfo({ tenantId, shopURLWithoutDomain }) {
     "themes-page"
   );
 
+  const currentPageResourceType =
+    resourceType == "product" || resourceType == "collection"
+      ? resourceType
+      : "";
+
+  const currentPageDataHTML =
+    currentPageResourceType && resourceId
+      ? renderCopyableField(
+          currentPageResourceType + " ID",
+          resourceId,
+          undefined,
+          "extra-page-data"
+        )
+      : "";
+
   return `<div class="header-info-content store-info">
   ${tenantIdHTML}
   <div class="links-wrapper">
@@ -127,6 +153,20 @@ function renderStoreInfo({ tenantId, shopURLWithoutDomain }) {
   ${dashboardLink}
   ${shopifyPartnersLink}
   </div>
+  <div class="current-page-data">
+    ${currentPageDataHTML}
+  </div>
+  ${
+    currentPageDataHTML
+      ? `<button
+        class="arrow-button"
+        id="toggleBtn"
+        aria-label="Toggle additional info"
+      >
+        ${svgLibrary.arrowDown}
+      </button>`
+      : ""
+  }
   </div>`;
 }
 
@@ -835,6 +875,16 @@ function bindEventsForSearchBar() {
 }
 
 // END SEARCH BAR ------------
+
+// Bind toggle button event
+function bindToggleButton() {
+  const card = document.querySelector(".header-info-content");
+  const toggleBtn = document.getElementById("toggleBtn");
+
+  toggleBtn.addEventListener("click", () => {
+    card.classList.toggle("expanded");
+  });
+}
 
 // Add smooth interactions for sidebar
 const sidebar = document.querySelector(".sidebar");
