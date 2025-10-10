@@ -30,6 +30,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
               //Update the cached data fields with latest dynamic values
               cachedData.isCached = true;
               cachedData.isShopifyStore = false;
+              cachedData.jiraKey = response?.popupData?.jiraKey || null;
               cachedData.storeData.resourceId =
                 response?.storeData?.resourceId || null;
               cachedData.storeData.resourceType =
