@@ -2,7 +2,7 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "injectScript") {
     const script = document.createElement("script");
-    script.src = chrome.runtime.getURL("inject-script.js");
+    script.src = chrome.runtime.getURL("src/content/inject-script.js");
     script.onload = function () {
       this.remove();
     };
