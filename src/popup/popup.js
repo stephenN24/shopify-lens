@@ -1,4 +1,4 @@
-import svgLibrary from "./assets/svgs/svgLibrary.js";
+import svgLibrary from "../assets/svgs/svgLibrary.js";
 
 // Request the current popup data
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {

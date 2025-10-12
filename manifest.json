@@ -6,30 +6,30 @@
   "permissions": ["scripting", "activeTab", "storage", "tabs"],
   "host_permissions": ["<all_urls>"],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/background/background.js"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content-script.js"]
+      "js": ["src/content/content-script.js"]
     }
   ],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "src/popup/popup.html",
     "default_icon": {
-      "16": "assets/images/icon-16.png",
-      "48": "assets/images/icon-48.png",
-      "128": "assets/images/icon-128.png"
+      "16": "src/assets/images/icon-16.png",
+      "48": "src/assets/images/icon-48.png",
+      "128": "src/assets/images/icon-128.png"
     }
   },
   "icons": {
-    "16": "assets/images/icon-16.png",
-    "48": "assets/images/icon-48.png",
-    "128": "assets/images/icon-128.png"
+    "16": "src/assets/images/icon-16.png",
+    "48": "src/assets/images/icon-48.png",
+    "128": "src/assets/images/icon-128.png"
   },
   "web_accessible_resources": [
     {
-      "resources": ["inject-script.js", "assets/*"],
+      "resources": ["src/content/inject-script.js", "src/assets/*"],
       "matches": ["<all_urls>"]
     }
   ]
