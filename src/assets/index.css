@@ -1295,6 +1295,7 @@ a.styled-btn.button-link:not(.jira-link) {
   font-weight: 600;
   margin-top: 5px;
   font-size: 13px;
+  white-space: normal;
 }
 
 .data-field.preview-link .title,
