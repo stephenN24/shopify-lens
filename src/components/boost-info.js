@@ -44,7 +44,6 @@ export default function renderBoostInfo({
         </g>
       </svg>
     </button>
-    <span class="toggle-label">Highlight</span>
   </div>
   `;
 }

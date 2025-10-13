@@ -149,7 +149,7 @@ function highlightElements() {
     style.id = STYLE_ID;
     style.textContent = `
         .${HIGHLIGHT_CLASS} {
-          outline: 3px solid magenta !important;
+          outline: 3px solid #ff2f01 !important;
           outline-offset: 2px !important;
           transition: outline 0.2s ease-in-out;
         }

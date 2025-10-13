@@ -264,6 +264,7 @@ img.no-result-message {
 
 .section-content.boost-info {
   background-image: url("images/boost-info-bg.jpg");
+  position: relative;
   /* background-color: #bddde4; */
 }
 
@@ -1339,6 +1340,12 @@ a.styled-btn.button-link:not(.jira-link) {
 }
 
 /* === START CSS for highlight switcher === */
+.highlight-toggle-container {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
 .toggle-container {
   display: flex;
   align-items: center;
@@ -1356,8 +1363,9 @@ a.styled-btn.button-link:not(.jira-link) {
   background: white;
   border: 2px solid #e0e0e0;
   border-radius: 6px;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1365,10 +1373,9 @@ a.styled-btn.button-link:not(.jira-link) {
   transition: all 0.2s ease;
 }
 
-.highlight-toggle-btn:hover {
-  border-color: #666;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+.highlight-toggle-btn:hover svg {
+  width: 20px;
+  height: 20px;
 }
 
 .highlight-toggle-btn:active {
@@ -1376,14 +1383,9 @@ a.styled-btn.button-link:not(.jira-link) {
 }
 
 .highlight-toggle-btn svg {
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.highlight-toggle-btn.active {
-  background: #fff;
-  border-color: #333;
 }
 
 /* Zoom animation for icons */
