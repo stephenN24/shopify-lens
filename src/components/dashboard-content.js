@@ -38,11 +38,10 @@ export default function renderDashboardContent(data) {
   bindEventForHighlightElmToggleBtn();
 
   console.log("Popup data rendered", data);
-  if (data.isCached) {
-    const isCachedNotice = `<span>Cached</span>`;
-    const cachedNotice = document.querySelector(".cache-indicator");
-    cachedNotice.innerHTML = isCachedNotice;
-  }
+  const cachedIndicator = document.querySelector(".cache-indicator");
+  cachedIndicator.innerHTML = data.isCached
+    ? `<span>Cached</span>`
+    : `<span style="background-color: green;">Active</span>`;
 
   // Init Saved Replies feature
   initSavedReplies(data.storeData);
