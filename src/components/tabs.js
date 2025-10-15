@@ -1,18 +1,13 @@
 export default function bindEventsForTabs() {
   const buttons = document.querySelectorAll(".sidebar button");
   const tabs = document.querySelectorAll(".tab");
-
-  if (!buttons.length || !tabs.length) return;
-
   const sidebar = document.querySelector(".sidebar");
-  if (sidebar) {
-    sidebar.addEventListener("click", (e) => {
-      const button = e.target.closest("button");
-      if (button?.dataset.tab) {
-        switchTab(button.dataset.tab, tabs, buttons);
-      }
-    });
-  }
+  sidebar.addEventListener("click", (e) => {
+    const button = e.target.closest("button");
+    if (button?.dataset.tab) {
+      switchTab(button.dataset.tab, tabs, buttons);
+    }
+  });
 
   // Keyboard navigation
   document.addEventListener("keydown", (e) => {
@@ -29,14 +24,15 @@ export default function bindEventsForTabs() {
       );
       const nextIndex = (activeIndex + 1) % visibleButtons.length;
 
-      switchTab(visibleButtons[nextIndex].dataset.tab, tabs, buttons);
+      switchTab(visibleButtons[nextIndex].dataset.tab);
       visibleButtons[nextIndex].focus();
     }
   });
 }
 
-function switchTab(tabId, tabs, buttons) {
-  if (!tabId) return;
+export function switchTab(tabId) {
+  const buttons = document.querySelectorAll(".sidebar button");
+  const tabs = document.querySelectorAll(".tab");
 
   // Remove active classes
   buttons.forEach((btn) => btn.classList.remove("active"));

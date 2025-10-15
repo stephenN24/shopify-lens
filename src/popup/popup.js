@@ -6,7 +6,7 @@ import renderSearchBar, {
   bindEventsForSearchBar,
 } from "../components/search-bar.js";
 import initTools from "../components/tools.js";
-import bindEventsForTabs from "../components/tabs.js";
+import bindEventsForTabs, { switchTab } from "../components/tabs.js";
 import * as Utils from "../components/utils.js";
 
 // Request the current popup data
