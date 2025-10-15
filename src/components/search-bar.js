@@ -98,7 +98,7 @@ function renderDropdownOption({
   `;
 }
 
-function bindEventsForSearchBar() {
+export function bindEventsForSearchBar() {
   const filterDropdown = document.getElementById("filterDropdown");
   const filterButton = document.getElementById("filterButton");
   const dropdownMenu = document.getElementById("dropdownMenu");
@@ -189,5 +189,3 @@ function performSearch() {
   }
   window.open(searchURL, "_blank");
 }
-
-export { bindEventsForSearchBar };
