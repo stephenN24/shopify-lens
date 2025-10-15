@@ -74,7 +74,7 @@ export default function renderStoreInfo({
 }
 
 // Bind toggle button event
-function bindEventForHeaderToggleButton() {
+export function bindEventForHeaderToggleBtn() {
   const card = document.querySelector(".header-info-content");
   const toggleBtn = document.getElementById("toggleBtn");
   if (!toggleBtn) return;
@@ -82,5 +82,3 @@ function bindEventForHeaderToggleButton() {
     card.classList.toggle("expanded");
   });
 }
-
-export { bindEventForHeaderToggleButton };

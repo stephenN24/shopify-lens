@@ -1,7 +1,7 @@
 import { switchTab } from "./sidebar.js";
 import * as Utils from "./utils.js";
 
-export default function renderJiraInfo(data) {
+export default function renderJiraTab(data) {
   const jiraDataTab = document.querySelector(".jira-content");
   const jiraKey = data.jiraKey;
   if (jiraKey) {
@@ -13,7 +13,7 @@ export default function renderJiraInfo(data) {
       "jira-link"
     );
     jiraDataTab.innerHTML = `<div class="section-content jira-info">${jiraLink}</div>`;
-    switchTab("tab2");
+    switchTab("tab2"); // Activate the Jira tab
   } else {
     document.querySelector("[data-tab=tab2]").classList.add("hidden"); // Hide the Jira tab if jiraKey does not exist
   }

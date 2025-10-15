@@ -1,5 +1,5 @@
 //Bind event toggle buttons
-export default function bindEventForHighlightToggleButton() {
+export default function bindEventForHighlightElmToggleBtn() {
   const toggleBtn = document.querySelector(".highlight-toggle-btn");
 
   toggleBtn.addEventListener("click", async function () {

@@ -1,15 +1,13 @@
-import renderStoreInfo, {
-  bindEventForHeaderToggleButton,
-} from "./store-info.js";
+import renderStoreInfo, { bindEventForHeaderToggleBtn } from "./store-info.js";
 import renderThemeInfo from "./theme-info.js";
 import renderBoostInfo from "./boost-info.js";
-import renderJiraInfo from "./jira.js";
+import renderJiraTab from "./jira.js";
 import initSavedReplies from "./save-replies.js";
-import renderSearchBar, { bindEventsForSearchBar } from "./search-bar.js";
-import bindEventForHighlightToggleButton from "./highlight-toggle.js";
+import renderSearchBar, { bindEventForSearchBar } from "./search-bar.js";
+import bindEventForHighlightElmToggleBtn from "./highlight-toggle.js";
 
-// Function to render the popup content
-export default function renderPopupContent(data) {
+// Function to render the dashhboard content
+export default function renderDashboardContent(data) {
   const dashboardContent = document.querySelector(".dashboard-content");
   const headerStoreInfo = document.querySelector(".header-store-info");
 
@@ -31,13 +29,13 @@ export default function renderPopupContent(data) {
   dashboardContent.innerHTML = html;
 
   // Render Jira info
-  renderJiraInfo(data);
-  // Bind events for search bar
-  bindEventsForSearchBar();
-  //Bind events for toggle button
-  bindEventForHeaderToggleButton();
+  renderJiraTab(data);
+  // Bind eventsfor search bar
+  bindEventForSearchBar();
+  //Bind event for toggle button
+  bindEventForHeaderToggleBtn();
   // Bind event for highlight toggle button
-  bindEventForHighlightToggleButton();
+  bindEventForHighlightElmToggleBtn();
 
   console.log("Popup data rendered", data);
   if (data.isCached) {

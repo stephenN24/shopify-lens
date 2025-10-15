@@ -98,7 +98,7 @@ function renderDropdownOption({
   `;
 }
 
-export function bindEventsForSearchBar() {
+export function bindEventForSearchBar() {
   const filterDropdown = document.getElementById("filterDropdown");
   const filterButton = document.getElementById("filterButton");
   const dropdownMenu = document.getElementById("dropdownMenu");
