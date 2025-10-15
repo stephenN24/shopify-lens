@@ -82,3 +82,10 @@ export function bindEventForHeaderToggleBtn() {
     card.classList.toggle("expanded");
   });
 }
+
+export function updateCacheIndicator(isCached) {
+  const cachedIndicator = document.querySelector(".cache-indicator");
+  cachedIndicator.innerHTML = isCached
+    ? `<span>Cached</span>`
+    : `<span style="background-color: green;">Active</span>`;
+}

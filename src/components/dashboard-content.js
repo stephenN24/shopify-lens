@@ -1,4 +1,7 @@
-import renderStoreInfo, { bindEventForHeaderToggleBtn } from "./store-info.js";
+import renderStoreInfo, {
+  bindEventForHeaderToggleBtn,
+  updateCacheIndicator,
+} from "./store-info.js";
 import renderThemeInfo from "./theme-info.js";
 import renderBoostInfo from "./boost-info.js";
 import renderJiraTab from "./jira.js";
@@ -28,6 +31,9 @@ export default function renderDashboardContent(data) {
 
   dashboardContent.innerHTML = html;
 
+  // Update cache indicator
+  updateCacheIndicator(data.isCached);
+
   // Render Jira info
   renderJiraTab(data);
   // Bind eventsfor search bar
@@ -38,10 +44,6 @@ export default function renderDashboardContent(data) {
   bindEventForHighlightElmToggleBtn();
 
   console.log("Popup data rendered", data);
-  const cachedIndicator = document.querySelector(".cache-indicator");
-  cachedIndicator.innerHTML = data.isCached
-    ? `<span>Cached</span>`
-    : `<span style="background-color: green;">Active</span>`;
 
   // Init Saved Replies feature
   initSavedReplies(data.storeData);
