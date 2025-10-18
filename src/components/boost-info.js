@@ -15,12 +15,16 @@ export default function renderBoostInfo({
   return `<div class="section-content boost-info">
   <div class="boost-versions">${boostVersionsInfo}</div>
   ${Utils.renderCopyableField("", templateId, "", "template-id")}
-  ${Utils.renderButtonLink(
-    svgLibrary.templateSettings,
-    "",
-    templateSettingsURL,
-    "template-settings"
-  )}
+  ${
+    boostVersions.includes("Turbo")
+      ? Utils.renderButtonLink(
+          svgLibrary.templateSettings,
+          "",
+          templateSettingsURL,
+          "template-settings"
+        )
+      : ""
+  }
   ${Utils.renderButtonLink(
     svgLibrary.shopifyIntegration,
     "",
