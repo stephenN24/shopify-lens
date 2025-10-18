@@ -74,7 +74,7 @@ export default function renderStoreInfo({
 }
 
 // Bind toggle button event
-function bindToggleButton() {
+export function bindEventForHeaderToggleBtn() {
   const card = document.querySelector(".header-info-content");
   const toggleBtn = document.getElementById("toggleBtn");
   if (!toggleBtn) return;
@@ -83,4 +83,9 @@ function bindToggleButton() {
   });
 }
 
-export { bindToggleButton };
+export function updateCacheIndicator(isCached) {
+  const cachedIndicator = document.querySelector(".cache-indicator");
+  cachedIndicator.innerHTML = isCached
+    ? `<span>Cached</span>`
+    : `<span style="background-color: green;">Active</span>`;
+}
