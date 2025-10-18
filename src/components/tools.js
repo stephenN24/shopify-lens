@@ -1,8 +1,11 @@
 export default function initTools() {
-  const openRefinedUrl = document.querySelector("#open-url-btn");
+  const openRefinedUrlBtn = document.querySelector("#open-url-btn");
   const apiRequestInput = document.querySelector("#apiRequest");
+  const searchHelpdocBtn = document.querySelector("#search-helpdoc-btn");
+  const helpdocSearchInput = document.querySelector("#helpdocSearch");
 
-  openRefinedUrl.addEventListener("click", () =>
+  // Tools - Refine API request
+  openRefinedUrlBtn.addEventListener("click", () =>
     handleOpenRefinedUrl(apiRequestInput)
   );
   apiRequestInput.addEventListener("keydown", function (e) {
@@ -11,13 +14,13 @@ export default function initTools() {
     }
   });
 
-  document
-    .getElementById("search-helpdoc-btn")
-    .addEventListener("click", handleHelpdocSearch);
-
+  // Tools - Helpdoc Finder
+  searchHelpdocBtn.addEventListener("click", () =>
+    handleHelpdocSearch(helpdocSearchInput)
+  );
   helpdocSearchInput.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
-      handleHelpdocSearch();
+      handleHelpdocSearch(helpdocSearchInput);
     }
   });
 }
@@ -46,10 +49,7 @@ function refineAPIRequest(url) {
   }
 }
 
-// Tools - Helpdoc Finder
-const helpdocSearchInput = document.getElementById("helpdocSearch");
-
-function handleHelpdocSearch() {
+function handleHelpdocSearch(helpdocSearchInput) {
   const keyword = helpdocSearchInput.value.trim();
   const errorMsg = document.querySelector(".helpdoc-finder .error-message");
   if (keyword) {
