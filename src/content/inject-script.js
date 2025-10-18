@@ -41,33 +41,16 @@
   }
 
   // Get boost version
-  for (let key in window) {
-    if (
-      key.includes("bcsf") &&
-      !popupData.storeData.boostVersions.includes("V1")
-    ) {
-      popupData.storeData.boostVersions.push("V1");
-    }
-    if (
-      key.includes("BoostPFS") &&
-      !popupData.storeData.boostVersions.includes("V2")
-    ) {
-      popupData.storeData.boostVersions.push("V2");
-    }
-    if (
-      key.includes("boostSDAppConfig") &&
-      key.includes("boostSD") &&
-      !popupData.storeData.boostVersions.includes("V3")
-    ) {
-      popupData.storeData.boostVersions.push("V3");
-    }
-    if (
-      key.includes("boostWidgetIntegration") &&
-      !popupData.storeData.boostVersions.includes("Turbo")
-    ) {
-      popupData.storeData.boostVersions.push("Turbo");
-    }
-  }
+  if (typeof window.bcsf !== "undefined") storeData.boostVersions.push("V1");
+  if (typeof window.BoostPFS !== "undefined")
+    storeData.boostVersions.push("V2");
+  if (
+    typeof window.boostSDAppConfig !== "undefined" ||
+    typeof window.boostSD !== "undefined"
+  )
+    storeData.boostVersions.push("V3");
+  if (typeof window.boostWidgetIntegration !== "undefined")
+    storeData.boostVersions.push("Turbo");
 
   if (popupData.storeData.boostVersions.length == 0) {
     popupData.storeData.boostVersions.push("No Data");
