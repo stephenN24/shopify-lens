@@ -263,9 +263,50 @@ img.no-result-message {
 }
 
 .section-content.boost-info {
-  background-image: url("images/boost-info-bg.jpg");
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  overflow: hidden;
   position: relative;
-  /* background-color: #bddde4; */
+}
+
+.section-content.boost-info::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  top: -40px;
+  right: 62px;
+}
+.section-content.boost-info::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  bottom: -30px;
+  right: -20px;
+}
+
+.boost-versions {
+  background: #7249e9;
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 25px;
+  text-transform: uppercase;
+}
+
+.data-field.template-id .title {
+  margin-top: 28px !important;
 }
 
 .section-content.jira-info {
@@ -1245,22 +1286,46 @@ a.styled-btn.button-link:not(.jira-link) {
   gap: 5px;
   align-items: center;
   margin-bottom: 5px;
+  position: relative;
+  flex-direction: row-reverse;
 }
 
 .beacon {
-  height: 10px;
-  width: 10px;
+  height: 8px;
+  width: 8px;
   border-radius: 50%;
+  left: auto;
 }
 
-.live-theme-beacon {
-  background-color: #69ffa8;
+.live-theme-beacon .beacon {
+  background-color: #0db755;
   animation: 1.5s pulseGreen infinite ease-in-out;
+  position: absolute;
+  z-index: 2;
+  right: 33px;
 }
 
-.unpublished-theme-beacon {
-  background-color: #ebb902;
+.unpublished-theme-beacon .beacon {
+  background-color: #757370;
   animation: 1.5s pulseYellow infinite ease-in-out;
+  position: absolute;
+  right: 40px;
+}
+
+.beacon-status {
+  background: #ffff;
+  font-weight: 600;
+  padding: 1px 10px 1px 20px;
+  border-radius: 25px;
+  font-size: 10px;
+}
+
+.unpublished-theme-beacon .beacon-status {
+  color: #757370;
+}
+
+.live-theme-beacon .beacon-status {
+  color: #168a47;
 }
 
 @keyframes pulseGreen {
@@ -1275,7 +1340,7 @@ a.styled-btn.button-link:not(.jira-link) {
 
 @keyframes pulseYellow {
   0% {
-    box-shadow: 0 0 0 0 #ebb902;
+    box-shadow: 0 0 0 0 #757370;
   }
 
   100% {
@@ -1301,11 +1366,15 @@ a.styled-btn.button-link:not(.jira-link) {
 
 .data-field.preview-link .title,
 .data-field.template-id .title {
-  border: 1px solid;
   padding: 4px 24px;
   border-radius: 25px;
   font-size: 10px;
   margin: 10px 0;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .theme-extra-info {

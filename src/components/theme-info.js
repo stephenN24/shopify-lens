@@ -23,11 +23,11 @@ export default function renderThemeInfo({
 
   //Add live beacon
   return `<div class="section-content theme-info">
-    <div class="beacon-wrapper">
-      <div class="beacon ${
-        isLive ? "live-theme-beacon" : "unpublished-theme-beacon"
-      }"></div>
-        <span>${isLive ? "Live" : "Draft"}</span>
+    <div class="beacon-wrapper ${
+      isLive ? "live-theme-beacon" : "unpublished-theme-beacon"
+    }">
+      <div class="beacon"></div>
+        <div class="beacon-status">${isLive ? "Live" : "Draft"}</div>
     </div>
   ${Utils.renderCopyableField("", themeName, undefined, "theme-name")}
   ${Utils.renderCopyableField("", "Preview Link", previewLink, "preview-link")}
