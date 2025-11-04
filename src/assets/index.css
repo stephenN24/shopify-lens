@@ -259,7 +259,7 @@ img.no-result-message {
 }
 .section-content.theme-info {
   background-image: url("images/theme-info-bg.jpg");
-  /* background-color: #9ec6f3; */
+  position: relative;
 }
 
 .section-content.boost-info {
@@ -989,6 +989,8 @@ a.styled-btn.button-link:not(.jira-link) {
   background-image: url("images/search-background.jpg");
   background-size: cover;
   background-position-y: 53%;
+  position: relative;
+  z-index: 3;
 }
 
 .search-wrapper {
@@ -1286,8 +1288,9 @@ a.styled-btn.button-link:not(.jira-link) {
   gap: 5px;
   align-items: center;
   margin-bottom: 5px;
-  position: relative;
   flex-direction: row-reverse;
+  position: absolute;
+  right: 20px;
 }
 
 .beacon {
@@ -1366,15 +1369,19 @@ a.styled-btn.button-link:not(.jira-link) {
 
 .data-field.preview-link .title,
 .data-field.template-id .title {
-  padding: 4px 24px;
+  padding: 6px 24px;
+  align-self: baseline;
   border-radius: 25px;
-  font-size: 10px;
-  margin: 10px 0;
+  font-size: 9px;
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.data-field.preview-link .title:hover {
+  background: #6666664d;
 }
 
 .theme-extra-info {
@@ -1404,8 +1411,21 @@ a.styled-btn.button-link:not(.jira-link) {
   color: gray;
 }
 
+.theme-action-wrapper {
+  display: flex;
+  gap: 5px;
+}
+
+.theme-action-buttons .button-link {
+  position: unset;
+}
+
 .data-field.preview-link button {
   opacity: 1;
+}
+
+.data-field.theme-name {
+  margin: 15px 0;
 }
 
 /* === START CSS for highlight switcher === */

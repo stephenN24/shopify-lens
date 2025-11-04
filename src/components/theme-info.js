@@ -29,18 +29,8 @@ export default function renderThemeInfo({
       <div class="beacon"></div>
         <div class="beacon-status">${isLive ? "Live" : "Draft"}</div>
     </div>
-  ${Utils.renderCopyableField("", themeName, undefined, "theme-name")}
-  ${Utils.renderCopyableField("", "Preview Link", previewLink, "preview-link")}
-  <hr class="divider"/>
-  <div class="theme-extra-info">
-    ${Utils.renderCopyableField("ID", themeId, undefined, "theme-id")}
-    ${Utils.renderCopyableField(
-      "Schema",
-      themeSchemaInfo,
-      undefined,
-      "theme-schema"
-    )}
-  </div>
+    <div class="theme-action-wrapper">
+    <div class="theme-action-buttons">
   ${Utils.renderButtonLink(
     svgLibrary.themeEdit,
     "",
@@ -53,5 +43,19 @@ export default function renderThemeInfo({
     themeEditorLink,
     "theme-editor"
   )}
+  </div>
+  ${Utils.renderCopyableField("", "Preview Link", previewLink, "preview-link")}
+  </div>
+  ${Utils.renderCopyableField("", themeName, undefined, "theme-name")}
+  <hr class="divider"/>
+  <div class="theme-extra-info">
+    ${Utils.renderCopyableField("ID", themeId, undefined, "theme-id")}
+    ${Utils.renderCopyableField(
+      "Schema",
+      themeSchemaInfo,
+      undefined,
+      "theme-schema"
+    )}
+  </div>
   </div>`;
 }
