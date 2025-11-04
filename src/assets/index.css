@@ -266,6 +266,7 @@ img.no-result-message {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   overflow: hidden;
   position: relative;
+  padding-top: 40px;
 }
 
 .section-content.boost-info::before {
@@ -306,7 +307,7 @@ img.no-result-message {
 }
 
 .data-field.template-id .title {
-  margin-top: 28px !important;
+  margin-bottom: 10px;
 }
 
 .section-content.jira-info {
