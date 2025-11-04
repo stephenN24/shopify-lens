@@ -1420,10 +1420,6 @@ a.styled-btn.button-link:not(.jira-link) {
   position: unset;
 }
 
-.data-field.preview-link button {
-  opacity: 1;
-}
-
 .data-field.theme-name {
   margin: 15px 0;
 }
