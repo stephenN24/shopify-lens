@@ -8,7 +8,7 @@ export default function renderBoostInfo({
   appData,
 }) {
   const { templateId } = appData;
-  const boostVersionsInfo = boostVersions.join(", ");
+  const boostVersionsInfo = boostVersions.join(" | ");
   const templateSettingsURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration/${themeId}`;
   const shopifyIntegrationLink = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration`;
 
