@@ -407,7 +407,7 @@ img.no-result-message {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* Tools Section Styling */
@@ -500,7 +500,7 @@ img.no-result-message {
 
 .tool-item-header p {
   color: #666;
-  font-size: 0.9rem;
+  font-size: 10px;
 }
 
 .template-selector {
@@ -546,14 +546,6 @@ select:focus {
   display: block;
   border-color: var(--main-color);
   box-shadow: 0 3px 15px rgba(102, 126, 234, 0.15);
-}
-
-.template-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 15px;
-  text-align: center;
 }
 
 .editor-section {

@@ -12,7 +12,6 @@ export default async function initSavedReplies({
   // DOM elements
   const templateSelect = document.getElementById("templateSelect");
   const templateEditor = document.getElementById("templateEditor");
-  const templateName = document.getElementById("templateName");
   const templateText = document.getElementById("templateText");
   const preview = document.getElementById("preview");
   const editSection = document.getElementById("editSection");
@@ -100,7 +99,6 @@ export default async function initSavedReplies({
       const template = templates[currentTemplateId];
       if (template) {
         templateEditor.classList.add("active");
-        templateName.textContent = template.name;
         templateText.value = template.text;
 
         // Reset to view mode when selecting a new template
