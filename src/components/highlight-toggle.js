@@ -37,13 +37,17 @@ function highlightElements() {
 
   // Get all matching elements
   const matches = Array.from(
-    document.querySelectorAll('[class*="boost-sd"], [class*="boost-pfs"]')
+    document.querySelectorAll(
+      '[class*="boost-sd"], [class*="boost-pfs"], [class*="bc-sf"]'
+    )
   ).filter(
     (el) =>
       el !== document.body &&
       Array.from(el.classList).some(
         (c) =>
-          (c.startsWith("boost-sd") || c.startsWith("boost-pfs")) &&
+          (c.startsWith("boost-sd") ||
+            c.startsWith("boost-pfs") ||
+            c.startsWith("bc-sf")) &&
           !c.includes("fallback")
       )
   );
