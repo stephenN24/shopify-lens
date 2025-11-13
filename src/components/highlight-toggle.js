@@ -42,7 +42,9 @@ function highlightElements() {
     (el) =>
       el !== document.body &&
       Array.from(el.classList).some(
-        (c) => c.startsWith("boost-sd") || c.startsWith("boost-pfs")
+        (c) =>
+          (c.startsWith("boost-sd") || c.startsWith("boost-pfs")) &&
+          !c.includes("fallback")
       )
   );
 
