@@ -37,3 +37,16 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     });
   }
 });
+
+// Clean up highlight toggle states when tabs are closed/ updated
+function keyFor(tabId) {
+  return `highlight:${tabId}`;
+}
+
+chrome.tabs.onRemoved.addListener(async (tabId, removeInfo) => {
+  await chrome.storage.local.remove(keyFor(tabId));
+});
+
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+  await chrome.storage.local.remove(keyFor(tabId));
+});

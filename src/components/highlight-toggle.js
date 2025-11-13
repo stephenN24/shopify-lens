@@ -1,6 +1,12 @@
 //Bind event toggle buttons
-export default function bindEventForHighlightElmToggleBtn() {
+export default async function bindEventForHighlightElmToggleBtn() {
   const toggleBtn = document.querySelector(".highlight-toggle-btn");
+  const isOn = await getHighlightToggleState();
+  if (isOn) {
+    toggleBtn.classList.add("active");
+  } else {
+    toggleBtn.classList.remove("active");
+  }
 
   toggleBtn.addEventListener("click", async function () {
     this.classList.toggle("active");
@@ -12,12 +18,36 @@ export default function bindEventForHighlightElmToggleBtn() {
 
     await chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      func: highlightElements,
+      func: toggleHighlightElements,
     });
+    await setHighlightToggleState(!isOn);
   });
 }
 
-function highlightElements() {
+function keyFor(tabId) {
+  return `highlight:${tabId}`;
+}
+
+async function getActiveTab() {
+  if (!chrome?.tabs?.query) return null;
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  return tab?.id ? tab : null;
+}
+
+async function getHighlightToggleState() {
+  const tab = await getActiveTab();
+  if (!tab) return false;
+  const data = await chrome.storage.local.get(keyFor(tab.id));
+  return Boolean(data[keyFor(tab.id)]);
+}
+
+async function setHighlightToggleState(newState) {
+  const tab = await getActiveTab();
+  if (!tab) return;
+  await chrome.storage.local.set({ [keyFor(tab.id)]: newState });
+}
+
+function toggleHighlightElements() {
   const HIGHLIGHT_CLASS = "boost-highlight";
   const STYLE_ID = "boost-highlight-style";
 
