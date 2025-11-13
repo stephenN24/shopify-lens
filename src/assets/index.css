@@ -1600,7 +1600,7 @@ a.styled-btn.button-link:not(.jira-link) {
 
 .dl-menu-item {
   position: relative;
-  padding: 12px 16px;
+  padding: 2px 16px;
   cursor: pointer;
   transition: background 0.2s;
   border-bottom: 1px solid #f0f0f0;
@@ -1646,11 +1646,11 @@ a.styled-btn.button-link:not(.jira-link) {
 }
 
 .dl-submenu-item {
-  padding: 12px 16px;
+  padding: 2px 16px;
   cursor: pointer;
   transition: background 0.2s;
   border-bottom: 1px solid #f0f0f0;
-  font-size: 14px;
+  font-size: 8px;
   color: #666;
 }
 
