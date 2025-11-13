@@ -3,7 +3,7 @@ import renderStoreInfo, {
   updateCacheIndicator,
 } from "./store-info.js";
 import renderThemeInfo from "./theme-info.js";
-import renderBoostInfo from "./boost-info.js";
+import renderBoostInfo, { renderDynamicLinkDropdown } from "./boost-info.js";
 import renderJiraTab from "./jira.js";
 import initSavedReplies from "./save-replies.js";
 import renderSearchBar, { bindEventForSearchBar } from "./search-bar.js";
@@ -30,6 +30,8 @@ export default function renderDashboardContent(data) {
   });
 
   dashboardContent.innerHTML = html;
+
+  renderDynamicLinkDropdown();
 
   // Update cache indicator
   updateCacheIndicator(data.isCached);

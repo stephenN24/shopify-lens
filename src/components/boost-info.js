@@ -1,5 +1,6 @@
 import svgLibrary from "../assets/svgs/svgLibrary.js";
 import * as Utils from "./utils.js";
+import DynamicLinkDropdown from "./dynamic-link.js";
 
 export default function renderBoostInfo({
   themeId,
@@ -14,6 +15,7 @@ export default function renderBoostInfo({
 
   return `<div class="section-content boost-info">
   <div class="boost-versions">${boostVersionsInfo}</div>
+  <div id="dynamic-link-container"></div>
   ${Utils.renderCopyableField("", templateId, "", "template-id")}
   ${
     boostVersions.includes("Turbo")
@@ -46,4 +48,25 @@ function renderHighlightToggle() {
       </button>
     </div>
   `;
+}
+
+export function renderDynamicLinkDropdown() {
+  const menuData = {
+    Search: {
+      "Engine Control": "/apps/product-filter-search/engine-control",
+      "Standard Search": "/apps/product-filter-search/standard-search",
+      "AI Search": "/apps/product-filter-search/ai-search",
+    },
+    Filters: {
+      "Filter Layout": "/apps/product-filter-search/filter-layout",
+      "Display Settings": "/apps/product-filter-search/display-settings",
+    },
+  };
+
+  const dropdown = new DynamicLinkDropdown("dynamic-link-container", {
+    menuData: menuData,
+    onSelect: (selection) => {
+      console.log("Selected:", selection);
+    },
+  });
 }
