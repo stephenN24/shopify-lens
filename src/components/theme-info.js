@@ -32,13 +32,13 @@ export default function renderThemeInfo({
     <div class="theme-action-wrapper">
     <div class="theme-action-buttons">
   ${Utils.renderButtonLink(
-    svgLibrary.themeEdit,
+    svgLibrary.codeEditor,
     "",
     themeCodeEditorLink,
     "theme-code-editor"
   )}
   ${Utils.renderButtonLink(
-    svgLibrary.themeEditor,
+    svgLibrary.editor,
     "",
     themeEditorLink,
     "theme-editor"

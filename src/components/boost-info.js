@@ -10,28 +10,34 @@ export default function renderBoostInfo({
   const { templateId } = appData;
   const boostVersionsInfo = boostVersions.join(" | ");
   const templateSettingsURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration/${themeId}`;
-  const shopifyIntegrationLink = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration`;
+  const templateCodeEditorURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration//code-editor/${templateId}`;
+  // const shopifyIntegrationLink = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration`;
 
   return `<div class="section-content boost-info">
   <div class="boost-versions">${boostVersionsInfo}</div>
-  ${Utils.renderCopyableField("", templateId, "", "template-id")}
-  ${
-    boostVersions.includes("Turbo")
-      ? Utils.renderButtonLink(
-          svgLibrary.templateSettings,
-          "",
-          templateSettingsURL,
-          "template-settings"
-        )
-      : ""
-  }
-  ${Utils.renderButtonLink(
-    svgLibrary.shopifyIntegration,
-    "",
-    shopifyIntegrationLink,
-    "shopify-integration"
-  )}
+  <div class="boost-details">
+   ${
+     boostVersions.includes("Turbo")
+       ? `<div class="template-info">
+    ${Utils.renderCopyableField("", templateId, "", "template-id")}
+    ${Utils.renderButtonLink(
+      svgLibrary.codeEditor,
+      "",
+      templateCodeEditorURL,
+      "template-code-editor"
+    )}
+    ${Utils.renderButtonLink(
+      svgLibrary.editor,
+      "",
+      templateSettingsURL,
+      "template-settings"
+    )}
+  </div>`
+       : ""
+   }
+    </div>
    ${renderHighlightToggle()}
+  </div>
   `;
 }
 
@@ -47,3 +53,10 @@ function renderHighlightToggle() {
     </div>
   `;
 }
+
+// ${Utils.renderButtonLink(
+//   svgLibrary.shopifyIntegration,
+//   "",
+//   shopifyIntegrationLink,
+//   "shopify-integration"
+// )}

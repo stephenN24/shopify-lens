@@ -306,8 +306,32 @@ img.no-result-message {
   text-transform: uppercase;
 }
 
+.boost-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.template-info {
+  display: inline-block;
+  padding: 10px;
+  border: 1px dashed;
+  border-radius: 20px;
+}
+
+.data-field.template-id {
+  position: relative;
+}
+
 .data-field.template-id .title {
   margin-bottom: 10px;
+  width: 100%;
+  padding: 6px 30px;
+}
+
+.data-field.template-id .copy-btn {
+  position: absolute;
+  right: 5px;
+  top: 3px;
 }
 
 .section-content.jira-info {
@@ -1371,6 +1395,7 @@ a.styled-btn.button-link:not(.jira-link) {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
   transition: all 0.2s ease;
+  text-align: center;
 }
 
 .data-field.preview-link .title:hover {
