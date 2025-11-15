@@ -1,5 +1,6 @@
 import svgLibrary from "../assets/svgs/svgLibrary.js";
 import * as Utils from "./utils.js";
+import renderQuickAppMenu from "./quick-app-menu.js";
 
 export default function renderBoostInfo({
   themeId,
@@ -35,6 +36,7 @@ export default function renderBoostInfo({
   </div>`
        : ""
    }
+   ${renderQuickAppMenu()}
     </div>
    ${renderHighlightToggle()}
   </div>
@@ -60,3 +62,5 @@ function renderHighlightToggle() {
 //   shopifyIntegrationLink,
 //   "shopify-integration"
 // )}
+
+// App menu items configuration

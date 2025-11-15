@@ -309,6 +309,7 @@ img.no-result-message {
 .boost-details {
   display: flex;
   justify-content: space-between;
+  margin: 12px 15px;
 }
 
 .template-info {
@@ -1560,3 +1561,80 @@ a.styled-btn.button-link:not(.jira-link) {
 }
 
 /* === END CSS for highlight switcher === */
+
+/* === START CSS for quick app menu === */
+.menu-container {
+  background: white;
+  border-radius: 22px;
+  padding: 15px 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.icon-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.icon-item:hover {
+  transform: scale(1.1);
+}
+
+.icon-item svg {
+  width: 20px;
+  height: 15px;
+  stroke: #2d3748;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-item:active {
+  transform: scale(0.95);
+}
+
+.item-tooltip {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #6a63c3;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+.item-tooltip::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #6a63c3;
+}
+
+.icon-item:hover .item-tooltip {
+  opacity: 1;
+}
+
+/* === START CSS for quick app menu === */
