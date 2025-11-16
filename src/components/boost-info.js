@@ -12,7 +12,6 @@ export default function renderBoostInfo({
   const boostVersionsInfo = boostVersions.join(" | ");
   const templateSettingsURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration/${themeId}`;
   const templateCodeEditorURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration//code-editor/${templateId}`;
-  // const shopifyIntegrationLink = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration`;
 
   return `<div class="section-content boost-info">
   <div class="boost-versions">${boostVersionsInfo}</div>
@@ -55,12 +54,3 @@ function renderHighlightToggle() {
     </div>
   `;
 }
-
-// ${Utils.renderButtonLink(
-//   svgLibrary.shopifyIntegration,
-//   "",
-//   shopifyIntegrationLink,
-//   "shopify-integration"
-// )}
-
-// App menu items configuration

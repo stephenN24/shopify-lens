@@ -53,8 +53,6 @@ export default function renderQuickAppMenu(shopURLWithoutDomain) {
                 </div>
             `;
 }
-
-// Create a menu item component
 function createMenuItem(item, baseURL) {
   return `
                 <div class="icon-item" data-name="${item.name}">
