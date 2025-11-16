@@ -36,7 +36,7 @@ export default function renderBoostInfo({
   </div>`
        : ""
    }
-   ${renderQuickAppMenu()}
+   ${renderQuickAppMenu(shopURLWithoutDomain)}
     </div>
    ${renderHighlightToggle()}
   </div>
