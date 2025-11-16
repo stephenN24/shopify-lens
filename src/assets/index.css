@@ -1585,24 +1585,19 @@ a.styled-btn.button-link:not(.jira-link) {
   position: relative;
   z-index: 1;
   padding: 5px;
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
 }
 
 .icon-item:hover {
   transform: scale(1.1);
   z-index: 100;
-  border: 1px solid #6974db7a;
-  border-radius: 10px;
+  /* border: 1px solid #6974db7a;
+  border-radius: 10px; */
 }
 
 .icon-item svg {
   width: 20px;
-  height: 15px;
-  stroke: #2d3748;
-  stroke-width: 2;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  height: 18px;
   z-index: 1;
 }
 
