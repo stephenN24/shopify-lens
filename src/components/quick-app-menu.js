@@ -59,9 +59,7 @@ function createMenuItem(item, baseURL) {
                 <a class="item-link" href="${
                   baseURL + item.urlPath
                 }" target="_blank">
-                    <svg viewBox="0 0 24 24">
                         ${item.svgPath}
-                    </svg>
                     <span class="item-tooltip"><span>${
                       item.tooltip
                     }</span></span>
