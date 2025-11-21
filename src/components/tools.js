@@ -49,14 +49,68 @@ function refineAPIRequest(url) {
   }
 }
 
-function handleHelpdocSearch(helpdocSearchInput) {
+async function handleHelpdocSearch(helpdocSearchInput) {
   const keyword = helpdocSearchInput.value.trim();
   const errorMsg = document.querySelector(".helpdoc-finder .error-message");
   if (keyword) {
     const url = `https://support.boostcommerce.net/en/?q=${encodeURIComponent(
       keyword
     )}`;
-    window.open(url, "_blank");
+    try {
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error("Search failed");
+      }
+      const results = await response.json();
+
+      // Clear loading state
+      resultsContainer.innerHTML = "";
+
+      if (!results || results.length === 0) {
+        resultsContainer.innerHTML =
+          '<div class="no-results">No results found</div>';
+        return;
+      }
+
+      // Display results
+      const resultsList = document.createElement("div");
+      resultsList.className = "results-list";
+
+      results.forEach((result) => {
+        const resultItem = document.createElement("div");
+        resultItem.className = "result-item";
+
+        const title = formatHighlightedText(result.highlightedTitle);
+        const summary = formatHighlightedText(result.highlightedSummary);
+
+        resultItem.innerHTML = `
+            <a href="https://support.boostcommerce.net${result.url}" target="_blank" class="result-link">
+              <h3 class="result-title">${title}</h3>
+              <p class="result-summary">${summary}</p>
+              <span class="result-date">${result.lastUpdated}</span>
+            </a>
+          `;
+
+        resultsList.appendChild(resultItem);
+      });
+
+      resultsContainer.appendChild(resultsList);
+    } catch (error) {
+      resultsContainer.innerHTML = "";
+      errorMessage.textContent = "Error searching articles. Please try again.";
+      errorMessage.style.display = "inline";
+      console.error("Search error:", error);
+    }
+
+    // Event listeners
+    searchBtn.addEventListener("click", searchHelpDocs);
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        searchHelpDocs();
+      }
+    });
+    //window.open(url, "_blank");
     errorMsg.style.display = "none";
   } else {
     errorMsg.textContent = "Please enter a keyword";
