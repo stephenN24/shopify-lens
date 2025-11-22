@@ -33,6 +33,7 @@ const svgLibrary = {
   <path d="m13.5,3.5a0.75,0.75 0 0 1 0.61,0.53l-0.05,2.02l1.97,-0.11a0.75,0.75 0 0 1 0.05,1.17l-1.99,0l0.05,2.07a0.75,0.75 0 0 1 -1.17,-0.05l0.03,-1.99l-2.07,0.03a0.75,0.75 0 0 1 0,-1.2l2.18,-0.05l-0.11,-1.83a0.75,0.75 0 0 1 0.5,-0.59z" id="svg_4" transform="matrix(1 0 0 1 0 0)"/>
  </g></svg>`,
   appSettings: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"></path><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path><path d="M12 2v2"></path><path d="M12 22v-2"></path><path d="m17 20.66-1-1.73"></path><path d="M11 10.27 7 3.34"></path><path d="m20.66 17-1.73-1"></path><path d="m3.34 7 1.73 1"></path><path d="M14 12h8"></path><path d="M2 12h2"></path><path d="m20.66 7-1.73 1"></path><path d="m3.34 17 1.73-1"></path><path d="m17 3.34-1 1.73"></path><path d="m11 13.73-4 6.93"></path></svg>`,
+  appVersion: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package w-5 h-5 text-white"><path d="m7.5 4.27 9 5.15"></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg>`,
 };
 
 export default svgLibrary;

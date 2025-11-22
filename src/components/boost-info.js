@@ -14,7 +14,9 @@ export default function renderBoostInfo({
   const templateCodeEditorURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration//code-editor/${templateId}`;
 
   return `<div class="section-content boost-info">
-  <div class="boost-versions">${boostVersionsInfo}</div>
+  <div class="boost-versions"><div class="icon">${svgLibrary.appVersion}</div>
+  <div class="version-info">${boostVersionsInfo}</div>
+  </div>
   <div class="boost-details">
    ${
      boostVersions.includes("Turbo")
