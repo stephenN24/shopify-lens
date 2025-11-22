@@ -1235,7 +1235,7 @@ a.styled-btn.button-link:not(.jira-link) {
   border-radius: 8px;
   padding: 10px 10px;
   position: relative;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 5px 2px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   margin-top: 5px;
 }
