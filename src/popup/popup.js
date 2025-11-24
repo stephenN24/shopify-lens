@@ -1,6 +1,7 @@
 import initTools from "../components/features/tools/tools.js";
 import bindEventsForTabs from "../components/layout/sidebar.js";
 import renderDashboardContent from "../components/layout/dashboard-content.js";
+import initApps from "../components/features/tools/apps-detector/apps-detector.js";
 import * as Utils from "../utils/utils.js";
 
 const ACTIONS = {
@@ -90,6 +91,8 @@ async function initPopup() {
 function handlePopupData(popupData) {
   if (popupData.isShopifyStore) {
     renderDashboardContent(popupData);
+    // Initialize apps tab with store data
+    initApps(popupData.storeData);
   } else {
     // Load from cache if not currently on a Shopify store (or if detection failed)
     chrome.storage.local.get(STORAGE_KEYS.POPUP_DATA, (result) => {
@@ -106,6 +109,8 @@ function handlePopupData(popupData) {
             popupData.storeData?.resourceType || null;
         }
         renderDashboardContent(cachedData);
+        // Initialize apps tab with cached store data
+        initApps(cachedData.storeData);
       } else {
         // If no cache and no current data, maybe show "Not a Shopify Store" message
         renderDashboardContent(popupData); // Render what we have
