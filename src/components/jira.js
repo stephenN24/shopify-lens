@@ -5,7 +5,7 @@ export default function renderJiraTab(data) {
   const jiraDataTab = document.querySelector(".jira-content");
   const jiraKey = data.jiraKey;
   if (jiraKey) {
-    document.querySelector("[data-tab=tab2]").classList.remove("hidden"); // Show the Jira tab if jiraKey exists
+    document.querySelector("[data-tab=tab-jira]").classList.remove("hidden"); // Show the Jira tab if jiraKey exists
     const jiraLink = Utils.renderButtonLink(
       "",
       jiraKey,
@@ -13,8 +13,8 @@ export default function renderJiraTab(data) {
       "jira-link"
     );
     jiraDataTab.innerHTML = `<div class="section-content jira-info">${jiraLink}</div>`;
-    switchTab("tab2"); // Activate the Jira tab
+    switchTab("tab-jira"); // Activate the Jira tab
   } else {
-    document.querySelector("[data-tab=tab2]").classList.add("hidden"); // Hide the Jira tab if jiraKey does not exist
+    document.querySelector("[data-tab=tab-jira]").classList.add("hidden"); // Hide the Jira tab if jiraKey does not exist
   }
 }
