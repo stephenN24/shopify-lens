@@ -1,3 +1,7 @@
+/* ============================================
+   1. CSS VARIABLES & ROOT STYLES
+   ============================================ */
+
 :root {
   /* Default variables */
   --main-color: #468b76;
@@ -8,34 +12,15 @@
   );
 }
 
+/* ============================================
+   2. GLOBAL RESETS & BASE STYLES
+   ============================================ */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
-}
-
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #f5f5f5;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  background-color: #f5f5f5;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--main-color);
-
-  background-image: -webkit-gradient(
-    linear,
-    0 0,
-    0 100%,
-    color-stop(0.5, rgba(255, 255, 255, 0.2)),
-    color-stop(0.5, transparent),
-    to(transparent)
-  );
 }
 
 body {
@@ -62,6 +47,37 @@ button {
   outline: none;
 }
 
+/* ============================================
+   3. SCROLLBAR STYLING
+   ============================================ */
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  background-image: -webkit-gradient(
+    linear,
+    0 0,
+    0 100%,
+    color-stop(0.5, rgba(255, 255, 255, 0.2)),
+    color-stop(0.5, transparent),
+    to(transparent)
+  );
+}
+
+/* ============================================
+   4. LAYOUT COMPONENTS
+   ============================================ */
+
+/* --- Header --- */
 .header-store-info {
   min-height: 110px;
 }
@@ -97,101 +113,7 @@ button {
   width: 100%;
 }
 
-.popup-info-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-  justify-content: space-between;
-}
-
-.popup-info-item .title {
-  font-weight: bold;
-  margin-right: 10px;
-  width: 150px;
-  color: #555;
-}
-
-.popup-info-item input[type="text"] {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #f7f7f7;
-  color: #333;
-}
-
-.popup-info-item input[type="text"]:focus {
-  border-color: #008060;
-  outline: none;
-}
-
-.popup-info-item input[type="text"] {
-  border: solid 0.5px #379dde0a !important;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 1px 0px;
-}
-
-.popup-info-item button.copy {
-  min-width: 75px;
-  color: #fff;
-  border: none;
-  padding: 6px 10px;
-  margin-left: 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 1px 0px;
-}
-
-.popup-info-item button.copy:hover {
-  box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.24),
-    0 23px 64px 0 rgba(0, 0, 0, -0.81);
-}
-
-a.redirect-link {
-  text-align: center;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  color: #000;
-  background-color: #f7f7f7;
-}
-
-a.redirect-link:hover {
-  background: #64c3cf12;
-}
-
-.redirect-link-content {
-  border: solid 0.5px #379dde0a !important;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 1px 0px;
-  padding: 6px 20px;
-  width: 235px;
-  position: relative;
-}
-
-.redirect-link-icon {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  right: 10px;
-  top: 5px;
-}
-
-.popup-empty {
-  text-align: center;
-  font-size: 12px;
-  margin: 5px 0 15px 0;
-  font-weight: bold;
-}
-
-img.no-result-message {
-  width: 150px;
-}
-
-/* Left sidebar for buttons */
-
+/* --- Dashboard & Sidebar --- */
 .dashboard {
   display: flex;
   height: auto;
@@ -207,7 +129,70 @@ img.no-result-message {
   gap: 10px;
   overflow: auto;
 }
-/* Main content area */
+
+.sidebar {
+  width: 15%;
+  height: 400px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 10px 10px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 5px 2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.sidebar .tab-btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  color: #495057;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+.sidebar .tab-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--main-theme-gradient);
+  border-radius: 4px 0 0 4px;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+  transform-origin: bottom;
+}
+
+.sidebar .tab-btn:hover {
+  transform: rotateY(5deg) translateZ(10px);
+  box-shadow: -5px 10px 20px rgba(0, 0, 0, 0.15),
+    0 5px 15px rgba(102, 126, 234, 0.1);
+  background: #f8f9fa;
+}
+
+.sidebar .tab-btn:hover::before {
+  transform: scaleY(1);
+}
+
+.sidebar .tab-btn.active {
+  background: var(--main-theme-gradient);
+  color: white;
+  transform: rotateY(8deg) translateZ(15px) scale(1.02);
+  box-shadow: -8px 15px 30px rgba(102, 126, 234, 0.3),
+    0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Content Area --- */
 .content {
   width: 85%;
   flex-grow: 1;
@@ -216,12 +201,14 @@ img.no-result-message {
   overflow: auto;
 }
 
-/* Hide all tabs by default */
+/* ============================================
+   5. TAB SYSTEM
+   ============================================ */
+
 .tab {
   display: none;
 }
 
-/* Show active tab */
 .tab.active {
   display: block;
 }
@@ -231,6 +218,11 @@ img.no-result-message {
   height: 30px;
 }
 
+/* ============================================
+   6. INFO CARDS
+   ============================================ */
+
+/* --- Base Card Styles --- */
 .section-content,
 .header-info-content {
   background-size: cover;
@@ -245,6 +237,7 @@ img.no-result-message {
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
+/* --- Store Info Card --- */
 .header-info-content.store-info {
   background-image: url("images/store-info-bg.jpg");
   max-width: 100%;
@@ -256,11 +249,135 @@ img.no-result-message {
   gap: 10px;
   background-position-y: 30%;
 }
+
+.current-page-data {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-info-content.store-info.expanded .current-page-data {
+  max-height: 200px;
+  opacity: 1;
+  margin-bottom: 12px;
+  margin-top: 10px;
+}
+
+.data-field.extra-page-data {
+  margin-left: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.data-field.extra-page-data .title {
+  text-transform: capitalize;
+}
+
+.arrow-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 20px;
+  position: absolute;
+  bottom: 2px;
+  right: 46%;
+  width: 41px;
+}
+
+.arrow-button:hover {
+  transform: translateY(2px);
+}
+
+.arrow-button svg {
+  width: 15px;
+  height: 15px;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+/* --- Theme Info Card --- */
 .section-content.theme-info {
   background-image: url("images/theme-info-bg.jpg");
   position: relative;
 }
 
+.divider {
+  border: 0;
+  height: 0.5px;
+  width: 100%;
+  background: #e9e1e1;
+  margin: 2px 0 10px 0;
+}
+
+.data-field.theme-name .title {
+  font-weight: 600;
+  margin-top: 5px;
+  font-size: 13px;
+  white-space: normal;
+}
+
+.data-field.theme-name {
+  margin: 15px 0;
+}
+
+.data-field.preview-link .title,
+.data-field.template-id .title {
+  padding: 6px 24px;
+  align-self: baseline;
+  border-radius: 25px;
+  font-size: 9px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.data-field.preview-link .title:hover {
+  background: #6666664d;
+}
+
+.theme-extra-info {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.theme-extra-info .title,
+.extra-page-data .title {
+  background: #fff;
+  border-radius: 25px;
+  padding: 5px 10px;
+  align-items: center;
+  font-size: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  display: flex;
+  gap: 5px;
+  color: #000;
+  text-shadow: unset;
+  max-width: 150px;
+}
+
+.theme-extra-info .field-name,
+.extra-page-data .field-name {
+  color: gray;
+}
+
+.theme-action-wrapper {
+  display: flex;
+  gap: 5px;
+}
+
+.theme-action-buttons .button-link {
+  position: unset;
+}
+
+/* --- Boost Info Card --- */
 .section-content.boost-info {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   overflow: hidden;
@@ -278,6 +395,7 @@ img.no-result-message {
   top: -40px;
   right: 62px;
 }
+
 .section-content.boost-info::after {
   content: "";
   position: absolute;
@@ -337,6 +455,7 @@ img.no-result-message {
   top: 3px;
 }
 
+/* --- Jira Info Card --- */
 .section-content.jira-info {
   background-image: url("images/jira-background.png");
   text-align: center;
@@ -344,39 +463,6 @@ img.no-result-message {
   justify-content: center;
   align-items: center;
   background-position-y: 18%;
-}
-
-.data-field .copy-btn {
-  opacity: 0;
-  background: unset;
-  border: unset;
-  margin-left: 5px;
-  cursor: pointer;
-}
-
-.data-field:hover .copy-btn {
-  opacity: 1;
-}
-
-.copy-btn svg {
-  width: 15px;
-  height: 15px;
-}
-
-.copy-btn svg.clicked {
-  animation: zoomEffect 0.3s;
-}
-
-@keyframes zoomEffect {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.4);
-  }
-  100% {
-    transform: scale(1);
-  }
 }
 
 .jira-content,
@@ -411,6 +497,7 @@ img.no-result-message {
   transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
 
+/* --- Cache Indicator --- */
 .cache-indicator {
   position: absolute;
   right: 20px;
@@ -426,6 +513,10 @@ img.no-result-message {
   font-weight: 500;
 }
 
+/* ============================================
+   7. DATA FIELDS & COPYABLE ELEMENTS
+   ============================================ */
+
 .data-field {
   cursor: pointer;
   display: flex;
@@ -433,11 +524,234 @@ img.no-result-message {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.hidden {
-  display: none !important;
+.data-field .title {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  white-space: nowrap;
 }
 
-/* Tools Section Styling */
+.data-field .title-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.data-field.tenant-id .title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.data-field.tenant-id {
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.shopify-partners svg {
+  width: 15px;
+  height: 20px;
+}
+
+.data-field .copy-btn {
+  opacity: 0;
+  background: unset;
+  border: unset;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.data-field:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.copy-btn svg.clicked {
+  animation: zoomEffect 0.3s;
+}
+
+/* ============================================
+   8. BUTTON COMPONENTS
+   ============================================ */
+
+/* --- Styled Button Base --- */
+.styled-btn {
+  background: var(--main-theme-gradient);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+}
+
+.styled-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.styled-btn:hover::before {
+  left: 100%;
+}
+
+.styled-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+}
+
+.styled-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.styled-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+}
+
+.styled-btn:disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+}
+
+.styled-btn:disabled::before {
+  display: none;
+}
+
+/* --- Styled Button Variants --- */
+
+/* Sparkle effect */
+.styled-btn.sparkle::after {
+  content: "✨";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 12px;
+  animation: sparkle 2s infinite;
+  animation-delay: 1s;
+}
+
+/* Size variants */
+.styled-btn.small {
+  padding: 8px 16px;
+  font-size: 12px;
+  border-radius: 8px;
+  min-width: 80px;
+}
+
+.styled-btn.large {
+  padding: 16px 32px;
+  font-size: 16px;
+  border-radius: 16px;
+  min-width: 160px;
+}
+
+/* Color variants */
+.styled-btn.success {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  box-shadow: 0 4px 20px rgba(72, 187, 120, 0.25);
+}
+
+.styled-btn.success:hover {
+  box-shadow: 0 8px 30px rgba(72, 187, 120, 0.4);
+}
+
+.styled-btn.danger {
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+  box-shadow: 0 4px 20px rgba(245, 101, 101, 0.25);
+}
+
+.styled-btn.danger:hover {
+  box-shadow: 0 8px 30px rgba(245, 101, 101, 0.4);
+}
+
+.styled-btn.secondary {
+  background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+  box-shadow: 0 4px 20px rgba(113, 128, 150, 0.25);
+}
+
+.styled-btn.secondary:hover {
+  box-shadow: 0 8px 30px rgba(113, 128, 150, 0.4);
+}
+
+/* --- Button Links --- */
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+a.styled-btn.button-link:not(.jira-link) {
+  color: #fff;
+  min-width: 50px;
+  min-height: 25px;
+  padding: 2px;
+  background: #fff;
+  display: inline-flex;
+  margin: 0;
+}
+
+/* --- Generic Buttons --- */
+.btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-save {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+}
+
+.btn-copy {
+  background: linear-gradient(135deg, #27ae60, #229954);
+  color: white;
+}
+
+.btn-edit {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  color: white;
+}
+
+/* ============================================
+   9. TOOLS SECTION
+   ============================================ */
+
 .tools-list {
   display: flex;
   flex-direction: column;
@@ -499,7 +813,10 @@ img.no-result-message {
   gap: 20px;
 }
 
-/* CSS for saved replies */
+/* ============================================
+   10. SAVED REPLIES FEATURE
+   ============================================ */
+
 .saved-reply .tool-content-wrapper {
   padding: 0;
   backdrop-filter: blur(10px);
@@ -526,6 +843,7 @@ img.no-result-message {
   font-size: 10px;
 }
 
+/* --- Template Selector --- */
 .template-selector {
   margin-bottom: 20px;
 }
@@ -555,6 +873,7 @@ select:focus {
   box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
 }
 
+/* --- Template Editor --- */
 .template-editor {
   display: none;
   background: white;
@@ -623,32 +942,7 @@ textarea:focus {
   margin-top: 15px;
 }
 
-.btn {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.btn-save {
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  color: white;
-}
-
-.btn-copy {
-  background: linear-gradient(135deg, #27ae60, #229954);
-  color: white;
-}
-
+/* --- Notifications --- */
 .notification {
   position: fixed;
   top: 10px;
@@ -683,315 +977,10 @@ textarea:focus {
   background: linear-gradient(135deg, #e74c3c, #c0392b);
 }
 
-.btn-edit {
-  background: linear-gradient(135deg, #f39c12, #e67e22);
-  color: white;
-}
+/* ============================================
+   11. SEARCH BAR COMPONENT
+   ============================================ */
 
-/* Start CSS for tooltip */
-.tooltip-container {
-  position: relative;
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.variable-info {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  margin-top: 8px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  color: #374151;
-  padding: 14px 10px;
-  border-radius: 16px;
-  font-size: 13px;
-  min-width: 220px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: 1000;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.variable-info::before {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 8px solid transparent;
-  border-bottom-color: rgba(255, 255, 255, 0.95);
-}
-
-.tooltip-container:hover .variable-info {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
-
-.variable-info-title::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 2px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 1px;
-}
-
-.variable-info p {
-  line-height: 1.8;
-  color: #6b7280;
-  font-size: 10px;
-}
-
-/* Add sparkle animation */
-@keyframes sparkle {
-  0%,
-  100% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* End CSS for tooltip */
-
-/* === Start CSS for styled-btn === */
-.styled-btn {
-  background: var(--main-theme-gradient);
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 120px;
-}
-
-.styled-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  transition: left 0.5s;
-}
-
-.styled-btn:hover::before {
-  left: 100%;
-}
-
-.styled-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
-}
-
-.styled-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-}
-
-.styled-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
-}
-
-.styled-btn:disabled:hover {
-  transform: none;
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
-}
-
-.styled-btn:disabled::before {
-  display: none;
-}
-
-/* Sparkle effect - optional */
-.styled-btn.sparkle::after {
-  content: "✨";
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  font-size: 12px;
-  animation: sparkle 2s infinite;
-  animation-delay: 1s;
-}
-
-@keyframes sparkle {
-  0%,
-  100% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Size variants */
-.styled-btn.small {
-  padding: 8px 16px;
-  font-size: 12px;
-  border-radius: 8px;
-  min-width: 80px;
-}
-
-.styled-btn.large {
-  padding: 16px 32px;
-  font-size: 16px;
-  border-radius: 16px;
-  min-width: 160px;
-}
-
-/* Color variants */
-.styled-btn.success {
-  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-  box-shadow: 0 4px 20px rgba(72, 187, 120, 0.25);
-}
-
-.styled-btn.success:hover {
-  box-shadow: 0 8px 30px rgba(72, 187, 120, 0.4);
-}
-
-.styled-btn.danger {
-  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
-  box-shadow: 0 4px 20px rgba(245, 101, 101, 0.25);
-}
-
-.styled-btn.danger:hover {
-  box-shadow: 0 8px 30px rgba(245, 101, 101, 0.4);
-}
-
-.styled-btn.secondary {
-  background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
-  box-shadow: 0 4px 20px rgba(113, 128, 150, 0.25);
-}
-
-.styled-btn.secondary:hover {
-  box-shadow: 0 8px 30px rgba(113, 128, 150, 0.4);
-}
-
-/* === End CSS for styled-btn  === */
-
-.icon {
-  width: 20px;
-  height: 20px;
-}
-
-a.styled-btn.button-link:not(.jira-link) {
-  color: #fff;
-  min-width: 50px;
-  min-height: 25px;
-  padding: 2px;
-  background: #fff;
-  display: inline-flex;
-  margin: 0;
-}
-
-/* === Styling for store info header === */
-.data-field .title {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.data-field .title-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.data-field.tenant-id .title {
-  font-size: 18px;
-  font-weight: 700;
-}
-.shopify-partners svg {
-  width: 15px;
-  height: 20px;
-}
-
-.data-field.tenant-id {
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 15px;
-}
-
-.current-page-data {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  margin-bottom: 0;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.header-info-content.store-info.expanded .current-page-data {
-  max-height: 200px;
-  opacity: 1;
-  margin-bottom: 12px;
-  margin-top: 10px;
-}
-
-.data-field.extra-page-data {
-  margin-left: 25px;
-  display: flex;
-  justify-content: center;
-}
-
-.data-field.extra-page-data .title {
-  text-transform: capitalize;
-}
-
-.arrow-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  height: 20px;
-  position: absolute;
-  bottom: 2px;
-  right: 46%;
-  width: 41px;
-}
-
-.arrow-button:hover {
-  transform: translateY(2px);
-}
-
-.arrow-button svg {
-  width: 15px;
-  height: 15px;
-  stroke: #fff;
-  stroke-width: 2;
-}
-
-/* === Start styling for search bar === */
 .search-container {
   backdrop-filter: blur(20px);
   border-radius: 15px;
@@ -1156,6 +1145,14 @@ a.styled-btn.button-link:not(.jira-link) {
   color: #adb5bd;
 }
 
+.search-button {
+  margin-right: 10px;
+  background: var(--main-theme-gradient);
+  /* background: linear-gradient(135deg, rgb(135 151 228), rgb(118, 75, 162)); */
+  position: absolute;
+  right: 0;
+}
+
 .search-button::before {
   content: "";
   position: absolute;
@@ -1193,17 +1190,8 @@ a.styled-btn.button-link:not(.jira-link) {
   color: #2d3748;
 }
 
-.search-button {
-  margin-right: 10px;
-  background: var(--main-theme-gradient);
-  /* background: linear-gradient(135deg, rgb(135 151 228), rgb(118, 75, 162)); */
-  position: absolute;
-  right: 0;
-}
-/* === End styling for search bar === */
-
-/* Fading up effect */
-/* @keyframes fadeInUp {
+/* Commented out - preserved for future use
+@keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -1216,233 +1204,87 @@ a.styled-btn.button-link:not(.jira-link) {
 .fade-in-up {
   animation: fadeInUp 0.6s ease forwards;
   opacity: 0;
-} */
+}
 
-/* .search-container {
+.search-container {
   transition: all 0.3s ease;
 }
 
 .search-container:hover {
   transform: translateY(-5px);
-} */
+}
+*/
 
-/* === Styling for sidebar === */
+/* ============================================
+   12. TOOLTIP COMPONENT
+   ============================================ */
 
-.sidebar {
-  width: 15%;
-  height: 400px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  padding: 10px 10px;
+.tooltip-container {
   position: relative;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 5px 2px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  margin-top: 5px;
+  display: inline-block;
+  margin-top: 10px;
 }
 
-.sidebar .tab-btn {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  background: #ffffff;
-  border: none;
-  border-radius: 8px;
-  color: #495057;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transform-origin: left center;
-  overflow: hidden;
+.variable-info {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  color: #374151;
+  padding: 14px 10px;
+  border-radius: 16px;
+  font-size: 13px;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.sidebar .tab-btn::before {
+.variable-info::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--main-theme-gradient);
-  border-radius: 4px 0 0 4px;
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
-  transform-origin: bottom;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.95);
 }
 
-.sidebar .tab-btn:hover {
-  transform: rotateY(5deg) translateZ(10px);
-  box-shadow: -5px 10px 20px rgba(0, 0, 0, 0.15),
-    0 5px 15px rgba(102, 126, 234, 0.1);
-  background: #f8f9fa;
+.tooltip-container:hover .variable-info {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
-.sidebar .tab-btn:hover::before {
-  transform: scaleY(1);
-}
-
-.sidebar .tab-btn.active {
-  background: var(--main-theme-gradient);
-  color: white;
-  transform: rotateY(8deg) translateZ(15px) scale(1.02);
-  box-shadow: -8px 15px 30px rgba(102, 126, 234, 0.3),
-    0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes rippleEffect {
-  to {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-/* === End styling for sidebar === */
-
-/* Live beacon */
-.beacon-wrapper {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  margin-bottom: 5px;
-  flex-direction: row-reverse;
+.variable-info-title::after {
+  content: "";
   position: absolute;
-  right: 20px;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 1px;
 }
 
-.beacon {
-  height: 8px;
-  width: 8px;
-  border-radius: 50%;
-  left: auto;
-}
-
-.live-theme-beacon .beacon {
-  background-color: #0db755;
-  animation: 1.5s pulseGreen infinite ease-in-out;
-  position: absolute;
-  z-index: 2;
-  right: 33px;
-}
-
-.unpublished-theme-beacon .beacon {
-  background-color: #757370;
-  animation: 1.5s pulseYellow infinite ease-in-out;
-  position: absolute;
-  right: 40px;
-}
-
-.beacon-status {
-  background: #ffff;
-  font-weight: 600;
-  padding: 1px 10px 1px 20px;
-  border-radius: 25px;
+.variable-info p {
+  line-height: 1.8;
+  color: #6b7280;
   font-size: 10px;
 }
 
-.unpublished-theme-beacon .beacon-status {
-  color: #757370;
-}
+/* ============================================
+   13. TOGGLE COMPONENTS
+   ============================================ */
 
-.live-theme-beacon .beacon-status {
-  color: #168a47;
-}
-
-@keyframes pulseGreen {
-  0% {
-    box-shadow: 0 0 0 0 #69ffa8;
-  }
-
-  100% {
-    box-shadow: 0 0 0 14px #69ffa800;
-  }
-}
-
-@keyframes pulseYellow {
-  0% {
-    box-shadow: 0 0 0 0 #757370;
-  }
-
-  100% {
-    box-shadow: 0 0 0 14px #69ffa800;
-  }
-}
-
-/* Styling for theme info section */
-.divider {
-  border: 0;
-  height: 0.5px;
-  width: 100%;
-  background: #e9e1e1;
-  margin: 2px 0 10px 0;
-}
-
-.data-field.theme-name .title {
-  font-weight: 600;
-  margin-top: 5px;
-  font-size: 13px;
-  white-space: normal;
-}
-
-.data-field.preview-link .title,
-.data-field.template-id .title {
-  padding: 6px 24px;
-  align-self: baseline;
-  border-radius: 25px;
-  font-size: 9px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transition: all 0.2s ease;
-  text-align: center;
-}
-
-.data-field.preview-link .title:hover {
-  background: #6666664d;
-}
-
-.theme-extra-info {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.theme-extra-info .title,
-.extra-page-data .title {
-  background: #fff;
-  border-radius: 25px;
-  padding: 5px 10px;
-  align-items: center;
-  font-size: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  display: flex;
-  gap: 5px;
-  color: #000;
-  text-shadow: unset;
-  max-width: 150px;
-}
-
-.theme-extra-info .field-name,
-.extra-page-data .field-name {
-  color: gray;
-}
-
-.theme-action-wrapper {
-  display: flex;
-  gap: 5px;
-}
-
-.theme-action-buttons .button-link {
-  position: unset;
-}
-
-.data-field.theme-name {
-  margin: 15px 0;
-}
-
-/* === START CSS for highlight switcher === */
+/* --- Highlight Toggle --- */
 .highlight-toggle-container {
   position: absolute;
   right: 20px;
@@ -1491,7 +1333,7 @@ a.styled-btn.button-link:not(.jira-link) {
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Zoom animation for icons */
+/* Icon animations */
 .highlight-toggle-btn .icon-off {
   transform: scale(1);
 }
@@ -1515,17 +1357,20 @@ a.styled-btn.button-link:not(.jira-link) {
 .highlight-toggle-btn .icon-off {
   display: block;
 }
+
 .highlight-toggle-btn .icon-on {
   display: none;
 }
+
 .highlight-toggle-btn.active .icon-off {
   display: none;
 }
+
 .highlight-toggle-btn.active .icon-on {
   display: block;
 }
 
-/* Pulse animation for active state - target the pupil (first path) */
+/* Pulse animation for active state */
 .highlight-toggle-btn.active .icon-on g path:first-child {
   animation: zoomPulse 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
     pulse 2s ease-in-out 0.6s infinite;
@@ -1533,35 +1378,10 @@ a.styled-btn.button-link:not(.jira-link) {
   transform-box: fill-box;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.3);
-    opacity: 0.7;
-  }
-}
+/* ============================================
+   14. QUICK APP MENU
+   ============================================ */
 
-@keyframes zoomPulse {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(1.4);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* === END CSS for highlight switcher === */
-
-/* === START CSS for quick app menu === */
 .menu-container {
   background: white;
   border-radius: 20px;
@@ -1639,4 +1459,141 @@ a.styled-btn.button-link:not(.jira-link) {
   opacity: 1;
 }
 
-/* === START CSS for quick app menu === */
+/* ============================================
+   15. BEACON INDICATORS
+   ============================================ */
+
+.beacon-wrapper {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 5px;
+  flex-direction: row-reverse;
+  position: absolute;
+  right: 20px;
+}
+
+.beacon {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  left: auto;
+}
+
+.live-theme-beacon .beacon {
+  background-color: #0db755;
+  animation: 1.5s pulseGreen infinite ease-in-out;
+  position: absolute;
+  z-index: 2;
+  right: 33px;
+}
+
+.unpublished-theme-beacon .beacon {
+  background-color: #757370;
+  animation: 1.5s pulseYellow infinite ease-in-out;
+  position: absolute;
+  right: 40px;
+}
+
+.beacon-status {
+  background: #ffff;
+  font-weight: 600;
+  padding: 1px 10px 1px 20px;
+  border-radius: 25px;
+  font-size: 10px;
+}
+
+.unpublished-theme-beacon .beacon-status {
+  color: #757370;
+}
+
+.live-theme-beacon .beacon-status {
+  color: #168a47;
+}
+
+/* ============================================
+   16. ANIMATIONS & KEYFRAMES
+   ============================================ */
+
+@keyframes zoomEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulseGreen {
+  0% {
+    box-shadow: 0 0 0 0 #69ffa8;
+  }
+  100% {
+    box-shadow: 0 0 0 14px #69ffa800;
+  }
+}
+
+@keyframes pulseYellow {
+  0% {
+    box-shadow: 0 0 0 0 #757370;
+  }
+  100% {
+    box-shadow: 0 0 0 14px #69ffa800;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+@keyframes zoomPulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   17. UTILITY CLASSES
+   ============================================ */
+
+.hidden {
+  display: none !important;
+}
