@@ -68,29 +68,26 @@ async function initPopup() {
     if (popupData) {
       handlePopupData(popupData);
     } else {
-      console.warn("No popup data received");
+      console.log("No popup data received");
     }
   } catch (error) {
     // Fallback: Try to load data from local storage
     try {
       const result = await chrome.storage.local.get(STORAGE_KEYS.POPUP_DATA);
       if (result.popupData) {
-        console.log("Loading cached data as fallback");
         const cachedData = result.popupData;
         cachedData.isCached = true;
         handlePopupData(cachedData);
       } else {
-        console.warn("No cached data available");
+        console.log("No cached data available");
       }
     } catch (storageError) {
-      console.error("Failed to load cached data:", storageError);
+      console.log("Failed to load cached data:", storageError);
     }
   }
 }
 
 function handlePopupData(popupData) {
-  console.log("Handling popup data:", popupData);
-
   if (popupData.isShopifyStore) {
     renderDashboardContent(popupData);
   } else {
