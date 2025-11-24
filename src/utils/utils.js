@@ -29,8 +29,8 @@ function buildPreviewLink(windowLocation, themeId) {
 function buildThemeEditorLink(windowLocation, shopURLWithoutDomain, themeId) {
   if (!windowLocation || !themeId) return "No edior link available";
   return `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/${themeId}/editor?previewPath=${encodeURIComponent(
-    windowLocation.pathname.replace(/^\/[a-z]{2}(?=\/)/i, "") // Strip locale
-  )}`; // Strip locale
+    windowLocation.pathname.replace(/^\/[a-z]{2}(?:-[a-z]{2,})*(?=\/)/i, "")
+  )}`; // Strip locale and regional codes
 }
 
 function bindEventsCopyToClipboard() {
