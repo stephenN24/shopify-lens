@@ -5,7 +5,7 @@ import renderStoreInfo, {
 import renderThemeInfo from "../features/info-cards/theme-info.js";
 import renderBoostInfo from "../features/info-cards/boost-info.js";
 import renderJiraTab from "../features/info-cards/card-features/jira/jira.js";
-import initSavedReplies from "../features/info-cards/card-features/replies/save-replies.js";
+import initSavedReplies from "../features/tools/saved-replies/save-replies.js";
 import renderSearchBar, {
   bindEventForSearchBar,
 } from "../features/info-cards/card-features/search-bar/search-bar.js";
