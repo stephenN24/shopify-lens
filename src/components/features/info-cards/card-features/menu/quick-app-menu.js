@@ -1,4 +1,4 @@
-import svgLibrary from "../assets/svgs/svgLibrary.js";
+import svgLibrary from "../../../../../assets/svgs/svgLibrary.js";
 
 export default function renderQuickAppMenu(shopURLWithoutDomain) {
   const baseURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search`;

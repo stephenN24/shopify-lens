@@ -1,13 +1,15 @@
 import renderStoreInfo, {
   bindEventForHeaderToggleBtn,
   updateCacheIndicator,
-} from "./store-info.js";
-import renderThemeInfo from "./theme-info.js";
-import renderBoostInfo from "./boost-info.js";
-import renderJiraTab from "./jira.js";
-import initSavedReplies from "./save-replies.js";
-import renderSearchBar, { bindEventForSearchBar } from "./search-bar.js";
-import bindEventForHighlightElmToggleBtn from "./highlight-toggle.js";
+} from "../features/info-cards/store-info.js";
+import renderThemeInfo from "../features/info-cards/theme-info.js";
+import renderBoostInfo from "../features/info-cards/boost-info.js";
+import renderJiraTab from "../features/info-cards/card-features/jira/jira.js";
+import initSavedReplies from "../features/info-cards/card-features/replies/save-replies.js";
+import renderSearchBar, {
+  bindEventForSearchBar,
+} from "../features/info-cards/card-features/search-bar/search-bar.js";
+import bindEventForHighlightElmToggleBtn from "../features/info-cards/card-features/highlight/highlight-toggle.js";
 
 // Function to render the dashhboard content
 export default function renderDashboardContent(data) {

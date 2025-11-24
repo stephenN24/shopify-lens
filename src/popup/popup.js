@@ -1,7 +1,7 @@
-import initTools from "../components/tools.js";
-import bindEventsForTabs from "../components/sidebar.js";
-import renderDashboardContent from "../components/dashboard-content.js";
-import * as Utils from "../components/utils.js";
+import initTools from "../components/features/tools/tools.js";
+import bindEventsForTabs from "../components/layout/sidebar.js";
+import renderDashboardContent from "../components/layout/dashboard-content.js";
+import * as Utils from "../utils/utils.js";
 
 const ACTIONS = {
   INJECT_SCRIPT: "injectScript",

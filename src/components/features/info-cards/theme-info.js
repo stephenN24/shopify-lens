@@ -1,5 +1,5 @@
-import svgLibrary from "../assets/svgs/svgLibrary.js";
-import * as Utils from "./utils.js";
+import svgLibrary from "../../../assets/svgs/svgLibrary.js";
+import * as Utils from "../../../utils/utils.js";
 export default function renderThemeInfo({
   themeId,
   themeName,

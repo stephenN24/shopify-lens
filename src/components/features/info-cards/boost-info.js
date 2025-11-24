@@ -1,6 +1,6 @@
-import svgLibrary from "../assets/svgs/svgLibrary.js";
-import * as Utils from "./utils.js";
-import renderQuickAppMenu from "./quick-app-menu.js";
+import svgLibrary from "../../../assets/svgs/svgLibrary.js";
+import * as Utils from "../../../utils/utils.js";
+import renderQuickAppMenu from "./card-features/menu/quick-app-menu.js";
 
 export default function renderBoostInfo({
   themeId,

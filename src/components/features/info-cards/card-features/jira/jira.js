@@ -1,5 +1,5 @@
-import { switchTab } from "./sidebar.js";
-import * as Utils from "./utils.js";
+import { switchTab } from "../../../../layout/sidebar.js";
+import * as Utils from "../../../../../utils/utils.js";
 
 export default function renderJiraTab(data) {
   const jiraDataTab = document.querySelector(".jira-content");
