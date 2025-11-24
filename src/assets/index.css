@@ -437,6 +437,7 @@ button {
   padding: 10px;
   border: 1px dashed;
   border-radius: 20px;
+  text-align: center;
 }
 
 .data-field.template-id {
@@ -526,13 +527,18 @@ button {
 
 .data-field .title {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  display: inline-block;
+  display: flex;
   white-space: nowrap;
 }
 
 .data-field .title-text {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.data-field.theme-schema .title-text {
+  max-width: 70px;
+  display: inline-block;
 }
 
 .data-field.tenant-id .title {
