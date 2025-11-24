@@ -84,8 +84,22 @@ async function initPopup() {
       toggleLoader(false);
     }
   } catch (error) {
-    console.error("Popup initialization failed:", error);
-    toggleLoader(false);
+    // Fallback: Try to load data from local storage
+    try {
+      const result = await chrome.storage.local.get(STORAGE_KEYS.POPUP_DATA);
+      if (result.popupData) {
+        console.log("Loading cached data as fallback");
+        const cachedData = result.popupData;
+        cachedData.isCached = true;
+        handlePopupData(cachedData);
+      } else {
+        console.warn("No cached data available");
+        toggleLoader(false);
+      }
+    } catch (storageError) {
+      console.error("Failed to load cached data:", storageError);
+      toggleLoader(false);
+    }
   }
 }
 
