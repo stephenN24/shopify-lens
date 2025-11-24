@@ -1,6 +1,19 @@
 (function () {
   const { shop, country, currency, locale, theme } = window.Shopify || {};
   const { rtyp, rid } = window?.__st || {};
+
+  // Helper to safely get location data
+  const getLocationData = () => {
+    if (!window.location) return null;
+    return {
+      href: window.location.href,
+      hostname: window.location.hostname,
+      pathname: window.location.pathname,
+      search: window.location.search,
+      hash: window.location.hash,
+    };
+  };
+
   const storeData = {
     tenantId: shop,
     shopURLWithoutDomain: shop ? shop.split(".myshopify.com")[0] : "",
@@ -11,8 +24,8 @@
     themeName: theme?.name,
     themeSchema: theme?.schema_name,
     themeSchemaVersion: theme?.schema_version,
-    isLive: theme?.role === "main" ? true : false,
-    windowLocation: window.location || null,
+    isLive: theme?.role === "main",
+    windowLocation: getLocationData(),
     boostVersions: [],
     appData: {
       templateId: getTemplateId(),
@@ -57,10 +70,7 @@
   }
 
   console.log("Popup Data:", popupData);
-  // Send the data back to the content script
 
-  window.postMessage(
-    { type: "POPUP_DATA", popupData: JSON.parse(JSON.stringify(popupData)) },
-    "*"
-  );
+  // Send the data back to the content script
+  window.postMessage({ type: "POPUP_DATA", popupData: popupData }, "*");
 })();
