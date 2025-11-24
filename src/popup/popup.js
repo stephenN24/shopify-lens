@@ -14,21 +14,10 @@ const STORAGE_KEYS = {
 };
 
 const ELEMENTS = {
-  LOADER: "#loading-state",
   DASHBOARD_CONTENT: ".dashboard-content",
 };
 
-// Toggle loader visibility
-function toggleLoader(show) {
-  const loader = document.querySelector(ELEMENTS.LOADER);
-  if (loader) {
-    loader.style.display = show ? "flex" : "none";
-  }
-}
-
 async function initPopup() {
-  toggleLoader(true);
-
   try {
     const [currentTab] = await chrome.tabs.query({
       active: true,
@@ -80,8 +69,6 @@ async function initPopup() {
       handlePopupData(popupData);
     } else {
       console.warn("No popup data received");
-      // Handle empty state or error
-      toggleLoader(false);
     }
   } catch (error) {
     // Fallback: Try to load data from local storage
@@ -94,11 +81,9 @@ async function initPopup() {
         handlePopupData(cachedData);
       } else {
         console.warn("No cached data available");
-        toggleLoader(false);
       }
     } catch (storageError) {
       console.error("Failed to load cached data:", storageError);
-      toggleLoader(false);
     }
   }
 }
@@ -130,7 +115,6 @@ function handlePopupData(popupData) {
       }
     });
   }
-  toggleLoader(false);
 }
 
 // Initialize
