@@ -374,7 +374,7 @@ button {
 }
 
 .theme-action-buttons .button-link {
-  position: unset;
+  position: relative;
 }
 
 /* --- Boost Info Card --- */
