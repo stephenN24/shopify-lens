@@ -1679,12 +1679,13 @@ textarea:focus {
 .theme-toggle-btn {
   position: absolute;
   top: 10px;
-  right: 80px;
+  right: auto;
+  left: 12px;
   background: rgba(255, 255, 255, 0.2);
   border: none;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
