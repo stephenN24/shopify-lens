@@ -1382,8 +1382,8 @@ textarea:focus {
 }
 
 .highlight-toggle-btn {
-  background: var(--bg-card);
-  border: 2px solid var(--border-color);
+  background: #fff;
+  border: 2px solid #fff;
   border-radius: 6px;
   width: 30px;
   height: 30px;
@@ -1460,7 +1460,7 @@ textarea:focus {
    ============================================ */
 
 .menu-container {
-  background: var(--bg-card);
+  background: #fff;
   border-radius: 20px;
   padding: 10px 15px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
