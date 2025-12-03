@@ -14,10 +14,6 @@ const STORAGE_KEYS = {
   POPUP_DATA: "popupData",
 };
 
-const ELEMENTS = {
-  DASHBOARD_CONTENT: ".dashboard-content",
-};
-
 function updateThemeIcon(theme) {
   const sunIcon = document.querySelector(".theme-icon-sun");
   const moonIcon = document.querySelector(".theme-icon-moon");

@@ -442,7 +442,7 @@ button {
 
 /* --- Boost Info Card --- */
 .section-content.boost-info {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #002730 0%, #4dc4bc 100%);
   overflow: hidden;
   position: relative;
   padding-top: 40px;
@@ -471,7 +471,7 @@ button {
 }
 
 .boost-versions {
-  background: #7249e9;
+  background: #02706a;
   padding: 8px 16px;
   font-size: 11px;
   font-weight: 800;
@@ -1507,7 +1507,7 @@ textarea:focus {
   bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
-  background: #6a63c3;
+  background: #02706a;
   color: white;
   padding: 5px 12px;
   border-radius: 6px;
@@ -1529,7 +1529,7 @@ textarea:focus {
   height: 0;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-bottom: 6px solid #6a63c3;
+  border-bottom: 6px solid #02706a;
 }
 
 .icon-item:hover .item-tooltip {
