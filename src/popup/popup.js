@@ -2,6 +2,7 @@ import initTools from "../components/features/tools/tools.js";
 import bindEventsForTabs from "../components/layout/sidebar.js";
 import renderDashboardContent from "../components/layout/dashboard-content.js";
 import * as Utils from "../utils/utils.js";
+import { initTheme, toggleTheme, getCurrentTheme } from "../utils/theme.js";
 
 const ACTIONS = {
   INJECT_SCRIPT: "injectScript",
@@ -13,9 +14,18 @@ const STORAGE_KEYS = {
   POPUP_DATA: "popupData",
 };
 
-const ELEMENTS = {
-  DASHBOARD_CONTENT: ".dashboard-content",
-};
+function updateThemeIcon(theme) {
+  const sunIcon = document.querySelector(".theme-icon-sun");
+  const moonIcon = document.querySelector(".theme-icon-moon");
+
+  if (theme === "dark") {
+    sunIcon.classList.remove("hidden");
+    moonIcon.classList.add("hidden");
+  } else {
+    sunIcon.classList.add("hidden");
+    moonIcon.classList.remove("hidden");
+  }
+}
 
 async function initPopup() {
   try {
@@ -116,6 +126,17 @@ function handlePopupData(popupData) {
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
+  initTheme();
+  updateThemeIcon(getCurrentTheme());
+
+  const themeToggleBtn = document.getElementById("theme-toggle");
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      const newTheme = toggleTheme();
+      updateThemeIcon(newTheme);
+    });
+  }
+
   initPopup();
   bindEventsForTabs();
   Utils.bindEventsCopyToClipboard();
