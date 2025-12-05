@@ -12,6 +12,7 @@ export default async function initSavedReplies({
   // DOM elements
   const templateSelect = document.getElementById("templateSelect");
   const templateEditor = document.getElementById("templateEditor");
+  const templateNameInput = document.getElementById("templateNameInput");
   const templateText = document.getElementById("templateText");
   const preview = document.getElementById("preview");
   const editSection = document.getElementById("editSection");
@@ -19,13 +20,6 @@ export default async function initSavedReplies({
   const saveBtn = document.getElementById("saveBtn");
   const copyBtn = document.getElementById("copyBtn");
   const notification = document.getElementById("notification");
-
-  // Fixed date values
-  const dateValues = {
-    day: 11,
-    month: 12,
-    year: 2025,
-  };
 
   // Default templates
   const defaultTemplates = {
@@ -69,6 +63,25 @@ export default async function initSavedReplies({
       console.error("Error loading templates:", error);
       templates = { ...defaultTemplates };
       showNotification("Error loading templates, using defaults", "error");
+    } finally {
+      // Update dropdown options after loading
+      updateDropdownOptions();
+    }
+  }
+
+  function updateDropdownOptions() {
+    // Clear existing options
+    templateSelect.innerHTML = "";
+
+    Object.keys(templates).forEach((key) => {
+      const option = document.createElement("option");
+      option.value = key;
+      option.textContent = templates[key].name;
+      templateSelect.appendChild(option);
+    });
+
+    if (currentTemplateId) {
+      templateSelect.value = currentTemplateId;
     }
   }
 
@@ -155,6 +168,17 @@ export default async function initSavedReplies({
 
     try {
       templates[currentTemplateId].text = text;
+
+      const newName = templateNameInput.value.trim();
+      if (newName) {
+        templates[currentTemplateId].name = newName;
+        // Update dropdown option text
+        const option = templateSelect.querySelector(
+          `option[value="${currentTemplateId}"]`
+        );
+        if (option) option.textContent = newName;
+      }
+
       await saveTemplatesToStorage();
       showNotification("Template saved successfully!", "success");
       exitEditMode();
@@ -234,6 +258,7 @@ export default async function initSavedReplies({
     editBtn.textContent = "Cancel Edit";
     editBtn.style.background = "linear-gradient(135deg, #e74c3c, #c0392b)";
     saveBtn.style.display = "inline-block";
+    templateNameInput.value = templates[currentTemplateId].name; // Set current name
     templateText.focus();
   }
 
