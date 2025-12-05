@@ -839,7 +839,7 @@ a.styled-btn.button-link:not(.jira-link) {
 .tool-name {
   font-size: 15px;
   font-weight: 600;
-  color: #0290ff;
+  color: var(--text-primary)
   margin-bottom: 12px;
   letter-spacing: 0.5px;
 }
