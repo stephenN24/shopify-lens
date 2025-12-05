@@ -1588,8 +1588,42 @@ textarea:focus {
   color: #168a47;
 }
 
+
 /* ============================================
-   16. ANIMATIONS & KEYFRAMES
+   16. THEME TOGGLE BUTTON
+   ============================================ */
+.theme-toggle-btn {
+  position: absolute;
+  top: 10px;
+  right: auto;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.theme-toggle-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ============================================
+   17. ANIMATIONS & KEYFRAMES
    ============================================ */
 
 @keyframes zoomEffect {
@@ -1668,40 +1702,9 @@ textarea:focus {
 }
 
 /* ============================================
-   17. UTILITY CLASSES
+   18. UTILITY CLASSES
    ============================================ */
 
 .hidden {
   display: none !important;
-}
-
-/* --- Theme Toggle Button --- */
-.theme-toggle-btn {
-  position: absolute;
-  top: 10px;
-  right: auto;
-  left: 12px;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: white;
-  backdrop-filter: blur(4px);
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.theme-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
-}
-
-.theme-toggle-btn svg {
-  width: 18px;
-  height: 18px;
 }
