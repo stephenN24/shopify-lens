@@ -43,6 +43,10 @@ export default async function initSavedReplies({
       name: "Template 4",
       text: "1/ Detailed description of the issue/request/idea\n\nWorking theme: {{themeName}}{{isLiveTheme}} - ID: {{themeId}}\nPreview link: {{previewLink}}\nAccess granted.",
     },
+    5: {
+      name: "Template 5",
+      text: "Template content",
+    },
   };
 
   // Variables - need improvement
