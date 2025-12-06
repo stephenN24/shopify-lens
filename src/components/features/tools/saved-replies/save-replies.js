@@ -10,7 +10,11 @@ export default async function initSavedReplies({
   let currentTemplateId = null;
 
   // DOM elements
-  const templateSelect = document.getElementById("templateSelect");
+  const templateDropdown = document.getElementById("templateDropdown");
+  const templateDropdownBtn = document.getElementById("templateDropdownBtn");
+  const templateDropdownText = document.getElementById("templateDropdownText");
+  const templateDropdownMenu = document.getElementById("templateDropdownMenu");
+
   const templateEditor = document.getElementById("templateEditor");
   const templateNameInput = document.getElementById("templateNameInput");
   const templateText = document.getElementById("templateText");
@@ -70,18 +74,19 @@ export default async function initSavedReplies({
   }
 
   function updateDropdownOptions() {
-    // Clear existing options
-    templateSelect.innerHTML = "";
-
+    templateDropdownMenu.innerHTML = "";
     Object.keys(templates).forEach((key) => {
-      const option = document.createElement("option");
-      option.value = key;
+      const option = document.createElement("div");
+      option.className = "template-dropdown-option";
+      if (key === currentTemplateId) option.classList.add("active");
+      option.dataset.value = key;
       option.textContent = templates[key].name;
-      templateSelect.appendChild(option);
+      option.addEventListener("click", () => selectTemplate(key));
+      templateDropdownMenu.appendChild(option);
     });
 
-    if (currentTemplateId) {
-      templateSelect.value = currentTemplateId;
+    if (currentTemplateId && templates[currentTemplateId]) {
+      templateDropdownText.textContent = templates[currentTemplateId].name;
     }
   }
 
@@ -97,7 +102,19 @@ export default async function initSavedReplies({
 
   // Setup event listeners
   function setupEventListeners() {
-    templateSelect.addEventListener("change", selectTemplate);
+    // Dropdown toggle
+    templateDropdownBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      templateDropdown.classList.toggle("open");
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!templateDropdown.contains(e.target)) {
+        templateDropdown.classList.remove("open");
+      }
+    });
+
     templateText.addEventListener("input", updatePreview);
     editBtn.addEventListener("click", toggleEditMode);
     saveBtn.addEventListener("click", saveTemplate);
@@ -105,12 +122,23 @@ export default async function initSavedReplies({
   }
 
   // Select template from dropdown
-  function selectTemplate() {
-    currentTemplateId = templateSelect.value;
+  function selectTemplate(templateId) {
+    currentTemplateId = templateId;
+    templateDropdown.classList.remove("open");
+
+    // Update active state in menu
+    const options = templateDropdownMenu.querySelectorAll(
+      ".template-dropdown-option"
+    );
+    options.forEach((opt) => {
+      if (opt.dataset.value === templateId) opt.classList.add("active");
+      else opt.classList.remove("active");
+    });
 
     if (currentTemplateId) {
       const template = templates[currentTemplateId];
       if (template) {
+        templateDropdownText.textContent = template.name;
         templateEditor.classList.add("active");
         templateText.value = template.text;
 
@@ -172,11 +200,9 @@ export default async function initSavedReplies({
       const newName = templateNameInput.value.trim();
       if (newName) {
         templates[currentTemplateId].name = newName;
-        // Update dropdown option text
-        const option = templateSelect.querySelector(
-          `option[value="${currentTemplateId}"]`
-        );
-        if (option) option.textContent = newName;
+        // Update dropdown option text and button text
+        templateDropdownText.textContent = newName;
+        updateDropdownOptions(); // Re-render options to update name in list
       }
 
       await saveTemplatesToStorage();
@@ -284,6 +310,5 @@ export default async function initSavedReplies({
   await loadTemplates();
   setupEventListeners();
   // Auto-select Template 1
-  templateSelect.value = "1";
-  selectTemplate();
+  selectTemplate("1");
 }

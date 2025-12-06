@@ -169,15 +169,21 @@
               </div>
 
               <div class="template-selector">
-                <label class="hidden" for="templateSelect"
-                  >Choose a Template:</label
-                >
-                <select id="templateSelect">
-                  <option value="1" selected>Template 1</option>
-                  <option value="2">Template 2</option>
-                  <option value="3">Template 3</option>
-                  <option value="4">Template 4</option>
-                </select>
+                <div class="template-dropdown" id="templateDropdown">
+                  <button
+                    class="template-dropdown-button"
+                    id="templateDropdownBtn"
+                  >
+                    <span id="templateDropdownText">Select Template</span>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                      <polyline points="6,9 12,15 18,9" />
+                    </svg>
+                  </button>
+                  <div
+                    class="template-dropdown-menu"
+                    id="templateDropdownMenu"
+                  ></div>
+                </div>
               </div>
 
               <div id="templateEditor" class="template-editor">

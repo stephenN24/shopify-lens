@@ -839,7 +839,7 @@ a.styled-btn.button-link:not(.jira-link) {
 .tool-name {
   font-size: 15px;
   font-weight: 600;
-  color: var(--text-primary)
+  color: var(--text-primary);
   margin-bottom: 12px;
   letter-spacing: 0.5px;
 }
@@ -917,30 +917,93 @@ a.styled-btn.button-link:not(.jira-link) {
   margin-bottom: 20px;
 }
 
-.template-selector label {
-  display: block;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-  font-size: 0.95rem;
+.template-dropdown {
+  position: relative;
+  width: 100%;
 }
 
-select {
+.template-dropdown-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   padding: 12px;
+  background: var(--bg-input);
   border: 2px solid var(--border-color);
   border-radius: 8px;
   font-size: 14px;
-  background: var(--bg-input);
+  color: var(--text-primary);
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.template-dropdown-button:hover {
+  border-color: var(--main-color);
+}
+
+.template-dropdown.open .template-dropdown-button {
+  border-color: var(--main-color);
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+}
+
+.template-dropdown-button .chevron {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  transition: transform 0.2s ease;
+}
+
+.template-dropdown.open .chevron {
+  transform: rotate(180deg);
+}
+
+.template-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-light);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.template-dropdown.open .template-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.template-dropdown-option {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 14px;
   color: var(--text-primary);
 }
 
-select:focus {
-  outline: none;
-  border-color: var(--main-color);
-  box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+.template-dropdown-option:last-child {
+  border-bottom: none;
+}
+
+.template-dropdown-option:hover {
+  background: var(--bg-hover);
+  color: var(--main-color);
+}
+
+.template-dropdown-option.active {
+  background: rgba(102, 126, 234, 0.1);
+  color: var(--main-color);
+  font-weight: 600;
 }
 
 /* --- Template Editor --- */
@@ -1587,7 +1650,6 @@ textarea:focus {
 .live-theme-beacon .beacon-status {
   color: #168a47;
 }
-
 
 /* ============================================
    16. THEME TOGGLE BUTTON
