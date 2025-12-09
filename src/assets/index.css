@@ -1480,37 +1480,24 @@ textarea:focus {
 /* Icon animations */
 .highlight-toggle-btn .icon-off {
   transform: scale(1);
-}
-
-.highlight-toggle-btn .icon-on {
-  transform: scale(0.8);
-  opacity: 0;
-}
-
-.highlight-toggle-btn.active .icon-off {
-  transform: scale(0.8);
-  opacity: 0;
-}
-
-.highlight-toggle-btn.active .icon-on {
-  transform: scale(1);
-  opacity: 1;
-}
-
-/* Hide inactive icon */
-.highlight-toggle-btn .icon-off {
   display: block;
 }
 
 .highlight-toggle-btn .icon-on {
   display: none;
+  transform: scale(0.8);
+  opacity: 0;
 }
 
 .highlight-toggle-btn.active .icon-off {
+  transform: scale(0.8);
+  opacity: 0;
   display: none;
 }
 
 .highlight-toggle-btn.active .icon-on {
+  transform: scale(1);
+  opacity: 1;
   display: block;
 }
 

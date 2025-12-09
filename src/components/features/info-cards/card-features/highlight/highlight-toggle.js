@@ -70,16 +70,6 @@ function toggleHighlightElements() {
     document.querySelectorAll(
       '[class*="boost-sd"], [class*="boost-pfs"], [class*="bc-sf"]'
     )
-  ).filter(
-    (el) =>
-      el !== document.body &&
-      Array.from(el.classList).some(
-        (c) =>
-          (c.startsWith("boost-sd") ||
-            c.startsWith("boost-pfs") ||
-            c.startsWith("bc-sf")) &&
-          !c.includes("fallback")
-      )
   );
 
   // Determine toggle state
