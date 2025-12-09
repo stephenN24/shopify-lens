@@ -285,6 +285,7 @@ export default async function initSavedReplies({
   // Enter edit mode
   function enterEditMode() {
     editSection.style.display = "block";
+    copyBtn.style.display = "none";
     editBtn.textContent = "Cancel Edit";
     editBtn.style.background = "linear-gradient(135deg, #e74c3c, #c0392b)";
     saveBtn.style.display = "inline-block";
@@ -295,6 +296,7 @@ export default async function initSavedReplies({
   // Exit edit mode
   function exitEditMode() {
     editSection.style.display = "none";
+    copyBtn.style.display = "block";
     editBtn.textContent = "Edit Template";
     editBtn.style.background = "linear-gradient(135deg, #f39c12, #e67e22)";
     saveBtn.style.display = "none";

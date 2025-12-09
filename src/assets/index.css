@@ -901,7 +901,7 @@ a.styled-btn.button-link:not(.jira-link) {
 
 .tool-item-header > span {
   color: var(--text-primary);
-  font-size: 1.8rem;
+  font-size: 22px;
   margin-bottom: 5px;
   background: var(--main-theme-gradient);
   -webkit-background-clip: text;
@@ -1370,6 +1370,10 @@ textarea:focus {
   position: relative;
   display: inline-block;
   margin-top: 10px;
+}
+
+.tooltip-container > button {
+  font-size: 10px;
 }
 
 .variable-info {
