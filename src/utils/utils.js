@@ -1,7 +1,9 @@
 import svgLibrary from "../assets/svgs/svgLibrary.js";
 
-function renderButtonLink(icon, text, url, classModifier) {
-  return `<a class="button-link styled-btn ${classModifier}" href="${url}" target="_blank">
+function renderButtonLink(icon, text, url, classModifier, tooltip) {
+  return `<a class="button-link styled-btn ${classModifier}" href="${url}" target="_blank" ${
+    tooltip ? `title="${tooltip}"` : ""
+  }>
     ${text ? `<span class="text">${text}</span>` : ""}
     ${icon ? `<div class="icon">${icon}</div>` : ""}
   </a>`;

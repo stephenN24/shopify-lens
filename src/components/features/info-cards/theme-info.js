@@ -35,13 +35,15 @@ export default function renderThemeInfo({
           svgLibrary.codeEditor,
           "",
           themeCodeEditorLink,
-          "theme-code-editor"
+          "theme-code-editor",
+          "Theme code editor"
         )}
         ${Utils.renderButtonLink(
           svgLibrary.editor,
           "",
           themeEditorLink,
-          "theme-editor"
+          "theme-editor",
+          "Theme editor"
         )}
       </div>
     `;

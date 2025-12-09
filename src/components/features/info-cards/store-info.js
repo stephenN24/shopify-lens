@@ -17,21 +17,24 @@ export default function renderStoreInfo({
     svgLibrary.react,
     "",
     `https://dashboard.bc-solutions.net/sync-hook-details/${tenantId}`,
-    "system-dashboard"
+    "system-dashboard",
+    "System dashboard"
   );
 
   const shopifyPartnersLink = Utils.renderButtonLink(
     svgLibrary.shopifyPartner,
     "",
     `https://partners.shopify.com/524425/stores?search_value=${tenantId}`,
-    "shopify-partners"
+    "shopify-partners",
+    "Shopify partners"
   );
 
   const themesPageLink = Utils.renderButtonLink(
     svgLibrary.shopifyTheme,
     "",
     `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes`,
-    "themes-page"
+    "themes-page",
+    "Themes"
   );
 
   const currentPageResourceType =

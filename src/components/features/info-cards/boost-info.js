@@ -26,13 +26,15 @@ export default function renderBoostInfo({
       svgLibrary.codeEditor,
       "",
       templateCodeEditorURL,
-      "template-code-editor"
+      "template-code-editor",
+      "Template code editor"
     )}
     ${Utils.renderButtonLink(
       svgLibrary.editor,
       "",
       templateSettingsURL,
-      "template-settings"
+      "template-settings",
+      "Template settings"
     )}
   </div>`
        : ""
