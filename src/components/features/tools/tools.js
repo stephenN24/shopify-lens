@@ -1,3 +1,5 @@
+import * as Utils from "../../../utils/utils.js";
+
 export default function initTools() {
   const openRefinedUrlBtn = document.querySelector("#open-url-btn");
   const apiRequestInput = document.querySelector("#apiRequest");
@@ -28,13 +30,10 @@ export default function initTools() {
 function handleOpenRefinedUrl(apiRequestInput) {
   const originalApiRequest = apiRequestInput.value;
   const url = refineAPIRequest(originalApiRequest);
-  const errorMsg = document.querySelector(".url-refactor .error-message");
   if (url) {
     window.open(url, "_blank");
-    errorMsg.style.display = "none";
   } else {
-    errorMsg.textContent = "Invalid URL";
-    errorMsg.style.display = "inline";
+    Utils.showNotification("Invalid URL", "error");
   }
 }
 
@@ -51,15 +50,12 @@ function refineAPIRequest(url) {
 
 function handleHelpdocSearch(helpdocSearchInput) {
   const keyword = helpdocSearchInput.value.trim();
-  const errorMsg = document.querySelector(".helpdoc-finder .error-message");
   if (keyword) {
     const url = `https://support.boostcommerce.net/en/?q=${encodeURIComponent(
       keyword
     )}`;
     window.open(url, "_blank");
-    errorMsg.style.display = "none";
   } else {
-    errorMsg.textContent = "Please enter a keyword";
-    errorMsg.style.display = "inline";
+    Utils.showNotification("Please enter a keyword", "error");
   }
 }

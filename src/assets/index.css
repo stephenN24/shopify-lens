@@ -868,15 +868,6 @@ a.styled-btn.button-link:not(.jira-link) {
   width: 100%;
 }
 
-.error-message {
-  font-size: 13px;
-  font-weight: 500;
-  color: #e74c3c !important;
-  margin-top: 4px;
-  margin-left: 2px;
-  display: inline-block;
-}
-
 .input-wrapper {
   display: flex;
   width: 100%;
@@ -1086,7 +1077,7 @@ textarea:focus {
   right: 10px;
   left: 10px;
   padding: 5px 15px;
-  border-radius: 20px;
+  border-radius: 15px;
   color: white;
   font-weight: 600;
   font-size: 12px;

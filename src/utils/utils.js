@@ -54,10 +54,23 @@ function bindEventsCopyToClipboard() {
   });
 }
 
+// Show notification
+function showNotification(message, type = "info") {
+  const notification = document.getElementById("notification");
+  notification.querySelector(".notification-text").textContent = message;
+  notification.className = `notification ${type}`;
+  notification.classList.add("show");
+
+  setTimeout(() => {
+    notification.classList.remove("show");
+  }, 3000);
+}
+
 export {
   renderButtonLink,
   renderCopyableField,
   buildPreviewLink,
   buildThemeEditorLink,
   bindEventsCopyToClipboard,
+  showNotification,
 };

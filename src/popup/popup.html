@@ -16,6 +16,9 @@
   <body>
     <header>
       <div class="app-header-wrapper">
+        <div class="notification" id="notification">
+          <div class="notification-text"></div>
+        </div>
         <div class="cache-indicator"></div>
         <div class="header-store-info"></div>
         <button id="theme-toggle" class="theme-toggle-btn">
@@ -120,11 +123,6 @@
                   <input type="text" id="apiRequest" class="tool-input" />
                   <button id="open-url-btn" class="styled-btn small">Go</button>
                 </div>
-
-                <span
-                  class="error-message"
-                  style="color: red; margin-left: 8px; display: none"
-                ></span>
               </div>
               <div class="tool-item helpdoc-finder">
                 <div class="tool-name">Find support article</div>
@@ -139,10 +137,6 @@
                     />
                   </button>
                 </div>
-                <span
-                  class="error-message"
-                  style="color: red; margin-left: 8px; display: none"
-                ></span>
               </div>
             </div>
           </div>
@@ -231,10 +225,6 @@
                   </button>
                 </div>
               </div>
-            </div>
-
-            <div class="notification" id="notification">
-              <div class="notification-text"></div>
             </div>
           </div>
         </div>

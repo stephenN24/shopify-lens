@@ -23,7 +23,6 @@ export default async function initSavedReplies({
   const editBtn = document.getElementById("editBtn");
   const saveBtn = document.getElementById("saveBtn");
   const copyBtn = document.getElementById("copyBtn");
-  const notification = document.getElementById("notification");
 
   // Default templates
   const defaultTemplates = {
@@ -70,7 +69,10 @@ export default async function initSavedReplies({
     } catch (error) {
       console.log("Error loading templates:", error);
       templates = { ...defaultTemplates };
-      showNotification("Error loading templates, using defaults", "error");
+      Utils.showNotification(
+        "Error loading templates, using defaults",
+        "error"
+      );
     } finally {
       // Update dropdown options after loading
       updateDropdownOptions();
@@ -100,7 +102,7 @@ export default async function initSavedReplies({
       await chrome.storage.sync.set({ templates: templates });
     } catch (error) {
       console.log("Error saving templates:", error);
-      showNotification("Error saving templates", "error");
+      Utils.showNotification("Error saving templates", "error");
     }
   }
 
@@ -187,14 +189,14 @@ export default async function initSavedReplies({
   // Save template changes
   async function saveTemplate() {
     if (!currentTemplateId) {
-      showNotification("Please select a template first", "info");
+      Utils.showNotification("Please select a template first", "info");
       return;
     }
 
     const text = templateText.value.trim();
 
     if (!text) {
-      showNotification("Template cannot be empty", "error");
+      Utils.showNotification("Template cannot be empty", "error");
       return;
     }
 
@@ -210,19 +212,19 @@ export default async function initSavedReplies({
       }
 
       await saveTemplatesToStorage();
-      showNotification("Template saved successfully!", "success");
+      Utils.showNotification("Template saved successfully!", "success");
       exitEditMode();
       updatePreview();
     } catch (error) {
       console.log("Error saving template:", error);
-      showNotification("Error saving template", "error");
+      Utils.showNotification("Error saving template", "error");
     }
   }
 
   // Copy rendered text to clipboard
   async function copyToClipboard() {
     if (!currentTemplateId) {
-      showNotification("Please select a template first", "info");
+      Utils.showNotification("Please select a template first", "info");
       return;
     }
 
@@ -235,7 +237,7 @@ export default async function initSavedReplies({
     }
 
     if (!text.trim()) {
-      showNotification("Nothing to copy", "info");
+      Utils.showNotification("Nothing to copy", "info");
       return;
     }
 
@@ -247,7 +249,7 @@ export default async function initSavedReplies({
 
     try {
       await navigator.clipboard.writeText(textToCopy);
-      showNotification("Copied to clipboard!", "success");
+      Utils.showNotification("Copied to clipboard!", "success");
     } catch (error) {
       console.log("Error copying to clipboard:", error);
 
@@ -259,9 +261,9 @@ export default async function initSavedReplies({
         textarea.select();
         document.execCommand("copy");
         document.body.removeChild(textarea);
-        showNotification("Copied to clipboard!", "success");
+        Utils.showNotification("Copied to clipboard!", "success");
       } catch (fallbackError) {
-        showNotification("Failed to copy to clipboard", "error");
+        Utils.showNotification("Failed to copy to clipboard", "error");
       }
     }
   }
@@ -269,7 +271,7 @@ export default async function initSavedReplies({
   // Toggle edit mode
   function toggleEditMode() {
     if (!currentTemplateId) {
-      showNotification("Please select a template first", "info");
+      Utils.showNotification("Please select a template first", "info");
       return;
     }
 
@@ -300,17 +302,6 @@ export default async function initSavedReplies({
     editBtn.textContent = "Edit Template";
     editBtn.style.background = "linear-gradient(135deg, #f39c12, #e67e22)";
     saveBtn.style.display = "none";
-  }
-
-  // Show notification
-  function showNotification(message, type = "info") {
-    notification.querySelector(".notification-text").textContent = message;
-    notification.className = `notification ${type}`;
-    notification.classList.add("show");
-
-    setTimeout(() => {
-      notification.classList.remove("show");
-    }, 3000);
   }
 
   await loadTemplates();
