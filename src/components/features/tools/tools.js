@@ -44,7 +44,7 @@ function refineAPIRequest(url) {
     urlObj.searchParams.delete("widgetId");
     return urlObj.toString();
   } catch (e) {
-    console.warn("Invalid URL:", url);
+    console.log("Invalid URL:", url);
     return null;
   }
 }

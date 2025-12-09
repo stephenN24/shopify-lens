@@ -68,7 +68,7 @@ export default async function initSavedReplies({
         await saveTemplatesToStorage();
       }
     } catch (error) {
-      console.error("Error loading templates:", error);
+      console.log("Error loading templates:", error);
       templates = { ...defaultTemplates };
       showNotification("Error loading templates, using defaults", "error");
     } finally {
@@ -99,7 +99,7 @@ export default async function initSavedReplies({
     try {
       await chrome.storage.sync.set({ templates: templates });
     } catch (error) {
-      console.error("Error saving templates:", error);
+      console.log("Error saving templates:", error);
       showNotification("Error saving templates", "error");
     }
   }
@@ -214,7 +214,7 @@ export default async function initSavedReplies({
       exitEditMode();
       updatePreview();
     } catch (error) {
-      console.error("Error saving template:", error);
+      console.log("Error saving template:", error);
       showNotification("Error saving template", "error");
     }
   }
@@ -249,7 +249,7 @@ export default async function initSavedReplies({
       await navigator.clipboard.writeText(textToCopy);
       showNotification("Copied to clipboard!", "success");
     } catch (error) {
-      console.error("Error copying to clipboard:", error);
+      console.log("Error copying to clipboard:", error);
 
       // Fallback for older browsers
       try {
