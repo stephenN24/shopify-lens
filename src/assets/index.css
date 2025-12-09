@@ -1097,20 +1097,27 @@ textarea:focus {
   text-align: center;
 }
 
+.notification-text {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 10px;
+}
+
 .notification.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-.notification.success {
+.notification.success > .notification-text {
   background: linear-gradient(135deg, #27ae60, #229954);
 }
 
-.notification.info {
+.notification.info > .notification-text {
   background: linear-gradient(135deg, #3498db, #2980b9);
 }
 
-.notification.error {
+.notification.error > .notification-text {
   background: linear-gradient(135deg, #e74c3c, #c0392b);
 }
 

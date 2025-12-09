@@ -302,7 +302,7 @@ export default async function initSavedReplies({
 
   // Show notification
   function showNotification(message, type = "info") {
-    notification.textContent = message;
+    notification.querySelector(".notification-text").textContent = message;
     notification.className = `notification ${type}`;
     notification.classList.add("show");
 
