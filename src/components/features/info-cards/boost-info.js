@@ -11,7 +11,7 @@ export default function renderBoostInfo({
   const { templateId } = appData;
   const boostVersionsInfo = boostVersions.join(" | ");
   const templateSettingsURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration/${themeId}`;
-  const templateCodeEditorURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration//code-editor/${templateId}`;
+  const templateCodeEditorURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration/code-editor/${templateId}`;
 
   return `<div class="section-content boost-info">
   <div class="boost-versions"><div class="icon">${svgLibrary.appVersion}</div>
