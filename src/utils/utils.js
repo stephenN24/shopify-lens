@@ -44,6 +44,7 @@ function bindEventsCopyToClipboard() {
         dataField.querySelector(".title")?.getAttribute("data-value");
       if (value) {
         navigator.clipboard.writeText(value);
+        showNotification("Copied to clipboard!", "success");
         const svg = dataField.querySelector(".copy-btn svg");
         if (svg) {
           svg.classList.add("clicked"); // Add clicked class to animate
