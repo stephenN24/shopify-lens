@@ -599,6 +599,10 @@ button {
   text-overflow: ellipsis;
 }
 
+.store-info .data-field .title-text {
+  text-wrap: initial;
+}
+
 .data-field.theme-schema .title-text {
   max-width: 70px;
   display: inline-block;
