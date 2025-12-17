@@ -63,7 +63,7 @@ function showNotification(message, type = "info") {
 
   setTimeout(() => {
     notification.classList.remove("show");
-  }, 3000);
+  }, 1000);
 }
 
 export {
