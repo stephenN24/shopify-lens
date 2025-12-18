@@ -425,7 +425,7 @@ button {
   display: flex;
   gap: 5px;
   color: #000;
-  text-shadow: unset;
+  text-shadow: unset !important;
   max-width: 150px;
 }
 
@@ -887,7 +887,6 @@ a.styled-btn.button-link:not(.jira-link) {
 
 .saved-reply .tool-content-wrapper {
   padding: 0;
-  backdrop-filter: blur(10px);
   min-height: 600px;
   width: 100%;
 }
@@ -1043,7 +1042,7 @@ textarea {
   font-size: 13px;
   font-family: inherit;
   resize: vertical;
-  min-height: 80px;
+  min-height: 180px;
   transition: all 0.3s ease;
   background: var(--bg-input);
   color: var(--text-primary);
