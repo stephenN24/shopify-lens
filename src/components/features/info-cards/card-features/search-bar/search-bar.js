@@ -184,7 +184,7 @@ export function bindEventForSearchBar() {
 function performSearch() {
   const searchQuery = encodeURIComponent(searchInput.value);
   if (searchQuery === "") {
-    Utils.showNotification("Please enter a query.", "error");
+    Utils.showNotification("Please enter a query", "error");
     return;
   }
   const currentHref = searchButton.href;
