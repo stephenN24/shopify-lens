@@ -1,3 +1,5 @@
+import * as Utils from "../../../../../utils/utils.js";
+
 // Render search bar HTML
 export default function renderSearchBar({ shopURLWithoutDomain }) {
   return `
@@ -181,6 +183,10 @@ export function bindEventForSearchBar() {
 
 function performSearch() {
   const searchQuery = encodeURIComponent(searchInput.value);
+  if (searchQuery === "") {
+    Utils.showNotification("Please enter a query.", "error");
+    return;
+  }
   const currentHref = searchButton.href;
   const searchType = searchInput.dataset.searchtype;
   let searchURL = `${currentHref}?query=${searchQuery}`;
