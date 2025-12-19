@@ -1396,7 +1396,7 @@ textarea:focus {
    12. TOOLTIP COMPONENT
    ============================================ */
 
-.tooltip-container {
+/* .tooltip-container {
   position: relative;
   display: inline-block;
   margin-top: 10px;
@@ -1459,7 +1459,7 @@ textarea:focus {
   line-height: 1.8;
   color: #6b7280;
   font-size: 10px;
-}
+} */
 
 /* ============================================
    13. TOGGLE COMPONENTS
