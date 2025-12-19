@@ -29,7 +29,7 @@ export default async function initSavedReplies({
   const defaultTemplates = {
     1: {
       name: "Template 1",
-      text: "Could you please check it again? Here is the preview link: {{previewLink}}\n\nThank you!",
+      text: "Could you please check the theme named {{themeName}} again?\n Here is the preview link: {{previewLink}}\n\nThank you!",
     },
     2: {
       name: "Template 2",
@@ -41,11 +41,11 @@ export default async function initSavedReplies({
     },
     4: {
       name: "Template 4",
-      text: "1/ Detailed description of the issue/request/idea\n\nWorking theme: {{themeName}}{{isLiveTheme}} - ID: {{themeId}}\nPreview link: {{previewLink}}\nAccess granted.",
+      text: "1/ Detailed description of the issue/request/idea? (Required)\n\n2/ What you have done? (Required):\n\n3/ Additional Information?\n\nWorking theme: {{themeName}}{{isLiveTheme}}\nPreview link: {{previewLink}}\nAccess granted.",
     },
     5: {
-      name: "Template 5",
-      text: "Template content",
+      name: "Demo",
+      text: "Theme Name: {{themeName}}\nTheme ID: {{themeId}}\nTenant Id: {{tenantId}}\nPreview Link: {{previewLink}}\nIs Live: {{isLiveTheme}}",
     },
   };
 
