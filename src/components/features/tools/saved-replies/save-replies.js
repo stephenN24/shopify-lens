@@ -41,7 +41,7 @@ export default async function initSavedReplies({
     },
     4: {
       name: "Template 4",
-      text: "1/ Detailed description of the issue/request/idea? (Required)\n\n2/ What you have done? (Required):\n\n3/ Additional Information?\n\nWorking theme: {{themeName}}{{isLiveTheme}}\nPreview link: {{previewLink}}\nAccess granted.",
+      text: "1/ Detailed description of the issue/request/idea? (Required)\n\n2/ What you have done? (Required)\n\n3/ Additional Information?\n\nWorking theme: {{themeName}}{{isLiveTheme}}\nPreview link: {{previewLink}}\nAccess granted.",
     },
     5: {
       name: "Demo",
