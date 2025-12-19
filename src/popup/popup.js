@@ -77,6 +77,8 @@ async function initPopup() {
         handlePopupData(cachedData);
       } else {
         console.log("No cached data available");
+        // No cached data -> Load from demo
+        handlePopupData(Utils.demoData);
       }
     } catch (storageError) {
       console.log("Failed to load cached data:", storageError);

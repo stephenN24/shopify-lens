@@ -67,6 +67,39 @@ function showNotification(message, type = "info") {
   }, 1000);
 }
 
+const demoData = {
+  isShopifyStore: true,
+  jiraKey: null,
+  storeData: {
+    appData: {
+      templateId: "C8hA8bsZZu",
+    },
+    boostVersions: ["Turbo"],
+    country: "US",
+    currency: {
+      active: "USD",
+      rate: "1.0",
+    },
+    isLive: true,
+    locale: "en",
+    resourceId: 262252789891,
+    resourceType: "collection",
+    shopURLWithoutDomain: "extension-demo",
+    tenantId: "extension-demo.myshopify.com",
+    themeId: 140177408131,
+    themeName: "Demo Theme",
+    themeSchema: "Dawn",
+    themeSchemaVersion: "10.0.0",
+    windowLocation: {
+      hash: "",
+      hostname: "extension-demo.myshopify.com",
+      href: "https://extension-demo.myshopify.com/collections/horizontal-layout",
+      pathname: "/collections/horizontal-layout",
+      search: "",
+    },
+  },
+};
+
 export {
   renderButtonLink,
   renderCopyableField,
@@ -74,4 +107,5 @@ export {
   buildThemeEditorLink,
   bindEventsCopyToClipboard,
   showNotification,
+  demoData,
 };
