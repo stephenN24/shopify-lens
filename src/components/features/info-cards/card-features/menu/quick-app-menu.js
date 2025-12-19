@@ -19,7 +19,7 @@ export default function renderQuickAppMenu(shopURLWithoutDomain) {
       name: "Search",
       tooltip: "Search",
       svgPath: svgLibrary.appSearch,
-      urlPath: "/search/standard-search/relevance-settings",
+      urlPath: "/search/search-control",
     },
     {
       name: "Merchandising",
