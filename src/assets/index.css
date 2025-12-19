@@ -210,7 +210,7 @@ button {
 
 .sidebar .tab-btn {
   width: 100%;
-  padding: 10px;
+  padding: 13px 10px 10px 10px;
   margin-bottom: 12px;
   background: var(--tab-btn-bg);
   border: none;
@@ -241,7 +241,7 @@ button {
 
 .sidebar [data-tab="tab-dashboard"].tab-btn::before,
 .sidebar [data-tab="tab-dashboard"].tab-btn.active::before {
-  background: #7bb930;
+  background: #468b76;
 }
 
 .sidebar [data-tab="tab-tools"].tab-btn::before,
@@ -279,7 +279,7 @@ button {
 
 .sidebar .tab-btn img {
   object-fit: contain;
-  scale: 1.3;
+  scale: 1.2;
 }
 
 /* --- Content Area --- */
@@ -877,7 +877,7 @@ a.styled-btn.button-link:not(.jira-link) {
 }
 
 .tool-name {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 12px;
