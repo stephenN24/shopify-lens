@@ -576,8 +576,8 @@ button {
   font-size: 18px;
   font-weight: 500;
   text-decoration: none;
-  background: #0290ff;
-  border-radius: 15px;
+  background: #2470db;
+  border-radius: 10px;
   padding: 5px 25px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
@@ -592,7 +592,7 @@ button {
 .button-link.jira-link:focus,
 .button-link.jira-link:active {
   -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  transform: scale(1.05);
   -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
   transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
