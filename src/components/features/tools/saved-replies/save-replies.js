@@ -5,6 +5,7 @@ export default async function initSavedReplies({
   themeName,
   windowLocation,
   isLive,
+  tenantId,
 }) {
   let templates = {};
   let currentTemplateId = null;
@@ -178,6 +179,7 @@ export default async function initSavedReplies({
     const rendered = text
       .replace(/\{\{themeName\}\}/g, themeName)
       .replace(/\{\{themeId\}\}/g, themeId)
+      .replace(/\{\{tenantId\}\}/g, tenantId)
       .replace(/\{\{isLiveTheme\}\}/g, isLiveTheme)
       .replace(/\{\{previewLink\}\}/g, previewLink);
 
@@ -244,6 +246,7 @@ export default async function initSavedReplies({
     const textToCopy = text
       .replace(/\{\{themeName\}\}/g, themeName)
       .replace(/\{\{themeId\}\}/g, themeId)
+      .replace(/\{\{tenantId\}\}/g, tenantId)
       .replace(/\{\{isLiveTheme\}\}/g, isLiveTheme)
       .replace(/\{\{previewLink\}\}/g, previewLink);
 
