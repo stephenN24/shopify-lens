@@ -864,7 +864,7 @@ a.styled-btn.button-link:not(.jira-link) {
 .tools-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 0;
   padding: 20px 0;
 }
 
