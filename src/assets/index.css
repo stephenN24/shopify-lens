@@ -522,6 +522,15 @@ button {
   gap: 15px;
 }
 
+.not-integrated .boost-details,
+.not-integrated .highlight-toggle-container {
+  display: none !important;
+}
+
+.boost-info.not-integrated {
+  min-height: 80px;
+}
+
 .template-info {
   display: inline-block;
   padding: 10px;

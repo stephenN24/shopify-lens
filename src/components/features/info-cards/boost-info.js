@@ -13,7 +13,9 @@ export default function renderBoostInfo({
   const templateSettingsURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration/${themeId}`;
   const templateCodeEditorURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration/code-editor/${templateId}`;
 
-  return `<div class="section-content boost-info">
+  return `<div class="section-content boost-info ${
+    boostVersions.includes("No Data") ? "not-integrated" : ""
+  }">
   <div class="boost-versions"><div class="icon">${svgLibrary.appVersion}</div>
   <div class="version-info">${boostVersionsInfo}</div>
   </div>
