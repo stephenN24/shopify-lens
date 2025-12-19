@@ -225,18 +225,38 @@ button {
   overflow: hidden;
 }
 
-.sidebar .tab-btn::before {
+.sidebar .tab-btn::before,
+.sidebar .tab-btn.active::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 4px;
   height: 100%;
-  background: var(--main-theme-gradient);
   border-radius: 4px 0 0 4px;
   transform: scaleY(0);
   transition: transform 0.3s ease;
   transform-origin: bottom;
+}
+
+.sidebar [data-tab="tab-dashboard"].tab-btn::before,
+.sidebar [data-tab="tab-dashboard"].tab-btn.active::before {
+  background: #7bb930;
+}
+
+.sidebar [data-tab="tab-tools"].tab-btn::before,
+.sidebar [data-tab="tab-tools"].tab-btn.active::before {
+  background: #06a5c5;
+}
+
+.sidebar [data-tab="tab-saved-replies"].tab-btn::before,
+.sidebar [data-tab="tab-saved-replies"].tab-btn.active::before {
+  background: #e98e08;
+}
+
+.sidebar [data-tab="tab-jira"].tab-btn::before,
+.sidebar [data-tab="tab-jira"].tab-btn.active::before {
+  background: #1767da;
 }
 
 .sidebar .tab-btn:hover {
@@ -246,16 +266,20 @@ button {
   background: var(--tab-btn-hover-bg);
 }
 
-.sidebar .tab-btn:hover::before {
+.sidebar .tab-btn.active::before {
   transform: scaleY(1);
 }
 
 .sidebar .tab-btn.active {
-  background: var(--main-theme-gradient);
   color: white;
   transform: rotateY(8deg) translateZ(15px) scale(1.02);
   box-shadow: -8px 15px 30px rgba(102, 126, 234, 0.3),
     0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar .tab-btn img {
+  object-fit: contain;
+  scale: 1.3;
 }
 
 /* --- Content Area --- */
@@ -573,7 +597,7 @@ button {
 
 .cache-indicator > span {
   color: #fff;
-  background: #eaae11;
+  background: #ea8f09;
   padding: 2px 7px;
   font-size: 8px;
   border-radius: 15px;
