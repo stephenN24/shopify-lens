@@ -16,7 +16,7 @@ export default function renderStoreInfo({
   const dashboardLink = Utils.renderButtonLink(
     svgLibrary.react,
     "",
-    `https://dashboard.bc-solutions.net/sync-hook-details/${tenantId}`,
+    `http://boost-pfs-system-dashboard.s3-website-us-west-2.amazonaws.com/sync-hook-details/${tenantId}`,
     "system-dashboard",
     "System dashboard"
   );
