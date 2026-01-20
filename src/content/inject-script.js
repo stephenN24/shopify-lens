@@ -44,8 +44,8 @@
   function findJiraKey() {
     const pageContent =
       document.body.innerText || document.body.textContent || "";
-    const match = pageContent.match(/jira_issue_key to (BOOST|BC)-\d+/);
-    return match ? match[0].replace("jira_issue_key to ", "") : null;
+    const match = pageContent.match(/'jira_issue_key' set to (BOOST|BC)-\d+/);
+    return match ? match[0].replace("'jira_issue_key' set to ", "") : null;
   }
 
   // Get template ID from global settings
