@@ -11,14 +11,14 @@ export default function renderStoreInfo({
     "",
     tenantId,
     undefined,
-    "tenant-id"
+    "tenant-id",
   );
   const dashboardLink = Utils.renderButtonLink(
     svgLibrary.react,
     "",
-    `http://boost-pfs-system-dashboard.s3-website-us-west-2.amazonaws.com/sync-hook-details/${tenantId}`,
+    `https://dashboard.bc-solutions.net/sync-hook-details/${tenantId}`,
     "system-dashboard",
-    "System dashboard"
+    "System dashboard",
   );
 
   const shopifyPartnersLink = Utils.renderButtonLink(
@@ -26,7 +26,7 @@ export default function renderStoreInfo({
     "",
     `https://partners.shopify.com/524425/stores?search_value=${tenantId}`,
     "shopify-partners",
-    "Shopify partners"
+    "Shopify partners",
   );
 
   const themesPageLink = Utils.renderButtonLink(
@@ -34,7 +34,7 @@ export default function renderStoreInfo({
     "",
     `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes`,
     "themes-page",
-    "Themes"
+    "Themes",
   );
 
   const currentPageResourceType =
@@ -48,7 +48,7 @@ export default function renderStoreInfo({
           currentPageResourceType + " ID",
           resourceId,
           undefined,
-          "extra-page-data"
+          "extra-page-data",
         )
       : "";
 
