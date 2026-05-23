@@ -44,7 +44,14 @@
   function findJiraKey() {
     const pageContent =
       document.body.innerText || document.body.textContent || "";
-    const match = pageContent.match(/'jira_issue_key' set to (BOOST|BC)-\d+/);
+    const conversationStream = document
+      .querySelector("div#teammate-app-react.h-full.w-full")
+      ?.shadowRoot?.querySelector(
+        '[data-testid="conversation-stream-scroll-container"]',
+      )?.innerText;
+    const match =
+      pageContent.match(/'jira_issue_key' set to (BOOST|BC)-\d+/) ||
+      conversationStream?.match(/'jira_issue_key' set to (BOOST|BC)-\d+/);
     return match ? match[0].replace("'jira_issue_key' set to ", "") : null;
   }
 
@@ -68,8 +75,6 @@
   if (popupData.storeData.boostVersions.length == 0) {
     popupData.storeData.boostVersions.push("No Data");
   }
-
-  console.log("Popup Data:", popupData);
 
   // Send the data back to the content script
   window.postMessage({ type: "POPUP_DATA", popupData: popupData }, "*");
