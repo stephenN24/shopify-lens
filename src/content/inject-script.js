@@ -29,6 +29,8 @@
     boostVersions: [],
     appData: {
       templateId: getTemplateId(),
+      themelib: getThemelibVersion(),
+      templateVersion: getTemplateVersion(),
     },
     resourceType: rtyp, //Current page type
     resourceId: rid, //Collection/product id
@@ -58,6 +60,25 @@
   // Get template ID from global settings
   function getTemplateId() {
     return window?.boostWidgetIntegration?.generalSettings?.templateId ?? "";
+  }
+
+  function getThemelibVersion() {
+    return (
+      window?.boostWidgetIntegration?.config?.templateMetadata
+        ?.themeLibVersion ?? ""
+    );
+  }
+
+  function getTemplateVersion() {
+    const themelibName =
+      window?.boostWidgetIntegration?.config?.templateMetadata?.themeNameLib ||
+      "";
+    const templateVersion =
+      window?.boostWidgetIntegration?.config?.templateMetadata
+        ?.templateVersion || "";
+    return templateVersion && themelibName
+      ? `${themelibName}_v${templateVersion}`
+      : "";
   }
 
   // Get boost version

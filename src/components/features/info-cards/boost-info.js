@@ -8,7 +8,7 @@ export default function renderBoostInfo({
   boostVersions,
   appData,
 }) {
-  const { templateId } = appData;
+  const { templateId, templateVersion, themelib } = appData;
   const boostVersionsInfo = boostVersions.join(" | ");
   const templateSettingsURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration/${themeId}`;
   const templateCodeEditorURL = `https://admin.shopify.com/store/${shopURLWithoutDomain}/apps/product-filter-search/shopify-integration/code-editor/${templateId}`;
@@ -24,25 +24,30 @@ export default function renderBoostInfo({
      boostVersions.includes("Turbo")
        ? `<div class="template-info">
     ${Utils.renderCopyableField("", templateId, "", "template-id")}
+    <div class="template-cta-buttons">
     ${Utils.renderButtonLink(
       svgLibrary.codeEditor,
       "",
       templateCodeEditorURL,
       "template-code-editor",
-      "Template code editor"
+      "Template code editor",
     )}
     ${Utils.renderButtonLink(
       svgLibrary.editor,
       "",
       templateSettingsURL,
       "template-settings",
-      "Template settings"
+      "Template settings",
     )}
+    </div>
+    <div class="template-meta-data">
+    ${Utils.renderCopyableField("Themelib", themelib, "", "themelib")}
+    ${Utils.renderCopyableField("Template", Utils.capitalizeFirstLetter(templateVersion), "", "template-version")}
   </div>`
        : ""
    }
-   ${renderQuickAppMenu(shopURLWithoutDomain)}
     </div>
+     ${renderQuickAppMenu(shopURLWithoutDomain)}
    ${renderHighlightToggle()}
   </div>
   `;
