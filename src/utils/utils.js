@@ -14,11 +14,11 @@ function renderCopyableField(fieldName, title, value, classModifier = "") {
   const dataValue = value || title;
   return `<div class="data-field ${classModifier}">
     <div class="title" data-value="${dataValue}">${
-    fieldName ? `<div class="field-name">• ${fieldName} | </div>` : ""
-  }<span class="title-text">${title}</span></div>
+      fieldName ? `<div class="field-name">• ${fieldName} | </div>` : ""
+    }<span class="title-text">${title}</span></div>
     <button class="copy-btn" data-value="${dataValue}" title="Copy">${
-    svgLibrary.copyIcon
-  }</button>
+      svgLibrary.copyIcon
+    }</button>
   </div>`;
 }
 
@@ -31,7 +31,7 @@ function buildPreviewLink(windowLocation, themeId) {
 function buildThemeEditorLink(windowLocation, shopURLWithoutDomain, themeId) {
   if (!windowLocation || !themeId) return "No edior link available";
   return `https://admin.shopify.com/store/${shopURLWithoutDomain}/themes/${themeId}/editor?previewPath=${encodeURIComponent(
-    windowLocation.pathname.replace(/^\/[a-z]{2}(?:-[a-z]{2,})*(?=\/)/i, "")
+    windowLocation.pathname.replace(/^\/[a-z]{2}(?:-[a-z]{2,})*(?=\/)/i, ""),
   )}`; // Strip locale and regional codes
 }
 
@@ -65,6 +65,10 @@ function showNotification(message, type = "info") {
   setTimeout(() => {
     notification.classList.remove("show");
   }, 1000);
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 const demoData = {
@@ -108,4 +112,5 @@ export {
   bindEventsCopyToClipboard,
   showNotification,
   demoData,
+  capitalizeFirstLetter,
 };
